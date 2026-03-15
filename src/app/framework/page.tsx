@@ -99,7 +99,7 @@ export default function FrameworkPage() {
                 {
                   icon: Globe,
                   title: 'Admin creates campaigns manually',
-                  body: 'A password-protected admin panel lets project operators create and publish campaigns. For High-Tip Drops, the treasury funds a real order placed on a gig platform — the platform determines which worker receives the job. GiggyBank funds the tip, not the assignment.',
+                  body: 'A password-protected admin panel lets project operators create and publish campaigns. For High-Tip Drops, the treasury funds a real order placed on a gig platform — the platform determines which worker receives the job. GiggyBank funds the tip, not the assignment. Because worker assignment is handled by the platform, High-Tip Drops function as genuine surprise bonuses for the workers who receive them.',
                 },
                 {
                   icon: Repeat,

@@ -144,7 +144,7 @@ export default async function LandingPage() {
                 icon: Gift,
                 step: '02',
                 title: 'A gig worker receives the surprise tip',
-                body: `GiggyBank places a real order on a gig platform — DoorDash, Instacart, Lyft — with an outsized tip funded by the treasury. The platform routes the job to whichever worker accepts it. They receive the full tip on completion.`,
+                body: `GiggyBank places a real order on a gig platform with an outsized tip funded by the treasury. The platform determines which worker receives the job, and that worker receives the full tip on completion.`,
               },
               {
                 icon: Eye,
