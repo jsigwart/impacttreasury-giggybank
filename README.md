@@ -1,5 +1,10 @@
 # ImpactTreasury - GiggyBank
 
+![Next.js](https://img.shields.io/badge/Next.js-14-black)
+![Supabase](https://img.shields.io/badge/Supabase-Database-green)
+![Solana](https://img.shields.io/badge/Solana-Web3-purple)
+![Bags](https://img.shields.io/badge/Bags-FeeSharing-blue)
+
 **GiggyBank is the first live deployment of ImpactTreasury**, a reusable framework for turning token trading fees into transparent real-world impact campaigns.
 
 Built on **Bags fee-sharing**, GiggyBank routes token trading activity into a community treasury that funds publicly verifiable impact drops.
