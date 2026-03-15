@@ -99,7 +99,7 @@ export default function FrameworkPage() {
                 {
                   icon: Globe,
                   title: 'Admin creates campaigns manually',
-                  body: 'A password-protected admin panel lets project operators create and publish campaigns. Each campaign includes financial data, receipt images, social post links, and treasury transaction hashes.',
+                  body: 'A password-protected admin panel lets project operators create and publish campaigns. For High-Tip Drops, the treasury funds a real order placed on a gig platform — the platform determines which worker receives the job. GiggyBank funds the tip, not the assignment.',
                 },
                 {
                   icon: Repeat,

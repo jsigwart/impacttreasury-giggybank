@@ -11,9 +11,9 @@ insert into campaigns (
 )
 values
 (
-  'high-tip-drop-maria-g-260310',
-  'High-Tip Drop — Maria G.',
-  'The GIGGYBANK treasury funded a $200 surprise tip on Maria''s DoorDash delivery. Maria has been on the platform for 3 years with a 4.9 rating. High-Tip Drops exist to give gig workers the recognition their platform payouts rarely include.',
+  'doordash-drop-food-260310',
+  'DoorDash High-Tip Drop — Food Delivery',
+  'GiggyBank placed a food delivery order on DoorDash with a $200 tip funded by the treasury. DoorDash routed the order to a driver, who received the full tip on completion. The platform determines which worker gets the job — GiggyBank funds the drop.',
   '2026-03-10',
   'food',
   'DoorDash',
@@ -27,9 +27,9 @@ values
   true
 ),
 (
-  'high-tip-drop-james-t-260305',
-  'High-Tip Drop — James T.',
-  'James worked a double shift delivering on DoorDash to cover rent. The GIGGYBANK treasury funded a $150 surprise tip — more than 6x his delivery pay for the order. High-Tip Drops are how the community says thank you at a scale that actually matters.',
+  'doordash-drop-grocery-260305',
+  'DoorDash High-Tip Drop — Grocery Order',
+  'GiggyBank placed a grocery order on DoorDash with a $150 tip funded by the treasury. DoorDash assigned the order to a shopper, who received the full tip on completion — more than 6x the standard delivery pay for the order.',
   '2026-03-05',
   'food',
   'DoorDash',

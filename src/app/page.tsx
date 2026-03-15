@@ -143,8 +143,8 @@ export default async function LandingPage() {
               {
                 icon: Gift,
                 step: '02',
-                title: 'Workers receive High-Tip Drops',
-                body: `The GiggyBank app connects verified gig workers with the treasury. Each drop is a real, meaningful tip — documented from wallet to worker with a receipt.`,
+                title: 'A gig worker receives the surprise tip',
+                body: `GiggyBank places a real order on a gig platform — DoorDash, Instacart, Lyft — with an outsized tip funded by the treasury. The platform routes the job to whichever worker accepts it. They receive the full tip on completion.`,
               },
               {
                 icon: Eye,

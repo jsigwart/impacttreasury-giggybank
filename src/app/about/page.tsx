@@ -39,10 +39,10 @@ export default function AboutPage() {
             <p className="leading-relaxed text-zinc-400">
               GiggyBank is a Bags-powered impact system that routes{' '}
               <span className="font-semibold text-white">{config.token.symbol}</span> token
-              fee-sharing revenue into transparent, verifiable tips for gig workers. No middlemen.
-              No discretionary spend. Every dollar from the treasury goes directly to a verified
-              worker as a High-Tip Drop — documented with a receipt, a social post, and an
-              on-chain transaction hash.
+              fee-sharing revenue into transparent, verifiable tips for gig workers. GiggyBank
+              places a real order on a delivery platform with an outsized tip funded by the
+              treasury. The platform determines which worker receives the job — and that worker
+              receives the full tip, documented with a receipt and an on-chain transaction hash.
             </p>
             <p className="leading-relaxed text-zinc-400">
               Team allocation is locked for{' '}
@@ -58,9 +58,11 @@ export default function AboutPage() {
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-white">Two types of drops</h2>
             <p className="leading-relaxed text-zinc-400">
-              <span className="font-semibold text-white">High-Tip Drops</span> are large, real tips
-              delivered directly to verified gig workers — DoorDash drivers, Lyft drivers, Instacart
-              shoppers. Not grants. Not loans. Tips, the kind these workers deserve but rarely receive.
+              <span className="font-semibold text-white">High-Tip Drops</span> are real orders
+              placed on gig platforms — DoorDash, Instacart, Lyft — with an outsized tip funded
+              entirely by the treasury. The platform routes the job to whichever worker accepts it.
+              That worker receives the full tip: not a grant, not a loan — a real tip at a scale
+              gig workers rarely see.
             </p>
             <p className="leading-relaxed text-zinc-400">
               <span className="font-semibold text-white">Cause Drops</span> are donations to
@@ -72,7 +74,7 @@ export default function AboutPage() {
             </p>
             <ul className="space-y-2 text-zinc-400">
               {[
-                'A worker story — who received it and why',
+                'A delivery record — platform, order details, and tip amount',
                 'A financial breakdown — subtotal, tip amount, and total',
                 'A receipt image — proof of delivery',
                 'A treasury transaction hash — on-chain proof of disbursement',
@@ -95,9 +97,10 @@ export default function AboutPage() {
               <h2 className="text-xl font-bold text-white">The GiggyBank iOS App</h2>
             </div>
             <p className="mb-4 leading-relaxed text-zinc-400">
-              The GiggyBank iOS app is the worker-facing layer of this system. It connects verified
-              gig workers directly with High-Tip Drop opportunities, lets the community follow
-              along in real time, and surfaces public proof for every completed drop.
+              The GiggyBank iOS app lets the community track High-Tip Drops in real time,
+              browse the public proof record for every drop, and follow treasury activity.
+              GiggyBank places the orders — the gig platform routes the job to a worker, who
+              receives the surprise tip on completion.
             </p>
             <p className="mb-6 leading-relaxed text-zinc-400">
               What you see on this dashboard is the public ledger of every drop the app has
