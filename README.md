@@ -1,6 +1,8 @@
-
 # ImpactTreasury – GiggyBank
 
+![GiggyBank Demo](docs/demo.png)
+
+![Bags Hackathon](https://img.shields.io/badge/Bags-%244M%20Hackathon-blue)
 ![Next.js](https://img.shields.io/badge/Next.js-14-black)
 ![Supabase](https://img.shields.io/badge/Supabase-Database-green)
 ![Solana](https://img.shields.io/badge/Solana-Web3-purple)
@@ -22,6 +24,21 @@ Every campaign includes:
 - treasury transactions  
 
 This ensures that every action funded by the community is **visible, documented, and verifiable**.
+
+---
+
+## Why this matters
+
+Token communities generate millions in trading fees but rarely translate that value into visible real-world impact.
+
+ImpactTreasury turns token activity into **documented public-good campaigns** with full transparency.
+
+Every campaign shows:
+
+• the treasury funds used  
+• the real-world action taken  
+• receipts and proof  
+• the on-chain transaction  
 
 ---
 
@@ -59,7 +76,7 @@ GefTGjFnJGW9PM93Ycb5RrHKiH1gPbz2Szag1mLBBAGS
 
 ---
 
-# How High‑Tip Drops Work
+# How High-Tip Drops Work
 
 GiggyBank places a **real order on an existing gig platform** (DoorDash, Instacart, Lyft, etc.) with an outsized tip funded by the treasury.
 
@@ -69,7 +86,7 @@ Whoever accepts and completes the order receives the full surprise tip.
 
 GiggyBank funds the tip — **not the assignment**.
 
-This ensures High‑Tip Drops function as genuine surprise bonuses for workers inside existing gig marketplaces.
+This ensures High-Tip Drops function as genuine surprise bonuses for workers inside existing gig marketplaces.
 
 ---
 
@@ -77,42 +94,30 @@ This ensures High‑Tip Drops function as genuine surprise bonuses for workers i
 
 Clone the repository:
 
-```
-git clone https://github.com/jsigwart/impacttreasury-giggybank.git
+git clone https://github.com/jsigwart/impacttreasury-giggybank.git  
 cd impacttreasury-giggybank
-```
 
 Install dependencies:
 
-```
 npm install
-```
 
 Create your environment file:
 
-```
 cp .env.example .env.local
-```
 
 Fill in the required environment variables in `.env.local`:
 
-```
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
+NEXT_PUBLIC_SUPABASE_URL=  
+NEXT_PUBLIC_SUPABASE_ANON_KEY=  
 SUPABASE_SERVICE_ROLE_KEY=
-```
 
 Run the development server:
 
-```
 npm run dev
-```
 
 The app will be available at:
 
-```
 http://localhost:3000
-```
 
 ---
 
@@ -120,24 +125,18 @@ http://localhost:3000
 
 Create a Supabase project and run the migrations located in:
 
-```
 supabase/migrations/
-```
 
 Run:
 
-```
-001_initial.sql
+001_initial.sql  
 002_campaign_type_beneficiary.sql
-```
 
 Optionally load example data:
 
-```
 supabase/seed.sql
-```
 
-This will populate the dashboard with example **High‑Tip Drops** and **Cause Drops**.
+This will populate the dashboard with example **High-Tip Drops** and **Cause Drops**.
 
 ---
 
@@ -149,13 +148,11 @@ ImpactTreasury separates three responsibilities.
 
 Token fee-sharing accumulates funds in a treasury wallet.
 
-```
-Bags token trading
-        ↓
-     fee sharing
-        ↓
-    treasury wallet
-```
+Bags token trading  
+↓  
+fee sharing  
+↓  
+treasury wallet
 
 ## Campaign Layer
 
@@ -163,17 +160,15 @@ Treasury funds are used to create **impact campaigns**.
 
 Two campaign types are supported.
 
-### High‑Tip Drops
+### High-Tip Drops
 
-Large surprise tips attached to gig‑platform orders.
+Large surprise tips attached to gig-platform orders.
 
 Example:
 
-```
-Subtotal: $18.75
-Tip: $200.00
+Subtotal: $18.75  
+Tip: $200.00  
 Total: $218.75
-```
 
 These create meaningful moments for gig workers and highly shareable content.
 
@@ -183,9 +178,7 @@ Deliveries supporting real-world organizations.
 
 Example:
 
-```
 Petco Cause Drop — Dog Rescue
-```
 
 Treasury funds are used to deliver supplies to organizations such as:
 
@@ -225,9 +218,7 @@ To launch your own ImpactTreasury deployment:
 1. Fork this repository  
 2. Update the configuration file:
 
-```
 src/giggybank.config.ts
-```
 
 Replace:
 
