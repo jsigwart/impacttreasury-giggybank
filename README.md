@@ -55,7 +55,7 @@ Projects can fork this repository, configure their treasury and branding, and la
 # Demo
 
 Live site:  
-https://giggybank.app/impacttreasury
+https://demo.giggybank.app
 
 Token:  
 **GIGGYBANK**
