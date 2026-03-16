@@ -32,6 +32,7 @@ async function getAdminData() {
     totalSubtotal: pub.reduce((s: number, c: { subtotal: number }) => s + (c.subtotal ?? 0), 0),
     latestTreasuryBalance: (snapshot as TreasurySnapshot | null)?.balance_usd ?? null,
     treasuryDisbursed: pub.reduce((s: number, c: { total: number }) => s + (c.total ?? 0), 0),
+    biggestSingleTip: pub.reduce((max: number, c: { tip: number }) => Math.max(max, c.tip ?? 0), 0),
   }
 
   return {
