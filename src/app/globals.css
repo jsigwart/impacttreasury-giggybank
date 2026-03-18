@@ -15,9 +15,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Smooth scrolling */
+/* Smooth scrolling and prevent horizontal overflow */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 /* Focus ring */
