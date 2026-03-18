@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight, Coins, Gift, Eye } from 'lucide-react'
+import { Tweet } from 'react-tweet'
 import SiteHeader from '@/components/layout/SiteHeader'
 import SiteFooter from '@/components/layout/SiteFooter'
 import CampaignGrid from '@/components/campaigns/CampaignGrid'
@@ -218,6 +219,15 @@ export default async function LandingPage() {
           </a>
         </section>
       )}
+
+      {/* Hackathon Tweet */}
+      <section className="border-t border-zinc-800 px-4 py-16">
+        <div className="mx-auto max-w-xl">
+          <div className="flex justify-center rounded-xl bg-white p-4" data-theme="light">
+            <Tweet id="2033733353019765129" />
+          </div>
+        </div>
+      </section>
 
       <SiteFooter />
     </div>
