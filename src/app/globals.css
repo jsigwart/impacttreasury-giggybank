@@ -25,3 +25,11 @@ html {
   outline: 2px solid #4ade80;
   outline-offset: 2px;
 }
+
+/* Force light theme for embedded tweets */
+[data-theme="light"] {
+  --tweet-bg-color: #ffffff;
+  --tweet-bg-color-hover: #f7f7f7;
+  --tweet-color-text-primary: #0f1419;
+  --tweet-color-text-secondary: #536471;
+}
