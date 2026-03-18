@@ -14,24 +14,12 @@ export default function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="flex items-center gap-6">
+        <nav className="flex items-center gap-4">
           <Link
             href="/dashboard"
             className="text-sm text-zinc-400 transition-colors hover:text-white"
           >
-            Dashboard
-          </Link>
-          <Link
-            href="/campaigns"
-            className="text-sm text-zinc-400 transition-colors hover:text-white"
-          >
             Drops
-          </Link>
-          <Link
-            href="/framework"
-            className="text-sm text-zinc-400 transition-colors hover:text-white"
-          >
-            Framework
           </Link>
           <Link
             href="/about"
