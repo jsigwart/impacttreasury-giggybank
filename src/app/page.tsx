@@ -50,7 +50,7 @@ export default async function LandingPage() {
     await getHomeData()
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col overflow-x-hidden">
       <SiteHeader />
 
       {/* Hero */}
@@ -60,7 +60,7 @@ export default async function LandingPage() {
             <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
             Powered by Bags.fm fee-sharing
           </div>
-          <h1 className="mb-6 text-5xl font-bold leading-tight tracking-tight text-white md:text-6xl">
+          <h1 className="mb-6 text-3xl font-bold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
             High-Tip Drops
             <br />
             <span className="text-green-400">for gig workers.</span>
@@ -104,7 +104,7 @@ export default async function LandingPage() {
 
       {/* Stats bar */}
       <section className="border-b border-zinc-800 bg-zinc-950 px-4 py-8">
-        <div className="mx-auto grid max-w-4xl grid-cols-3 gap-8 text-center">
+        <div className="mx-auto grid max-w-4xl grid-cols-3 gap-4 text-center sm:gap-8">
           <div>
             <p className="text-3xl font-bold tabular-nums text-white">{dropCount}</p>
             <p className="mt-1 text-sm text-zinc-500">High-Tip Drops</p>
