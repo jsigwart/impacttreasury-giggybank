@@ -23,6 +23,12 @@ export default function SiteHeader() {
         {/* Desktop nav */}
         <nav className="hidden items-center gap-6 sm:flex">
           <Link
+            href="/mint"
+            className="text-sm text-zinc-400 transition-colors hover:text-white"
+          >
+            Mint
+          </Link>
+          <Link
             href="/about"
             className="text-sm text-zinc-400 transition-colors hover:text-white"
           >
@@ -58,6 +64,13 @@ export default function SiteHeader() {
       {menuOpen && (
         <div className="border-t border-zinc-800 bg-black px-4 py-4 sm:hidden">
           <nav className="flex flex-col gap-4">
+            <Link
+              href="/mint"
+              onClick={() => setMenuOpen(false)}
+              className="text-sm text-zinc-400 transition-colors hover:text-white"
+            >
+              Mint
+            </Link>
             <Link
               href="/about"
               onClick={() => setMenuOpen(false)}

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { config } from '@/giggybank.config'
+import Providers from '@/components/Providers'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -25,7 +26,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className="overflow-x-hidden bg-black text-white antialiased">{children}</body>
+      <body className="overflow-x-hidden bg-black text-white antialiased">
+        <Providers>{children}</Providers>
+      </body>
     </html>
   )
 }
