@@ -23,4 +23,9 @@ export interface ProjectConfig {
     telegram: string
   }
   appStoreUrl: string
+  mint: {
+    priceUsd: number
+    collectionName: string
+    description: string
+  }
 }

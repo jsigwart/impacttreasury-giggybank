@@ -90,6 +90,30 @@ This ensures High-Tip Drops function as genuine surprise bonuses for workers ins
 
 ---
 
+# Honorary PFP Minting
+
+GiggyBank features an on-chain **Honorary PFP Mint** page at `/mint`, allowing community members to create personalized profile pictures that combine their uploaded image with the GiggyBank brand.
+
+## How it works
+
+1. **Connect Wallet** — Connect a Solana wallet (Phantom, Solflare, etc.) via the wallet adapter
+2. **Upload Image** — Upload any image (PNG, JPG, WebP up to 10 MB) to use as the base for your honorary PFP
+3. **Preview** — See your image composited with the GiggyBank honorary frame — your image appears as a circular PFP centered in the GiggyBank branded template
+4. **Pay with $GIGGYBANK** — Pay the equivalent of $10 USD in `$GIGGYBANK` tokens (price fetched live from Jupiter) — tokens are sent to the GiggyBank treasury wallet
+5. **Receive NFT** — Your unique honorary PFP is minted as an NFT directly to your Solana wallet
+
+## Mint Configuration
+
+Mint settings are controlled in `src/giggybank.config.ts`:
+
+- `mint.priceUsd` — cost in USD equivalent (default: `10`)
+- `mint.collectionName` — NFT collection name (default: `GiggyBank Honoraries`)
+- `mint.description` — metadata description for the minted NFT
+
+The token price is fetched in real-time from the Jupiter Price API to determine how many `$GIGGYBANK` tokens are required.
+
+---
+
 # Quick Start
 
 Clone the repository:

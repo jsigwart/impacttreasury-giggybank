@@ -27,6 +27,11 @@ export default function SiteFooter() {
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
+                <Link href="/mint" className="text-zinc-400 transition-colors hover:text-white">
+                  Mint
+                </Link>
+              </li>
+              <li>
                 <Link href="/dashboard" className="text-zinc-400 transition-colors hover:text-white">
                   Dashboard
                 </Link>
