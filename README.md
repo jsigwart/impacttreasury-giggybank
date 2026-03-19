@@ -56,8 +56,8 @@ Contract Address: `GefTGjFnJGW9PM93Ycb5RrHKiH1gPbz2Szag1mLBBAGS`
 - **Bags** — token launch and fee-sharing infrastructure
 - **Solana** — treasury transactions and NFT minting
 - **Next.js 16** — application framework
-- **Gemini (Nano Banana)** — AI image generation for PFP compositing
-- **AWS S3** — image hosting for generated PFPs
+- **Gemini (Nano Banana)** — AI image generation for PFP compositing ([setup guide](docs/GEMINI_SETUP.md))
+- **AWS S3** — image hosting for generated PFPs ([setup guide](docs/AWS_SETUP.md))
 - **Vercel** — deployment platform
 
 ---
@@ -98,18 +98,15 @@ The token price is fetched in real-time from the Jupiter Price API to calculate 
 
 ---
 
-## Nano Banana (AI Image Generation)
+## Setup Guides
 
-GiggyBank integrates **Nano Banana**, a Gemini-powered image generation layer used for PFP compositing and campaign visuals.
+Honorary minting relies on **Gemini** for AI image generation and **AWS S3** for hosting the composited PFPs. Both services must be configured before minting works end-to-end.
 
-Powered by `gemini-2.0-flash-exp`, it accepts a text prompt and optional reference image, and returns a generated image as a base64 data URI.
-
-Generated images are uploaded to **AWS S3** for permanent hosting.
-
-Setup guides:
-
-- [`docs/GEMINI_SETUP.md`](docs/GEMINI_SETUP.md) — Gemini API key and configuration
-- [`docs/AWS_SETUP.md`](docs/AWS_SETUP.md) — S3 bucket setup and IAM permissions
+| Guide | What it covers |
+|-------|----------------|
+| [**Gemini Setup**](docs/GEMINI_SETUP.md) | API key, model config, rate limits for Nano Banana image generation |
+| [**AWS S3 Setup**](docs/AWS_SETUP.md) | Bucket creation, public-read policy, IAM credentials for image hosting |
+| [**Architecture**](docs/ARCHITECTURE.md) | System overview — treasury layer, campaign layer, transparency layer |
 
 ---
 
