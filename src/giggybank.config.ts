@@ -14,7 +14,7 @@ export const config: ProjectConfig = {
   token: {
     symbol: 'GIGGYBANK',
     address: 'GefTGjFnJGW9PM93Ycb5RrHKiH1gPbz2Szag1mLBBAGS',
-    bagsUrl: 'https://bags.fm/coin/GefTGjFnJGW9PM93Ycb5RrHKiH1gPbz2Szag1mLBBAGS',
+    bagsUrl: 'https://bags.fm/GefTGjFnJGW9PM93Ycb5RrHKiH1gPbz2Szag1mLBBAGS',
   },
   treasury: {
     wallet: '2FCwMoEYKFVe93FNMApYtwCEdCboCPEYnS5JSjvw6kRZ',

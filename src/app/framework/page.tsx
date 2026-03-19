@@ -141,7 +141,7 @@ export const config = {
   token: {
     symbol: 'YOURTOKEN',
     address: '<solana-mint-address>',
-    bagsUrl: 'https://bags.fm/coin/<address>',
+    bagsUrl: 'https://bags.fm/<address>',
   },
   treasury: {
     wallet: '<treasury-wallet-address>',
