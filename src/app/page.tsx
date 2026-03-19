@@ -67,6 +67,15 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Hackathon Tweet */}
+      <section className="border-b border-zinc-800 px-4 py-16">
+        <div className="mx-auto max-w-xl">
+          <div className="flex justify-center rounded-xl bg-white p-4" data-theme="light">
+            <Tweet id="2033733353019765129" />
+          </div>
+        </div>
+      </section>
+
       {/* How it works */}
       <section className="border-b border-zinc-800 px-4 py-20">
         <div className="mx-auto max-w-4xl">
@@ -133,15 +142,6 @@ export default function LandingPage() {
         >
           Verify treasury on Solscan <ArrowRight size={14} />
         </a>
-      </section>
-
-      {/* Hackathon Tweet */}
-      <section className="border-t border-zinc-800 px-4 py-16">
-        <div className="mx-auto max-w-xl">
-          <div className="flex justify-center rounded-xl bg-white p-4" data-theme="light">
-            <Tweet id="2033733353019765129" />
-          </div>
-        </div>
       </section>
 
       <SiteFooter />
