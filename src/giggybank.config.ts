@@ -16,7 +16,7 @@ export const config: ProjectConfig = {
     address: 'GefTGjFnJGW9PM93Ycb5RrHKiH1gPbz2Szag1mLBBAGS',
     bagsUrl: 'https://bags.fm/GefTGjFnJGW9PM93Ycb5RrHKiH1gPbz2Szag1mLBBAGS',
     dexScreenerUrl: 'https://dexscreener.com/solana/GefTGjFnJGW9PM93Ycb5RrHKiH1gPbz2Szag1mLBBAGS',
-    coingeckoUrl: 'https://www.coingecko.com/en/coins/giggybank',
+    coingeckoUrl: 'https://www.coingecko.com/en/coins/by-token-address/solana/GefTGjFnJGW9PM93Ycb5RrHKiH1gPbz2Szag1mLBBAGS',
   },
   treasury: {
     wallet: '2FCwMoEYKFVe93FNMApYtwCEdCboCPEYnS5JSjvw6kRZ',
