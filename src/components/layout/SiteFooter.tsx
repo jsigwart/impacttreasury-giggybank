@@ -37,11 +37,6 @@ export default function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/campaigns" className="text-zinc-400 transition-colors hover:text-white">
-                  Drops
-                </Link>
-              </li>
-              <li>
                 <Link href="/framework" className="text-zinc-400 transition-colors hover:text-white">
                   Framework
                 </Link>
