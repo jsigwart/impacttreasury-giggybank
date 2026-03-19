@@ -65,20 +65,10 @@ export default async function LandingPage() {
             <br />
             <span className="text-green-400">for gig workers.</span>
           </h1>
-          <p className="mx-auto mb-4 max-w-xl text-lg text-zinc-400">
-            GiggyBank turns{' '}
+          <p className="mx-auto mb-10 max-w-xl text-lg text-zinc-400">
+            Turning{' '}
             <span className="font-semibold text-white">{config.token.symbol}</span>{' '}
-            fee-sharing revenue into transparent, real-world tips — public proof for every drop.
-          </p>
-          <p className="mx-auto mb-6 max-w-lg text-sm text-zinc-600">
-            Every trade funds the treasury. Every treasury disbursement goes to a verified gig worker. Every drop is permanently on-chain.
-          </p>
-          <p className="mx-auto mb-10 max-w-lg text-xs text-zinc-700">
-            The first live deployment of{' '}
-            <Link href="/framework" className="text-zinc-500 underline-offset-2 hover:text-zinc-400 underline">
-              ImpactTreasury
-            </Link>
-            {' '}— a reusable framework for turning token fees into transparent real-world impact campaigns.
+            trading fees into surprise tips for gig workers.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link

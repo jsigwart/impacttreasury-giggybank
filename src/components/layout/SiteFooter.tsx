@@ -69,13 +69,11 @@ export default function SiteFooter() {
         </div>
 
         <div className="mt-8 border-t border-zinc-900 pt-6 text-xs text-zinc-600">
-          Team allocation locked for {config.team.lockupMonths} months. All campaign
-          disbursements are publicly verifiable on Solana.{' '}
-          Built on{' '}
+          The first live deployment of{' '}
           <Link href="/framework" className="text-zinc-500 transition-colors hover:text-zinc-400">
             ImpactTreasury
           </Link>
-          .
+          {' '}— a reusable framework for turning token fees into transparent real-world impact campaigns.
         </div>
       </div>
     </footer>
