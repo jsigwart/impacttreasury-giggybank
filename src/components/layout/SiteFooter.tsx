@@ -3,77 +3,136 @@ import { config } from '@/giggybank.config'
 
 export default function SiteFooter() {
   return (
-    <footer className="border-t border-zinc-800 bg-black py-12">
+    <footer className="border-t border-zinc-800 bg-black">
       <div className="mx-auto max-w-6xl px-4">
-        <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-          <div>
-            <div className="mb-1 flex items-center gap-2">
-              <span className="font-bold text-white">{config.name}</span>
+        {/* Main footer content */}
+        <div className="grid grid-cols-1 gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Branding */}
+          <div className="sm:col-span-2 lg:col-span-1">
+            <div className="mb-3 flex items-center gap-2">
+              <span className="text-lg font-bold tracking-tight text-white">{config.name}</span>
               <span className="rounded bg-green-400/10 px-1.5 py-0.5 text-xs font-semibold text-green-400">
                 {config.token.symbol}
               </span>
             </div>
-            <p className="max-w-xs text-sm text-zinc-500">{config.tagline}</p>
+            <p className="max-w-xs text-sm leading-relaxed text-zinc-500">
+              {config.tagline}
+            </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-6 text-sm text-zinc-400">
-            <Link href="/dashboard" className="transition-colors hover:text-white">
-              Dashboard
-            </Link>
-            <Link href="/campaigns" className="transition-colors hover:text-white">
-              Drops
-            </Link>
-            <Link href="/framework" className="transition-colors hover:text-white">
-              Framework
-            </Link>
-            <Link href="/about" className="transition-colors hover:text-white">
-              About
-            </Link>
-            <a
-              href={config.treasury.solscanUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-white"
-            >
-              Treasury ↗
-            </a>
-            {config.social.twitter && (
-              <a
-                href={config.social.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors hover:text-white"
-              >
-                Twitter ↗
-              </a>
-            )}
-            {config.appStoreUrl && (
-              <a
-                href={config.appStoreUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors hover:text-white"
-              >
-                iOS App ↗
-              </a>
-            )}
-            <a
-              href={config.token.bagsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-white"
-            >
-              Powered by Bags.fm ↗
-            </a>
+          {/* Navigate */}
+          <div>
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-zinc-500">
+              Navigate
+            </h4>
+            <ul className="space-y-2.5 text-sm">
+              <li>
+                <Link href="/dashboard" className="text-zinc-400 transition-colors hover:text-white">
+                  Dashboard
+                </Link>
+              </li>
+              <li>
+                <Link href="/campaigns" className="text-zinc-400 transition-colors hover:text-white">
+                  Drops
+                </Link>
+              </li>
+              <li>
+                <Link href="/framework" className="text-zinc-400 transition-colors hover:text-white">
+                  Framework
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="text-zinc-400 transition-colors hover:text-white">
+                  About
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* External */}
+          <div>
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-zinc-500">
+              External
+            </h4>
+            <ul className="space-y-2.5 text-sm">
+              <li>
+                <a
+                  href={config.treasury.solscanUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
+                >
+                  Treasury
+                  <span className="text-zinc-600">↗</span>
+                </a>
+              </li>
+              {config.social.twitter && (
+                <li>
+                  <a
+                    href={config.social.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
+                  >
+                    Twitter
+                    <span className="text-zinc-600">↗</span>
+                  </a>
+                </li>
+              )}
+              {config.appStoreUrl && (
+                <li>
+                  <a
+                    href={config.appStoreUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
+                  >
+                    iOS App
+                    <span className="text-zinc-600">↗</span>
+                  </a>
+                </li>
+              )}
+            </ul>
+          </div>
+
+          {/* Community */}
+          <div>
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-zinc-500">
+              Community
+            </h4>
+            <ul className="space-y-2.5 text-sm">
+              <li>
+                <a
+                  href={config.token.bagsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
+                >
+                  Bags.fm
+                  <span className="text-zinc-600">↗</span>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div className="mt-8 border-t border-zinc-900 pt-6 text-xs text-zinc-600">
-          The first live deployment of{' '}
-          <Link href="/framework" className="text-zinc-500 transition-colors hover:text-zinc-400">
-            ImpactTreasury
-          </Link>
-          {' '}— a reusable framework for turning token fees into transparent real-world impact campaigns.
+        {/* Bottom bar */}
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-zinc-900 py-6 sm:flex-row">
+          <p className="text-xs text-zinc-600">
+            The first live deployment of{' '}
+            <Link href="/framework" className="text-zinc-500 transition-colors hover:text-zinc-400">
+              ImpactTreasury
+            </Link>
+            {' '}&mdash; turning token fees into real-world impact.
+          </p>
+          <a
+            href={config.token.bagsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="whitespace-nowrap text-xs text-zinc-600 transition-colors hover:text-zinc-400"
+          >
+            Powered by Bags.fm
+          </a>
         </div>
       </div>
     </footer>
