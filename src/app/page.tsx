@@ -3,52 +3,9 @@ import { ArrowRight, Coins, Gift, Eye } from 'lucide-react'
 import { Tweet } from 'react-tweet'
 import SiteHeader from '@/components/layout/SiteHeader'
 import SiteFooter from '@/components/layout/SiteFooter'
-import CampaignGrid from '@/components/campaigns/CampaignGrid'
-import { createClient } from '@/lib/supabase/server'
-import { formatCurrency } from '@/lib/utils'
 import { config } from '@/giggybank.config'
-import type { Campaign, TreasurySnapshot } from '@/types'
 
-async function getHomeData() {
-  const supabase = await createClient()
-  const [{ data: campaigns }, { data: snapshot }, { data: stats }] =
-    await Promise.all([
-      supabase
-        .from('campaigns')
-        .select('*')
-        .eq('published', true)
-        .order('date', { ascending: false })
-        .limit(3),
-      supabase
-        .from('treasury_snapshots')
-        .select('balance_usd')
-        .order('snapshot_at', { ascending: false })
-        .limit(1)
-        .single(),
-      supabase
-        .from('campaigns')
-        .select('total, tip')
-        .eq('published', true),
-    ])
-
-  const rows = stats ?? []
-  const totalTipped = rows.reduce((sum: number, c: { tip: number }) => sum + (c.tip ?? 0), 0)
-  const biggestTip = rows.length > 0 ? Math.max(...rows.map((c: { tip: number }) => c.tip ?? 0)) : 0
-  const dropCount = rows.length
-
-  return {
-    campaigns: (campaigns ?? []) as Campaign[],
-    treasuryBalance: (snapshot as TreasurySnapshot | null)?.balance_usd ?? null,
-    totalTipped,
-    biggestTip,
-    dropCount,
-  }
-}
-
-export default async function LandingPage() {
-  const { campaigns, treasuryBalance, totalTipped, biggestTip, dropCount } =
-    await getHomeData()
-
+export default function LandingPage() {
   return (
     <div className="flex min-h-screen flex-col overflow-x-hidden">
       <SiteHeader />
@@ -77,13 +34,15 @@ export default async function LandingPage() {
             trading fees into surprise tips for gig workers.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/dashboard"
+            <a
+              href={config.token.bagsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-2 rounded-lg bg-green-400 px-6 py-3 font-semibold text-black transition-colors hover:bg-green-300"
             >
-              View Drops
+              Trade {config.token.symbol}
               <ArrowRight size={16} />
-            </Link>
+            </a>
             {config.appStoreUrl && (
               <a
                 href={config.appStoreUrl}
@@ -94,28 +53,6 @@ export default async function LandingPage() {
                 Get the App
               </a>
             )}
-          </div>
-        </div>
-      </section>
-
-      {/* Stats bar */}
-      <section className="border-b border-zinc-800 bg-zinc-950 px-4 py-8">
-        <div className="mx-auto grid max-w-4xl grid-cols-3 gap-4 text-center sm:gap-8">
-          <div>
-            <p className="text-3xl font-bold tabular-nums text-white">{dropCount}</p>
-            <p className="mt-1 text-sm text-zinc-500">High-Tip Drops</p>
-          </div>
-          <div>
-            <p className="text-3xl font-bold tabular-nums text-green-400">
-              {formatCurrency(totalTipped)}
-            </p>
-            <p className="mt-1 text-sm text-zinc-500">Total tipped</p>
-          </div>
-          <div>
-            <p className="text-3xl font-bold tabular-nums text-white">
-              {biggestTip > 0 ? formatCurrency(biggestTip) : '—'}
-            </p>
-            <p className="mt-1 text-sm text-zinc-500">Biggest single drop</p>
           </div>
         </div>
       </section>
@@ -170,51 +107,23 @@ export default async function LandingPage() {
         </div>
       </section>
 
-      {/* Latest drops */}
-      <section className="px-4 py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-8 flex items-center justify-between">
-            <div>
-              <h2 className="text-2xl font-bold text-white">Latest drops</h2>
-              <p className="mt-0.5 text-sm text-zinc-500">Recent worker wins, fully verified.</p>
-            </div>
-            <Link
-              href="/campaigns"
-              className="flex items-center gap-1 text-sm text-zinc-400 transition-colors hover:text-white"
-            >
-              All drops
-              <ArrowRight size={14} />
-            </Link>
-          </div>
-          <CampaignGrid
-            campaigns={campaigns}
-            emptyMessage="No drops yet. Check back soon."
-          />
-        </div>
-      </section>
-
       {/* Treasury CTA */}
-      {treasuryBalance != null && (
-        <section className="border-t border-zinc-800 bg-zinc-950 px-4 py-16 text-center">
-          <p className="mb-2 text-xs font-medium uppercase tracking-wider text-zinc-500">
-            Treasury Available for Drops
-          </p>
-          <p className="mb-4 text-4xl font-bold text-green-400">
-            {formatCurrency(treasuryBalance)}
-          </p>
-          <p className="mb-6 text-sm text-zinc-600">
-            Every dollar in this wallet will become a verified tip for a gig worker.
-          </p>
-          <a
-            href={config.treasury.solscanUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
-          >
-            Verify treasury on Solscan ↗
-          </a>
-        </section>
-      )}
+      <section className="border-b border-zinc-800 bg-zinc-950 px-4 py-16 text-center">
+        <p className="mb-2 text-xs font-medium uppercase tracking-wider text-zinc-500">
+          Public Treasury Wallet
+        </p>
+        <p className="mb-4 text-lg font-mono text-zinc-400 break-all max-w-xl mx-auto">
+          {config.treasury.wallet}
+        </p>
+        <a
+          href={config.treasury.solscanUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-sm text-green-400 transition-colors hover:text-green-300"
+        >
+          Verify treasury on Solscan <ArrowRight size={14} />
+        </a>
+      </section>
 
       {/* Hackathon Tweet */}
       <section className="border-t border-zinc-800 px-4 py-16">
