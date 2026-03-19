@@ -37,7 +37,7 @@ ImpactTreasury turns token activity into **documented public-good campaigns** wi
 
 ImpactTreasury is the underlying framework powering GiggyBank.
 
-It provides a reusable architecture that allows any token community to fund and document real-world impact campaigns with full transparency. Projects can fork this repository, configure their treasury and branding, and launch their own impact system.
+It provides a reusable architecture that allows any token community to fund and document real-world impact campaigns with full transparency. The framework also lets users **mint Honoraries** — on-chain NFTs that combine the user's own image (their IP) with the project's branded token imagery (the token's IP), creating personalized collectibles that represent both individual identity and community membership. Projects can fork this repository, configure their treasury and branding, and launch their own impact system with built-in honorary minting.
 
 ---
 

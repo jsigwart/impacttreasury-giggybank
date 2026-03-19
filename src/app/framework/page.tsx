@@ -161,6 +161,32 @@ export const config = {
             </p>
           </section>
 
+          {/* Minting Honoraries */}
+          <section className="space-y-6">
+            <h2 className="text-xl font-bold text-white">Minting Honoraries</h2>
+            <p className="leading-relaxed text-zinc-400">
+              ImpactTreasury lets users mint Honorary PFPs — unique on-chain NFTs that combine the
+              user&apos;s own image (their IP) with the project&apos;s branded token imagery (the token&apos;s IP).
+              This creates a personalized collectible that represents both individual identity and
+              community membership.
+            </p>
+            <div className="rounded-xl border border-green-400/20 bg-green-400/5 p-5">
+              <span className="mb-3 inline-block rounded bg-green-400/10 px-2 py-0.5 text-xs font-semibold text-green-400">
+                How it works
+              </span>
+              <ul className="mt-2 space-y-2 text-sm leading-relaxed text-zinc-400">
+                <li>1. Connect a Solana wallet and upload your own image</li>
+                <li>2. Your image is composited with the project&apos;s branded frame — merging your IP with the token&apos;s IP</li>
+                <li>3. Pay in the project&apos;s token (price fetched live from Jupiter) — tokens go directly to the treasury</li>
+                <li>4. Your unique Honorary PFP is minted as an NFT to your wallet</li>
+              </ul>
+            </div>
+            <p className="text-sm text-zinc-600">
+              Mint settings (price, collection name, description) are controlled in the project config file.
+              Any ImpactTreasury deployment can enable honorary minting by adding a logo and configuring the mint section.
+            </p>
+          </section>
+
           {/* GiggyBank as live proof */}
           <section className="rounded-xl border border-zinc-800 bg-zinc-900 p-8 text-center">
             <p className="mb-2 text-xs font-medium uppercase tracking-wider text-zinc-500">
@@ -174,10 +200,10 @@ export const config = {
               real workers, real receipts, real treasury transactions.
             </p>
             <Link
-              href="/campaigns"
+              href="/mint"
               className="inline-flex items-center gap-2 rounded-lg bg-green-400 px-5 py-2.5 text-sm font-semibold text-black transition-colors hover:bg-green-300"
             >
-              See the drops
+              Mint an Honorary
               <ArrowRight size={14} />
             </Link>
           </section>
