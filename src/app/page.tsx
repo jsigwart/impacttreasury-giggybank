@@ -54,6 +54,14 @@ export default function LandingPage() {
               </a>
             )}
           </div>
+          <div className="mt-6">
+            <p className="text-xs font-medium uppercase tracking-wider text-zinc-500">
+              Token Address
+            </p>
+            <p className="mt-1 font-mono text-sm text-zinc-400 break-all">
+              {config.token.address}
+            </p>
+          </div>
         </div>
       </section>
 
