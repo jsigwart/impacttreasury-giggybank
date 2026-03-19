@@ -25,7 +25,7 @@ type MintStep = 'upload' | 'preview' | 'paying' | 'minting' | 'done' | 'error'
 
 export default function MintPage() {
   const { connection } = useConnection()
-  const { publicKey, sendTransaction, connected } = useWallet()
+  const { publicKey, sendTransaction, signMessage, connected } = useWallet()
 
   const [step, setStep] = useState<MintStep>('upload')
   const [uploadedImage, setUploadedImage] = useState<string | null>(null)
@@ -34,6 +34,7 @@ export default function MintPage() {
   const [txSignature, setTxSignature] = useState<string | null>(null)
   const [tokenPrice, setTokenPrice] = useState<number | null>(null)
   const [requiredTokens, setRequiredTokens] = useState<string | null>(null)
+  const [ownershipAgreed, setOwnershipAgreed] = useState(false)
 
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -154,13 +155,40 @@ export default function MintPage() {
       return
     }
 
+    if (!ownershipAgreed) {
+      setError('You must agree that you own the rights to the uploaded image.')
+      return
+    }
+
     if (!tokenPrice) {
       setError('Unable to fetch token price. Please try again later.')
       return
     }
 
+    if (!signMessage) {
+      setError('Your wallet does not support message signing. Please use a compatible wallet.')
+      return
+    }
+
     setStep('paying')
     setError(null)
+
+    try {
+      // Request wallet signature to confirm image ownership agreement
+      const message = new TextEncoder().encode(
+        'I confirm that I own the rights to the image I am uploading and agree to mint it as a GiggyBank Honorary PFP.'
+      )
+      await signMessage(message)
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Signature failed'
+      if (message.includes('User rejected') || message.includes('rejected')) {
+        setError('Signature request cancelled. You must sign to proceed with minting.')
+      } else {
+        setError(message)
+      }
+      setStep('preview')
+      return
+    }
 
     try {
       // Calculate token amount needed
@@ -230,7 +258,7 @@ export default function MintPage() {
         setStep('error')
       }
     }
-  }, [publicKey, connected, connection, sendTransaction, tokenPrice])
+  }, [publicKey, connected, connection, sendTransaction, signMessage, tokenPrice, ownershipAgreed])
 
   const resetFlow = useCallback(() => {
     setStep('upload')
@@ -238,6 +266,7 @@ export default function MintPage() {
     setCompositeImage(null)
     setError(null)
     setTxSignature(null)
+    setOwnershipAgreed(false)
     if (fileInputRef.current) fileInputRef.current.value = ''
   }, [])
 
@@ -335,6 +364,18 @@ export default function MintPage() {
               </div>
             </div>
 
+            <label className="mb-4 flex cursor-pointer items-start gap-3 rounded-xl border border-zinc-800 bg-zinc-900/50 p-4 text-left transition-colors hover:border-zinc-700">
+              <input
+                type="checkbox"
+                checked={ownershipAgreed}
+                onChange={(e) => setOwnershipAgreed(e.target.checked)}
+                className="mt-0.5 h-4 w-4 shrink-0 accent-green-400"
+              />
+              <span className="text-sm text-zinc-300">
+                I confirm that I own the rights to the image I am uploading and have the authority to use it for minting.
+              </span>
+            </label>
+
             <div className="flex gap-3">
               <button
                 onClick={resetFlow}
@@ -344,11 +385,11 @@ export default function MintPage() {
               </button>
               <button
                 onClick={handlePayAndMint}
-                disabled={!connected}
+                disabled={!connected || !ownershipAgreed}
                 className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-green-400 px-6 py-3 text-sm font-semibold text-black transition-colors hover:bg-green-300 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <Sparkles className="h-4 w-4" />
-                {connected ? 'Pay & Mint' : 'Connect Wallet First'}
+                {!connected ? 'Connect Wallet First' : !ownershipAgreed ? 'Agree to Mint' : 'Pay & Mint'}
               </button>
             </div>
           </div>
