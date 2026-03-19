@@ -23,16 +23,16 @@ export default function SiteHeader() {
         {/* Desktop nav */}
         <nav className="hidden items-center gap-6 sm:flex">
           <Link
-            href="/dashboard"
-            className="text-sm text-zinc-400 transition-colors hover:text-white"
-          >
-            Drops
-          </Link>
-          <Link
             href="/about"
             className="text-sm text-zinc-400 transition-colors hover:text-white"
           >
             About
+          </Link>
+          <Link
+            href="/framework"
+            className="text-sm text-zinc-400 transition-colors hover:text-white"
+          >
+            Framework
           </Link>
           <a
             href={config.token.bagsUrl}
@@ -59,18 +59,18 @@ export default function SiteHeader() {
         <div className="border-t border-zinc-800 bg-black px-4 py-4 sm:hidden">
           <nav className="flex flex-col gap-4">
             <Link
-              href="/dashboard"
-              onClick={() => setMenuOpen(false)}
-              className="text-sm text-zinc-400 transition-colors hover:text-white"
-            >
-              Drops
-            </Link>
-            <Link
               href="/about"
               onClick={() => setMenuOpen(false)}
               className="text-sm text-zinc-400 transition-colors hover:text-white"
             >
               About
+            </Link>
+            <Link
+              href="/framework"
+              onClick={() => setMenuOpen(false)}
+              className="text-sm text-zinc-400 transition-colors hover:text-white"
+            >
+              Framework
             </Link>
             <a
               href={config.token.bagsUrl}
