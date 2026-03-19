@@ -17,7 +17,7 @@ export const config: ProjectConfig = {
     bagsUrl: 'https://bags.fm/coin/GefTGjFnJGW9PM93Ycb5RrHKiH1gPbz2Szag1mLBBAGS',
   },
   treasury: {
-    wallet: 'PLACEHOLDER_TREASURY_WALLET',
+    wallet: '2FCwMoEYKFVe93FNMApYtwCEdCboCPEYnS5JSjvw6kRZ',
     solscanUrl: 'https://solscan.io/account/2FCwMoEYKFVe93FNMApYtwCEdCboCPEYnS5JSjvw6kRZ',
   },
   team: {
