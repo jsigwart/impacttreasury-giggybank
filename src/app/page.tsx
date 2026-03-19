@@ -56,9 +56,15 @@ export default async function LandingPage() {
       {/* Hero */}
       <section className="border-b border-zinc-800 px-4 py-24 text-center">
         <div className="mx-auto max-w-3xl">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-xs text-zinc-400">
-            <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
-            Powered by Bags.fm fee-sharing
+          <div className="mb-6 flex flex-wrap items-center justify-center gap-2">
+            <div className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-xs text-zinc-400">
+              <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
+              Powered by Bags.fm fee-sharing
+            </div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-xs text-zinc-400">
+              <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+              Bags App Genesis Cohort
+            </div>
           </div>
           <h1 className="mb-6 text-3xl font-bold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
             High-Tip Drops
