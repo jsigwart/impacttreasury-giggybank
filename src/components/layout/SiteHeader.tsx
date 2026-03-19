@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { config } from '@/giggybank.config'
+import WalletButton from '@/components/wallet/WalletButton'
 
 export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -34,6 +35,13 @@ export default function SiteHeader() {
           >
             Framework
           </Link>
+          <Link
+            href="/donate"
+            className="text-sm text-zinc-400 transition-colors hover:text-white"
+          >
+            Donate
+          </Link>
+          <WalletButton />
           <a
             href={config.token.bagsUrl}
             target="_blank"
@@ -72,6 +80,14 @@ export default function SiteHeader() {
             >
               Framework
             </Link>
+            <Link
+              href="/donate"
+              onClick={() => setMenuOpen(false)}
+              className="text-sm text-zinc-400 transition-colors hover:text-white"
+            >
+              Donate
+            </Link>
+            <WalletButton />
             <a
               href={config.token.bagsUrl}
               target="_blank"
