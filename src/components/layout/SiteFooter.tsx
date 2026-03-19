@@ -66,6 +66,28 @@ export default function SiteFooter() {
                   <span className="text-zinc-600">↗</span>
                 </a>
               </li>
+              <li>
+                <a
+                  href={config.token.dexScreenerUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
+                >
+                  DexScreener
+                  <span className="text-zinc-600">↗</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={config.token.coingeckoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
+                >
+                  CoinGecko
+                  <span className="text-zinc-600">↗</span>
+                </a>
+              </li>
               {config.social.twitter && (
                 <li>
                   <a

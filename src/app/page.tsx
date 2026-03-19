@@ -63,6 +63,25 @@ export default function LandingPage() {
             >
               {config.token.address}
             </a>
+            <div className="mt-2 flex items-center justify-center gap-4 text-sm">
+              <a
+                href={config.token.dexScreenerUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-500 transition-colors hover:text-green-400"
+              >
+                DexScreener
+              </a>
+              <span className="text-zinc-700">·</span>
+              <a
+                href={config.token.coingeckoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-500 transition-colors hover:text-green-400"
+              >
+                CoinGecko
+              </a>
+            </div>
           </div>
         </div>
       </section>

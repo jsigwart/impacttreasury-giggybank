@@ -7,6 +7,8 @@ export interface ProjectConfig {
     symbol: string
     address: string
     bagsUrl: string
+    dexScreenerUrl: string
+    coingeckoUrl: string
   }
   treasury: {
     wallet: string

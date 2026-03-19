@@ -15,6 +15,8 @@ export const config: ProjectConfig = {
     symbol: 'GIGGYBANK',
     address: 'GefTGjFnJGW9PM93Ycb5RrHKiH1gPbz2Szag1mLBBAGS',
     bagsUrl: 'https://bags.fm/GefTGjFnJGW9PM93Ycb5RrHKiH1gPbz2Szag1mLBBAGS',
+    dexScreenerUrl: 'https://dexscreener.com/solana/GefTGjFnJGW9PM93Ycb5RrHKiH1gPbz2Szag1mLBBAGS',
+    coingeckoUrl: 'https://www.coingecko.com/en/coins/giggybank',
   },
   treasury: {
     wallet: '2FCwMoEYKFVe93FNMApYtwCEdCboCPEYnS5JSjvw6kRZ',
