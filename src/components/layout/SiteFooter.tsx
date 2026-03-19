@@ -106,19 +106,14 @@ export default function SiteFooter() {
                   </a>
                 </li>
               )}
-              {config.appStoreUrl && (
-                <li>
-                  <a
-                    href={config.appStoreUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
-                  >
-                    iOS App
-                    <span className="text-zinc-600">↗</span>
-                  </a>
-                </li>
-              )}
+              <li>
+                <span
+                  title="Coming Soon"
+                  className="inline-flex cursor-default items-center gap-1 text-zinc-600"
+                >
+                  iOS App
+                </span>
+              </li>
             </ul>
           </div>
 
