@@ -54,6 +54,16 @@ export default function LandingPage() {
               </a>
             )}
           </div>
+          <div className="mt-6">
+            <a
+              href={`https://solscan.io/token/${config.token.address}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block font-mono text-sm text-zinc-400 break-all transition-colors hover:text-green-400"
+            >
+              {config.token.address}
+            </a>
+          </div>
         </div>
       </section>
 
