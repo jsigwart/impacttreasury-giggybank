@@ -23,6 +23,7 @@ export interface ProjectConfig {
   social: {
     twitter: string
     telegram: string
+    tiktok: string
   }
   appStoreUrl: string
   mint: {

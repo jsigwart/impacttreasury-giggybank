@@ -101,6 +101,19 @@ export default function SiteFooter() {
                   </a>
                 </li>
               )}
+              {config.social.tiktok && (
+                <li>
+                  <a
+                    href={config.social.tiktok}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
+                  >
+                    TikTok
+                    <span className="text-zinc-600">↗</span>
+                  </a>
+                </li>
+              )}
               <li>
                 <a
                   href="https://github.com/jsigwart/impacttreasury-giggybank"

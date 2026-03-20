@@ -31,6 +31,7 @@ export const config: ProjectConfig = {
   social: {
     twitter: 'https://twitter.com/giggybank',
     telegram: '',
+    tiktok: 'https://www.tiktok.com/@giggybank',
   },
   appStoreUrl: 'https://apps.apple.com/app/giggybank/PLACEHOLDER',
   mint: {
