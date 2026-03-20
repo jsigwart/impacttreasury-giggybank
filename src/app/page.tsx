@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ArrowRight, Coins, Gift, Eye } from 'lucide-react'
 import { Tweet } from 'react-tweet'
+import TikTokEmbed from '@/components/TikTokEmbed'
 import SiteHeader from '@/components/layout/SiteHeader'
 import SiteFooter from '@/components/layout/SiteFooter'
 import { config } from '@/giggybank.config'
@@ -83,6 +84,13 @@ export default function LandingPage() {
               </a>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* TikTok Video */}
+      <section className="border-b border-zinc-800 px-4 py-16">
+        <div className="mx-auto max-w-xl">
+          <TikTokEmbed videoId="7619036406349876494" username="giggybankapp" />
         </div>
       </section>
 
