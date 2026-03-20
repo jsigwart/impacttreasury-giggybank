@@ -102,6 +102,17 @@ export default function SiteFooter() {
                 </li>
               )}
               <li>
+                <a
+                  href="https://github.com/jsigwart/impacttreasury-giggybank"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
+                >
+                  GitHub
+                  <span className="text-zinc-600">↗</span>
+                </a>
+              </li>
+              <li>
                 <span
                   title="Coming Soon"
                   className="inline-flex cursor-default items-center gap-1 text-zinc-600"
