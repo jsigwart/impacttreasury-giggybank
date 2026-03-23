@@ -29,7 +29,7 @@ export const config: ProjectConfig = {
     accentColor: '#4ade80',
   },
   social: {
-    twitter: 'https://twitter.com/giggybank',
+    twitter: 'https://x.com/jsigwart',
     telegram: '',
     tiktok: 'https://www.tiktok.com/@giggybank',
   },
