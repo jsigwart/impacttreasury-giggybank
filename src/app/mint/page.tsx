@@ -13,7 +13,7 @@ import {
   getMint,
   getAccount,
 } from '@solana/spl-token'
-import { Upload, ImageIcon, Sparkles, Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
+import { Upload, ImageIcon, Sparkles, Loader2, CheckCircle2, AlertCircle, Github, Layers } from 'lucide-react'
 import { config } from '@/giggybank.config'
 import SiteHeader from '@/components/layout/SiteHeader'
 import SiteFooter from '@/components/layout/SiteFooter'
@@ -524,6 +524,48 @@ export default function MintPage() {
                 Your unique GiggyBank honorary PFP is minted directly to your Solana wallet.
               </p>
             </div>
+          </div>
+        </div>
+
+        {/* Framework & IP Details */}
+        <div className="mx-auto mt-12 max-w-2xl">
+          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-8">
+            <div className="mb-4 flex items-center gap-3">
+              <div className="rounded-lg bg-green-400/10 p-2">
+                <Layers className="h-5 w-5 text-green-400" />
+              </div>
+              <h3 className="text-lg font-semibold text-white">The ImpactTreasury Framework</h3>
+            </div>
+            <p className="mb-4 leading-relaxed text-zinc-400">
+              GiggyBank is built on <span className="font-medium text-white">ImpactTreasury</span> — an
+              open-source framework that lets any token community turn trading fees into real-world
+              impact campaigns. Honorary PFP minting is a core feature of the framework.
+            </p>
+            <div className="mb-4 rounded-xl border border-zinc-700 bg-zinc-800/50 p-5">
+              <h4 className="mb-2 text-sm font-semibold text-white">How Honorary Minting Works with Token IP</h4>
+              <p className="text-sm leading-relaxed text-zinc-400">
+                When you mint an Honorary PFP, your uploaded image (your IP) is composited with the{' '}
+                <span className="text-green-400">${config.token.symbol}</span> token&apos;s branded imagery
+                (the token&apos;s IP). The result is a unique on-chain NFT that merges both — a personalized
+                collectible representing your individual identity and your membership in the community.
+                You pay in <span className="text-green-400">${config.token.symbol}</span> tokens, which go
+                directly to the project treasury to fund future impact campaigns.
+              </p>
+            </div>
+            <p className="mb-5 text-sm text-zinc-500">
+              The framework is fully config-driven — any token project can fork it, update a single
+              config file, and launch their own honorary minting and transparent impact program.
+            </p>
+            <a
+              href="https://github.com/jsigwart/impacttreasury-giggybank"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:border-zinc-600 hover:bg-zinc-700"
+            >
+              <Github className="h-4 w-4" />
+              View on GitHub
+              <span className="text-zinc-500">↗</span>
+            </a>
           </div>
         </div>
       </main>
