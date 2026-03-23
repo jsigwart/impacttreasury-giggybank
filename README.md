@@ -1,187 +1,97 @@
 # ImpactTreasury – GiggyBank
 
-![GiggyBank Demo](docs/demo.png)
-
-![Bags Hackathon](https://img.shields.io/badge/Bags-%244M%20Hackathon-blue)
 ![Next.js](https://img.shields.io/badge/Next.js-16-black)
 ![Solana](https://img.shields.io/badge/Solana-Web3-purple)
 ![Bags](https://img.shields.io/badge/Bags-FeeSharing-blue)
 
-**GiggyBank is the first live deployment of ImpactTreasury**, a reusable framework for turning token trading fees into transparent real-world impact campaigns.
+**Launch a coin. Fund real-world impact. Grow your community.**
 
-Built on **Bags fee-sharing**, GiggyBank routes token trading activity into a community treasury that funds publicly verifiable impact drops.
+ImpactTreasury is an open-source framework for launching a token on [Bags](https://bags.fm) and routing its trading fees into a transparent community treasury. The treasury funds documented real-world impact campaigns — and gives holders a built-in way to mint **Honoraries**: on-chain NFTs that combine *their* image (their IP) with the project logo (the coin's IP), creating personalized collectibles that spread the brand and grow the community organically.
 
-These drops take two forms:
-
-- **High-Tip Drops** — large surprise tips for gig workers
-- **Cause Drops** — deliveries supporting real organizations such as shelters, rescues, and food banks
-
-Every campaign includes financial breakdowns, delivery receipts, and treasury transactions — ensuring every action funded by the community is **visible, documented, and verifiable**.
+**GiggyBank** is the first live deployment — a coin that funds surprise high-tip drops for gig workers.
 
 ---
 
-## Why this matters
+## The Framework Thesis
 
-Token communities generate millions in trading fees but rarely translate that value into visible real-world impact.
+Most token communities generate trading fees that go nowhere visible. ImpactTreasury changes that:
 
-ImpactTreasury turns token activity into **documented public-good campaigns** with full transparency:
+1. **Launch a coin on Bags** — trading fees flow to your treasury automatically via Bags fee-sharing.
+2. **Fund real-world campaigns** — use the treasury to run documented, verifiable impact drops (charity deliveries, surprise tips, community events — whatever fits your cause).
+3. **Mint Honoraries** — let holders mint NFTs that merge their own image with your project logo. Holders pay in your token, funds go to the treasury, and every mint spreads your brand as a PFP across socials.
+4. **Grow the community** — Honoraries turn holders into walking billboards. Every PFP is free marketing. Every impact campaign is shareable proof the community is doing something real.
 
-- the treasury funds used
-- the real-world action taken
-- receipts and proof
-- the on-chain transaction
-
----
-
-## What is ImpactTreasury?
-
-ImpactTreasury is the underlying framework powering GiggyBank.
-
-It provides a reusable architecture that allows any token community to fund and document real-world impact campaigns with full transparency. The framework also lets users **mint Honoraries** — on-chain NFTs that combine the user's own image (their IP) with the project's branded token imagery (the token's IP), creating personalized collectibles that represent both individual identity and community membership. Projects can fork this repository, configure their treasury and branding, and launch their own impact system with built-in honorary minting.
+The loop is simple: **trading fees fund impact, Honoraries spread the brand, brand growth drives more trading, more trading funds more impact.**
 
 ---
 
-## Demo
+## GiggyBank (Live Example)
 
-Live site: https://demo.giggybank.app
+**Token:** `$GIGGYBANK`
+**Contract:** `GefTGjFnJGW9PM93Ycb5RrHKiH1gPbz2Szag1mLBBAGS`
+**Site:** [demo.giggybank.app](https://demo.giggybank.app)
 
-Token: **GIGGYBANK**
+GiggyBank uses its treasury to fund two kinds of drops:
 
-Contract Address: `GefTGjFnJGW9PM93Ycb5RrHKiH1gPbz2Szag1mLBBAGS`
+- **High-Tip Drops** — real orders placed on gig platforms (DoorDash, Instacart, Lyft, etc.) with outsized tips funded by the treasury. The platform assigns the worker — GiggyBank funds the tip, not the assignment.
+- **Cause Drops** — deliveries supporting shelters, rescues, and food banks.
+
+Every campaign includes receipts, financial breakdowns, and on-chain treasury transactions.
+
+---
+
+## Honoraries — Mint Your PFP
+
+The `/mint` page lets any holder create a personalized Honorary:
+
+1. **Connect wallet** — Phantom, Solflare, or any Solana wallet
+2. **Upload your image** — PNG, JPG, or WebP (up to 10 MB)
+3. **Preview** — see your image composited with the project logo
+4. **Pay in $GIGGYBANK** — equivalent of $10 USD (price fetched live from Jupiter), sent to the treasury
+5. **Receive your NFT** — minted directly to your wallet
+
+Honoraries merge the holder's IP with the coin's IP. The result is a PFP that represents both the individual and the community — and every one shared on socials is organic brand growth.
+
+---
+
+## Fork It — Launch Your Own
+
+ImpactTreasury is designed to be forked. Launch your own coin with built-in impact funding and Honorary minting:
+
+1. **Fork** this repository
+2. **Configure** `src/giggybank.config.ts` — project name, token, treasury wallet, branding, mint price
+3. **Add your logo** at `public/logo.png` — this becomes the Honorary frame
+4. **Set up credentials** — Gemini API key (image generation) and AWS S3 (image hosting) in `.env.local`
+5. **Deploy** to Vercel
+
+### Quick Start
+
+```bash
+git clone https://github.com/jsigwart/impacttreasury-giggybank.git
+cd impacttreasury-giggybank
+npm install
+cp .env.example .env.local
+# Fill in GEMINI_API_KEY, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION, AWS_S3_BUCKET
+npm run dev
+```
+
+The app runs at `http://localhost:3000`.
 
 ---
 
 ## Built With
 
-- **Bags** — token launch and fee-sharing infrastructure
+- **[Bags](https://bags.fm)** — token launch and fee-sharing infrastructure
 - **Solana** — treasury transactions and NFT minting
 - **Next.js 16** — application framework
-- **Gemini (Nano Banana)** — AI image generation for PFP compositing
-- **AWS S3** — image hosting for generated PFPs
-- **Vercel** — deployment platform
+- **Gemini** — AI image generation for Honorary compositing
+- **AWS S3** — image hosting
+- **Vercel** — deployment
 
----
-
-## How High-Tip Drops Work
-
-GiggyBank places a **real order on an existing gig platform** (DoorDash, Instacart, Lyft, etc.) with an outsized tip funded by the treasury.
-
-The **platform determines which worker receives the job** — GiggyBank does not choose the worker.
-
-Whoever accepts and completes the order receives the full surprise tip. GiggyBank funds the tip — **not the assignment**.
-
-This ensures High-Tip Drops function as genuine surprise bonuses for workers inside existing gig marketplaces. Because worker assignment is handled by the platform, High-Tip Drops function as genuine surprise bonuses for the workers who receive them.
-
----
-
-## Honorary PFP Minting
-
-GiggyBank features an on-chain **Honorary PFP Mint** page at `/mint`, allowing community members to create personalized profile pictures that combine their uploaded image with the GiggyBank brand.
-
-### How it works
-
-1. **Connect Wallet** — Connect a Solana wallet (Phantom, Solflare, etc.)
-2. **Upload Image** — Upload any image (PNG, JPG, WebP up to 10 MB)
-3. **Preview** — See your image composited with the GiggyBank branded frame
-4. **Pay with $GIGGYBANK** — Pay the equivalent of $10 USD in `$GIGGYBANK` tokens (price fetched live from Jupiter) — tokens are sent to the GiggyBank treasury wallet
-5. **Receive NFT** — Your unique honorary PFP is minted as an NFT directly to your Solana wallet
-
-### Mint Configuration
-
-Mint settings are controlled in `src/giggybank.config.ts`:
-
-- `mint.priceUsd` — cost in USD equivalent (default: `10`)
-- `mint.collectionName` — NFT collection name (default: `GiggyBank Honoraries`)
-- `mint.description` — metadata description for the minted NFT
-
-The token price is fetched in real-time from the Jupiter Price API to calculate the required `$GIGGYBANK` amount.
-
----
-
-## Nano Banana (AI Image Generation)
-
-GiggyBank integrates **Nano Banana**, a Gemini-powered image generation layer used for PFP compositing and campaign visuals.
-
-Powered by `gemini-2.0-flash-exp`, it accepts a text prompt and optional reference image, and returns a generated image as a base64 data URI.
-
-Generated images are uploaded to **AWS S3** for permanent hosting.
-
-Setup guides:
-
-- [`docs/GEMINI_SETUP.md`](docs/GEMINI_SETUP.md) — Gemini API key and configuration
-- [`docs/AWS_SETUP.md`](docs/AWS_SETUP.md) — S3 bucket setup and IAM permissions
-
----
-
-## Quick Start
-
-Clone the repository:
-
-```bash
-git clone https://github.com/jsigwart/impacttreasury-giggybank.git
-cd impacttreasury-giggybank
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Create your environment file:
-
-```bash
-cp .env.example .env.local
-```
-
-Fill in the required environment variables in `.env.local`:
-
-```env
-# Gemini / Nano Banana (Image Generation)
-GEMINI_API_KEY=
-
-# AWS S3 (Image Hosting)
-AWS_ACCESS_KEY_ID=
-AWS_SECRET_ACCESS_KEY=
-AWS_REGION=us-east-1
-AWS_S3_BUCKET=
-```
-
-Run the development server:
-
-```bash
-npm run dev
-```
-
-The app will be available at http://localhost:3000
-
----
-
-## Customizing the Framework
-
-To launch your own ImpactTreasury deployment:
-
-1. Fork this repository
-2. Update `src/giggybank.config.ts` with your project name, token symbol, treasury wallet, and branding
-3. Add your logo at `public/logo.png` (used as the PFP mint frame)
-4. Configure Gemini and AWS credentials in `.env.local`
-5. Deploy to Vercel
-
----
-
-## Deployment
-
-The easiest way to deploy is with **Vercel**:
-
-1. Fork the repository
-2. Import the project into Vercel
-3. Add the required environment variables
-4. Deploy
+Setup guides: [`docs/GEMINI_SETUP.md`](docs/GEMINI_SETUP.md) | [`docs/AWS_SETUP.md`](docs/AWS_SETUP.md)
 
 ---
 
 ## License
 
-MIT License
-
-This project is open source and can be used to build new impact campaigns and community funding systems.
+MIT — fork it, launch your coin, fund your cause, grow your community.
