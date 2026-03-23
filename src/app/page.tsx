@@ -90,7 +90,9 @@ export default function LandingPage() {
       {/* TikTok Video */}
       <section className="border-b border-gray-200 px-4 py-16">
         <div className="mx-auto max-w-xl">
-          <TikTokEmbed videoId="7619036406349876494" username="giggybankapp" />
+          <div className="flex justify-center rounded-xl bg-gray-50 p-4">
+            <TikTokEmbed videoId="7619036406349876494" username="giggybankapp" />
+          </div>
         </div>
       </section>
 
