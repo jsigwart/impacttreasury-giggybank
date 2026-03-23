@@ -20,10 +20,10 @@ export default function SiteFooter() {
             </p>
           </div>
 
-          {/* Navigate */}
+          {/* Explore */}
           <div>
             <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-zinc-500">
-              Navigate
+              Explore
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
@@ -49,10 +49,67 @@ export default function SiteFooter() {
             </ul>
           </div>
 
-          {/* External */}
+          {/* Connect */}
           <div>
             <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-zinc-500">
-              External
+              Connect
+            </h4>
+            <ul className="space-y-2.5 text-sm">
+              {config.social.twitter && (
+                <li>
+                  <a
+                    href={config.social.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
+                  >
+                    Twitter
+                    <span className="text-zinc-600">↗</span>
+                  </a>
+                </li>
+              )}
+              {config.social.tiktok && (
+                <li>
+                  <a
+                    href={config.social.tiktok}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
+                  >
+                    TikTok
+                    <span className="text-zinc-600">↗</span>
+                  </a>
+                </li>
+              )}
+              <li>
+                <a
+                  href="https://discord.gg/giggybank"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
+                >
+                  Discord
+                  <span className="text-zinc-600">↗</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/jsigwart/impacttreasury-giggybank"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
+                >
+                  GitHub
+                  <span className="text-zinc-600">↗</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-zinc-500">
+              Resources
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
@@ -88,60 +145,6 @@ export default function SiteFooter() {
                   <span className="text-zinc-600">↗</span>
                 </a>
               </li>
-              {config.social.twitter && (
-                <li>
-                  <a
-                    href={config.social.twitter}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
-                  >
-                    Twitter
-                    <span className="text-zinc-600">↗</span>
-                  </a>
-                </li>
-              )}
-              {config.social.tiktok && (
-                <li>
-                  <a
-                    href={config.social.tiktok}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
-                  >
-                    TikTok
-                    <span className="text-zinc-600">↗</span>
-                  </a>
-                </li>
-              )}
-              <li>
-                <a
-                  href="https://github.com/jsigwart/impacttreasury-giggybank"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
-                >
-                  GitHub
-                  <span className="text-zinc-600">↗</span>
-                </a>
-              </li>
-              <li>
-                <span
-                  title="Coming Soon"
-                  className="inline-flex cursor-default items-center gap-1 text-zinc-600"
-                >
-                  iOS App
-                </span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Community */}
-          <div>
-            <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-zinc-500">
-              Community
-            </h4>
-            <ul className="space-y-2.5 text-sm">
               <li>
                 <a
                   href={config.token.bagsUrl}
@@ -150,17 +153,6 @@ export default function SiteFooter() {
                   className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
                 >
                   Bags.fm
-                  <span className="text-zinc-600">↗</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://discord.gg/giggybank"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
-                >
-                  Discord
                   <span className="text-zinc-600">↗</span>
                 </a>
               </li>
