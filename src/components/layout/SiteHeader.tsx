@@ -9,10 +9,10 @@ export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-zinc-800 bg-black/90 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
         <div className="flex items-center gap-2">
-          <Link href="/" className="text-lg font-bold tracking-tight text-white">
+          <Link href="/" className="text-lg font-bold tracking-tight text-slate-900">
             {config.name}
           </Link>
         </div>
@@ -21,7 +21,7 @@ export default function SiteHeader() {
         <nav className="hidden items-center gap-6 sm:flex">
           <Link
             href="/mint"
-            className="text-sm text-zinc-400 transition-colors hover:text-white"
+            className="text-sm text-gray-600 transition-colors hover:text-slate-900"
           >
             Mint
           </Link>
@@ -29,7 +29,7 @@ export default function SiteHeader() {
             href={config.token.bagsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-lg bg-green-400 px-4 py-1.5 text-sm font-semibold text-black transition-colors hover:bg-green-300"
+            className="rounded-lg bg-green-500 px-4 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-green-600"
           >
             Get {config.token.symbol}
           </a>
@@ -38,7 +38,7 @@ export default function SiteHeader() {
         {/* Mobile hamburger */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="p-2 text-zinc-400 transition-colors hover:text-white sm:hidden"
+          className="p-2 text-gray-600 transition-colors hover:text-slate-900 sm:hidden"
           aria-label="Toggle menu"
         >
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -47,12 +47,12 @@ export default function SiteHeader() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="border-t border-zinc-800 bg-black px-4 py-4 sm:hidden">
+        <div className="border-t border-gray-200 bg-white px-4 py-4 sm:hidden">
           <nav className="flex flex-col gap-4">
             <Link
               href="/mint"
               onClick={() => setMenuOpen(false)}
-              className="text-sm text-zinc-400 transition-colors hover:text-white"
+              className="text-sm text-gray-600 transition-colors hover:text-slate-900"
             >
               Mint
             </Link>
@@ -60,7 +60,7 @@ export default function SiteHeader() {
               href={config.token.bagsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex w-fit rounded-lg bg-green-400 px-4 py-1.5 text-sm font-semibold text-black transition-colors hover:bg-green-300"
+              className="inline-flex w-fit rounded-lg bg-green-500 px-4 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-green-600"
             >
               Get {config.token.symbol}
             </a>

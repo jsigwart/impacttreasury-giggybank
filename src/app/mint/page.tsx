@@ -111,7 +111,7 @@ export default function MintPage() {
       // Draw border ring around PFP
       ctx.beginPath()
       ctx.arc(SIZE / 2, SIZE / 2 - 20, 102, 0, Math.PI * 2)
-      ctx.strokeStyle = '#4ade80'
+      ctx.strokeStyle = '#22c55e'
       ctx.lineWidth = 4
       ctx.stroke()
 
@@ -277,21 +277,21 @@ export default function MintPage() {
         {/* Hero */}
         <div className="mb-12 text-center">
           <h1 className="mb-3 text-4xl font-bold tracking-tight">
-            Mint Your <span className="text-green-400">Honorary PFP</span>
+            Mint Your <span className="text-green-500">Honorary PFP</span>
           </h1>
-          <p className="mx-auto max-w-lg text-zinc-400">
+          <p className="mx-auto max-w-lg text-gray-600">
             Upload your image, pay with{' '}
-            <span className="font-semibold text-green-400">${config.token.symbol}</span>, and
+            <span className="font-semibold text-green-500">${config.token.symbol}</span>, and
             receive a unique GiggyBank honorary profile picture minted to your Solana wallet.
           </p>
-          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-4 py-2 text-sm">
-            <span className="text-zinc-500">Price:</span>
-            <span className="font-semibold text-green-400">
+          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-gray-200 bg-gray-100 px-4 py-2 text-sm">
+            <span className="text-gray-500">Price:</span>
+            <span className="font-semibold text-green-500">
               {requiredTokens
                 ? `~${requiredTokens} ${config.token.symbol}`
                 : `$${config.mint.priceUsd} in ${config.token.symbol}`}
             </span>
-            <span className="text-zinc-600">
+            <span className="text-gray-400">
               (${config.mint.priceUsd} USD)
             </span>
           </div>
@@ -310,14 +310,14 @@ export default function MintPage() {
           <div className="mx-auto max-w-md">
             <label
               htmlFor="pfp-upload"
-              className="group flex cursor-pointer flex-col items-center gap-4 rounded-2xl border-2 border-dashed border-zinc-700 bg-zinc-900/50 p-12 transition-colors hover:border-green-400/50 hover:bg-zinc-900"
+              className="group flex cursor-pointer flex-col items-center gap-4 rounded-2xl border-2 border-dashed border-gray-300 bg-gray-50 p-12 transition-colors hover:border-green-500/50 hover:bg-gray-100"
             >
-              <div className="rounded-full bg-zinc-800 p-4 transition-colors group-hover:bg-green-400/10">
-                <Upload className="h-8 w-8 text-zinc-500 transition-colors group-hover:text-green-400" />
+              <div className="rounded-full bg-gray-200 p-4 transition-colors group-hover:bg-green-500/10">
+                <Upload className="h-8 w-8 text-gray-500 transition-colors group-hover:text-green-500" />
               </div>
               <div className="text-center">
-                <p className="text-lg font-medium text-white">Upload your image</p>
-                <p className="mt-1 text-sm text-zinc-500">PNG, JPG, or WebP — max 10 MB</p>
+                <p className="text-lg font-medium text-slate-900">Upload your image</p>
+                <p className="mt-1 text-sm text-gray-500">PNG, JPG, or WebP — max 10 MB</p>
               </div>
             </label>
             <input
@@ -334,7 +334,7 @@ export default function MintPage() {
         {/* Step: Preview */}
         {step === 'preview' && compositeImage && (
           <div className="mx-auto max-w-md text-center">
-            <div className="mb-6 overflow-hidden rounded-2xl border border-zinc-800">
+            <div className="mb-6 overflow-hidden rounded-2xl border border-gray-200">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={compositeImage}
@@ -343,35 +343,35 @@ export default function MintPage() {
               />
             </div>
 
-            <div className="mb-4 rounded-xl border border-zinc-800 bg-zinc-900 p-4">
+            <div className="mb-4 rounded-xl border border-gray-200 bg-gray-50 p-4">
               <div className="flex items-center justify-between text-sm">
-                <span className="text-zinc-400">Collection</span>
-                <span className="font-medium text-white">{config.mint.collectionName}</span>
+                <span className="text-gray-500">Collection</span>
+                <span className="font-medium text-slate-900">{config.mint.collectionName}</span>
               </div>
               <div className="mt-2 flex items-center justify-between text-sm">
-                <span className="text-zinc-400">Cost</span>
-                <span className="font-medium text-green-400">
+                <span className="text-gray-500">Cost</span>
+                <span className="font-medium text-green-500">
                   {requiredTokens
                     ? `~${requiredTokens} ${config.token.symbol}`
                     : `$${config.mint.priceUsd}`}
                 </span>
               </div>
               <div className="mt-2 flex items-center justify-between text-sm">
-                <span className="text-zinc-400">Destination</span>
-                <span className="font-mono text-xs text-zinc-500">
+                <span className="text-gray-500">Destination</span>
+                <span className="font-mono text-xs text-gray-400">
                   {publicKey ? `${publicKey.toBase58().slice(0, 4)}...${publicKey.toBase58().slice(-4)}` : 'Connect wallet'}
                 </span>
               </div>
             </div>
 
-            <label className="mb-4 flex cursor-pointer items-start gap-3 rounded-xl border border-zinc-800 bg-zinc-900/50 p-4 text-left transition-colors hover:border-zinc-700">
+            <label className="mb-4 flex cursor-pointer items-start gap-3 rounded-xl border border-gray-200 bg-gray-50 p-4 text-left transition-colors hover:border-gray-300">
               <input
                 type="checkbox"
                 checked={ownershipAgreed}
                 onChange={(e) => setOwnershipAgreed(e.target.checked)}
-                className="mt-0.5 h-4 w-4 shrink-0 accent-green-400"
+                className="mt-0.5 h-4 w-4 shrink-0 accent-green-500"
               />
-              <span className="text-sm text-zinc-300">
+              <span className="text-sm text-gray-700">
                 I confirm that I own the rights to the image I am uploading and have the authority to use it for minting.
               </span>
             </label>
@@ -379,14 +379,14 @@ export default function MintPage() {
             <div className="flex gap-3">
               <button
                 onClick={resetFlow}
-                className="flex-1 rounded-xl border border-zinc-700 px-6 py-3 text-sm font-medium text-zinc-400 transition-colors hover:border-zinc-600 hover:text-white"
+                className="flex-1 rounded-xl border border-gray-300 px-6 py-3 text-sm font-medium text-gray-600 transition-colors hover:border-gray-400 hover:text-slate-900"
               >
                 Change Image
               </button>
               <button
                 onClick={handlePayAndMint}
                 disabled={!connected || !ownershipAgreed}
-                className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-green-400 px-6 py-3 text-sm font-semibold text-black transition-colors hover:bg-green-300 disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-green-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-green-600 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <Sparkles className="h-4 w-4" />
                 {!connected ? 'Connect Wallet First' : !ownershipAgreed ? 'Agree to Mint' : 'Pay & Mint'}
@@ -399,13 +399,13 @@ export default function MintPage() {
         {step === 'paying' && (
           <div className="mx-auto max-w-md text-center">
             <div className="mb-6 flex justify-center">
-              <Loader2 className="h-12 w-12 animate-spin text-green-400" />
+              <Loader2 className="h-12 w-12 animate-spin text-green-500" />
             </div>
             <h2 className="mb-2 text-xl font-semibold">Processing Payment</h2>
-            <p className="text-sm text-zinc-400">
+            <p className="text-sm text-gray-600">
               Sending {config.token.symbol} to the GiggyBank treasury...
             </p>
-            <p className="mt-2 text-xs text-zinc-600">
+            <p className="mt-2 text-xs text-gray-400">
               Please approve the transaction in your wallet.
             </p>
           </div>
@@ -415,10 +415,10 @@ export default function MintPage() {
         {step === 'minting' && (
           <div className="mx-auto max-w-md text-center">
             <div className="mb-6 flex justify-center">
-              <Loader2 className="h-12 w-12 animate-spin text-green-400" />
+              <Loader2 className="h-12 w-12 animate-spin text-green-500" />
             </div>
             <h2 className="mb-2 text-xl font-semibold">Minting Your Honorary PFP</h2>
-            <p className="text-sm text-zinc-400">
+            <p className="text-sm text-gray-600">
               Payment confirmed! Now minting your unique PFP to your wallet...
             </p>
           </div>
@@ -428,15 +428,15 @@ export default function MintPage() {
         {step === 'done' && (
           <div className="mx-auto max-w-md text-center">
             <div className="mb-6 flex justify-center">
-              <CheckCircle2 className="h-16 w-16 text-green-400" />
+              <CheckCircle2 className="h-16 w-16 text-green-500" />
             </div>
             <h2 className="mb-2 text-2xl font-bold">Honorary PFP Minted!</h2>
-            <p className="mb-6 text-sm text-zinc-400">
+            <p className="mb-6 text-sm text-gray-600">
               Your unique GiggyBank honorary has been minted to your wallet.
             </p>
 
             {compositeImage && (
-              <div className="mb-6 overflow-hidden rounded-2xl border border-green-400/30">
+              <div className="mb-6 overflow-hidden rounded-2xl border border-green-500/30">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={compositeImage}
@@ -451,17 +451,17 @@ export default function MintPage() {
                 href={`https://solscan.io/tx/${txSignature}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mb-6 inline-flex items-center gap-1 text-sm text-green-400 transition-colors hover:text-green-300"
+                className="mb-6 inline-flex items-center gap-1 text-sm text-green-500 transition-colors hover:text-green-600"
               >
                 View transaction on Solscan
-                <span className="text-green-600">↗</span>
+                <span className="text-green-400">↗</span>
               </a>
             )}
 
             <div className="mt-4">
               <button
                 onClick={resetFlow}
-                className="rounded-xl border border-zinc-700 px-6 py-3 text-sm font-medium text-zinc-400 transition-colors hover:border-zinc-600 hover:text-white"
+                className="rounded-xl border border-gray-300 px-6 py-3 text-sm font-medium text-gray-600 transition-colors hover:border-gray-400 hover:text-slate-900"
               >
                 Mint Another
               </button>
@@ -473,13 +473,13 @@ export default function MintPage() {
         {step === 'error' && (
           <div className="mx-auto max-w-md text-center">
             <div className="mb-6 flex justify-center">
-              <AlertCircle className="h-16 w-16 text-red-400" />
+              <AlertCircle className="h-16 w-16 text-red-500" />
             </div>
-            <h2 className="mb-2 text-xl font-semibold text-red-400">Something went wrong</h2>
-            <p className="mb-6 text-sm text-zinc-400">{error}</p>
+            <h2 className="mb-2 text-xl font-semibold text-red-500">Something went wrong</h2>
+            <p className="mb-6 text-sm text-gray-600">{error}</p>
             <button
               onClick={resetFlow}
-              className="rounded-xl border border-zinc-700 px-6 py-3 text-sm font-medium text-zinc-400 transition-colors hover:border-zinc-600 hover:text-white"
+              className="rounded-xl border border-gray-300 px-6 py-3 text-sm font-medium text-gray-600 transition-colors hover:border-gray-400 hover:text-slate-900"
             >
               Try Again
             </button>
@@ -488,39 +488,39 @@ export default function MintPage() {
 
         {/* Inline error for non-fatal errors */}
         {error && step !== 'error' && (
-          <div className="mx-auto mt-4 max-w-md rounded-xl border border-red-900/50 bg-red-950/30 p-4 text-center text-sm text-red-400">
+          <div className="mx-auto mt-4 max-w-md rounded-xl border border-red-200 bg-red-50 p-4 text-center text-sm text-red-600">
             {error}
           </div>
         )}
 
         {/* Info section */}
         <div className="mx-auto mt-16 max-w-2xl">
-          <h3 className="mb-6 text-center text-lg font-semibold text-white">How it works</h3>
+          <h3 className="mb-6 text-center text-lg font-semibold text-slate-900">How it works</h3>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-            <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 text-center">
-              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-green-400/10">
-                <ImageIcon className="h-5 w-5 text-green-400" />
+            <div className="rounded-xl border border-gray-200 bg-gray-50 p-6 text-center">
+              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-green-500/10">
+                <ImageIcon className="h-5 w-5 text-green-500" />
               </div>
-              <h4 className="mb-1 text-sm font-semibold text-white">1. Upload Image</h4>
-              <p className="text-xs text-zinc-500">
+              <h4 className="mb-1 text-sm font-semibold text-slate-900">1. Upload Image</h4>
+              <p className="text-xs text-gray-500">
                 Upload any image to use as the base for your honorary PFP.
               </p>
             </div>
-            <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 text-center">
-              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-green-400/10">
-                <Sparkles className="h-5 w-5 text-green-400" />
+            <div className="rounded-xl border border-gray-200 bg-gray-50 p-6 text-center">
+              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-green-500/10">
+                <Sparkles className="h-5 w-5 text-green-500" />
               </div>
-              <h4 className="mb-1 text-sm font-semibold text-white">2. Pay with {config.token.symbol}</h4>
-              <p className="text-xs text-zinc-500">
+              <h4 className="mb-1 text-sm font-semibold text-slate-900">2. Pay with {config.token.symbol}</h4>
+              <p className="text-xs text-gray-500">
                 Pay ${config.mint.priceUsd} worth of {config.token.symbol} tokens to the GiggyBank treasury.
               </p>
             </div>
-            <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 text-center">
-              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-green-400/10">
-                <CheckCircle2 className="h-5 w-5 text-green-400" />
+            <div className="rounded-xl border border-gray-200 bg-gray-50 p-6 text-center">
+              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-green-500/10">
+                <CheckCircle2 className="h-5 w-5 text-green-500" />
               </div>
-              <h4 className="mb-1 text-sm font-semibold text-white">3. Receive NFT</h4>
-              <p className="text-xs text-zinc-500">
+              <h4 className="mb-1 text-sm font-semibold text-slate-900">3. Receive NFT</h4>
+              <p className="text-xs text-gray-500">
                 Your unique GiggyBank honorary PFP is minted directly to your Solana wallet.
               </p>
             </div>
@@ -529,30 +529,30 @@ export default function MintPage() {
 
         {/* Framework & IP Details */}
         <div className="mx-auto mt-12 max-w-2xl">
-          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-8">
+          <div className="rounded-2xl border border-gray-200 bg-gray-50 p-8">
             <div className="mb-4 flex items-center gap-3">
-              <div className="rounded-lg bg-green-400/10 p-2">
-                <Layers className="h-5 w-5 text-green-400" />
+              <div className="rounded-lg bg-green-500/10 p-2">
+                <Layers className="h-5 w-5 text-green-500" />
               </div>
-              <h3 className="text-lg font-semibold text-white">The ImpactTreasury Framework</h3>
+              <h3 className="text-lg font-semibold text-slate-900">The ImpactTreasury Framework</h3>
             </div>
-            <p className="mb-4 leading-relaxed text-zinc-400">
-              GiggyBank is built on <span className="font-medium text-white">ImpactTreasury</span> — an
+            <p className="mb-4 leading-relaxed text-gray-600">
+              GiggyBank is built on <span className="font-medium text-slate-900">ImpactTreasury</span> — an
               open-source framework that lets any token community turn trading fees into real-world
               impact campaigns. Honorary PFP minting is a core feature of the framework.
             </p>
-            <div className="mb-4 rounded-xl border border-zinc-700 bg-zinc-800/50 p-5">
-              <h4 className="mb-2 text-sm font-semibold text-white">How Honorary Minting Works with Token IP</h4>
-              <p className="text-sm leading-relaxed text-zinc-400">
+            <div className="mb-4 rounded-xl border border-gray-200 bg-white p-5">
+              <h4 className="mb-2 text-sm font-semibold text-slate-900">How Honorary Minting Works with Token IP</h4>
+              <p className="text-sm leading-relaxed text-gray-600">
                 When you mint an Honorary PFP, your uploaded image (your IP) is composited with the{' '}
-                <span className="text-green-400">${config.token.symbol}</span> token&apos;s branded imagery
+                <span className="text-green-500">${config.token.symbol}</span> token&apos;s branded imagery
                 (the token&apos;s IP). The result is a unique on-chain NFT that merges both — a personalized
                 collectible representing your individual identity and your membership in the community.
-                You pay in <span className="text-green-400">${config.token.symbol}</span> tokens, which go
+                You pay in <span className="text-green-500">${config.token.symbol}</span> tokens, which go
                 directly to the project treasury to fund future impact campaigns.
               </p>
             </div>
-            <p className="mb-5 text-sm text-zinc-500">
+            <p className="mb-5 text-sm text-gray-500">
               The framework is fully config-driven — any token project can fork it, update a single
               config file, and launch their own honorary minting and transparent impact program.
             </p>
@@ -560,11 +560,11 @@ export default function MintPage() {
               href="https://github.com/jsigwart/impacttreasury-giggybank"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:border-zinc-600 hover:bg-zinc-700"
+              className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-900 transition-colors hover:border-gray-400 hover:bg-gray-50"
             >
               <Github className="h-4 w-4" />
               View on GitHub
-              <span className="text-zinc-500">↗</span>
+              <span className="text-gray-400">↗</span>
             </a>
           </div>
         </div>
