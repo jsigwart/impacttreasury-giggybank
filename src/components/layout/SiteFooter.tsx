@@ -9,12 +9,7 @@ export default function SiteFooter() {
         <div className="grid grid-cols-1 gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
           {/* Branding */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="mb-3 flex items-center gap-2">
-              <span className="text-lg font-bold tracking-tight text-white">{config.name}</span>
-              <span className="rounded bg-green-400/10 px-1.5 py-0.5 text-xs font-semibold text-green-400">
-                {config.token.symbol}
-              </span>
-            </div>
+            <span className="mb-3 text-lg font-bold tracking-tight text-white">{config.name}</span>
             <p className="max-w-xs text-sm leading-relaxed text-zinc-500">
               {config.tagline}
             </p>
