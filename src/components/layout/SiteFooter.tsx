@@ -3,7 +3,7 @@ import { config } from '@/giggybank.config'
 
 export default function SiteFooter() {
   return (
-    <footer className="border-t border-pink-200 bg-pink-50">
+    <footer className="border-t border-gray-200 bg-white">
       <div className="mx-auto max-w-6xl px-4">
         {/* Main footer content */}
         <div className="grid grid-cols-1 gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
@@ -169,7 +169,7 @@ export default function SiteFooter() {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-pink-200 py-6 sm:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-gray-200 py-6 sm:flex-row">
           <p className="text-xs text-gray-500">
             The first live deployment of{' '}
             <Link href="/framework" className="text-gray-600 transition-colors hover:text-slate-900">

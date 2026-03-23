@@ -284,7 +284,7 @@ export default function MintPage() {
             <span className="font-semibold text-green-500">${config.token.symbol}</span>, and
             receive a unique GiggyBank honorary profile picture minted to your Solana wallet.
           </p>
-          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-pink-200 bg-pink-100 px-4 py-2 text-sm">
+          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-gray-200 bg-gray-100 px-4 py-2 text-sm">
             <span className="text-gray-500">Price:</span>
             <span className="font-semibold text-green-500">
               {requiredTokens
@@ -310,7 +310,7 @@ export default function MintPage() {
           <div className="mx-auto max-w-md">
             <label
               htmlFor="pfp-upload"
-              className="group flex cursor-pointer flex-col items-center gap-4 rounded-2xl border-2 border-dashed border-pink-300 bg-white p-12 transition-colors hover:border-green-500/50 hover:bg-pink-100"
+              className="group flex cursor-pointer flex-col items-center gap-4 rounded-2xl border-2 border-dashed border-gray-300 bg-gray-50 p-12 transition-colors hover:border-green-500/50 hover:bg-gray-100"
             >
               <div className="rounded-full bg-gray-200 p-4 transition-colors group-hover:bg-green-500/10">
                 <Upload className="h-8 w-8 text-gray-500 transition-colors group-hover:text-green-500" />
@@ -334,7 +334,7 @@ export default function MintPage() {
         {/* Step: Preview */}
         {step === 'preview' && compositeImage && (
           <div className="mx-auto max-w-md text-center">
-            <div className="mb-6 overflow-hidden rounded-2xl border border-pink-200">
+            <div className="mb-6 overflow-hidden rounded-2xl border border-gray-200">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={compositeImage}
@@ -343,7 +343,7 @@ export default function MintPage() {
               />
             </div>
 
-            <div className="mb-4 rounded-xl border border-pink-200 bg-white p-4">
+            <div className="mb-4 rounded-xl border border-gray-200 bg-gray-50 p-4">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-500">Collection</span>
                 <span className="font-medium text-slate-900">{config.mint.collectionName}</span>
@@ -364,7 +364,7 @@ export default function MintPage() {
               </div>
             </div>
 
-            <label className="mb-4 flex cursor-pointer items-start gap-3 rounded-xl border border-pink-200 bg-white p-4 text-left transition-colors hover:border-pink-300">
+            <label className="mb-4 flex cursor-pointer items-start gap-3 rounded-xl border border-gray-200 bg-gray-50 p-4 text-left transition-colors hover:border-gray-300">
               <input
                 type="checkbox"
                 checked={ownershipAgreed}
@@ -379,7 +379,7 @@ export default function MintPage() {
             <div className="flex gap-3">
               <button
                 onClick={resetFlow}
-                className="flex-1 rounded-xl border border-pink-300 px-6 py-3 text-sm font-medium text-gray-600 transition-colors hover:border-gray-400 hover:text-slate-900"
+                className="flex-1 rounded-xl border border-gray-300 px-6 py-3 text-sm font-medium text-gray-600 transition-colors hover:border-gray-400 hover:text-slate-900"
               >
                 Change Image
               </button>
@@ -461,7 +461,7 @@ export default function MintPage() {
             <div className="mt-4">
               <button
                 onClick={resetFlow}
-                className="rounded-xl border border-pink-300 px-6 py-3 text-sm font-medium text-gray-600 transition-colors hover:border-gray-400 hover:text-slate-900"
+                className="rounded-xl border border-gray-300 px-6 py-3 text-sm font-medium text-gray-600 transition-colors hover:border-gray-400 hover:text-slate-900"
               >
                 Mint Another
               </button>
@@ -479,7 +479,7 @@ export default function MintPage() {
             <p className="mb-6 text-sm text-gray-600">{error}</p>
             <button
               onClick={resetFlow}
-              className="rounded-xl border border-pink-300 px-6 py-3 text-sm font-medium text-gray-600 transition-colors hover:border-gray-400 hover:text-slate-900"
+              className="rounded-xl border border-gray-300 px-6 py-3 text-sm font-medium text-gray-600 transition-colors hover:border-gray-400 hover:text-slate-900"
             >
               Try Again
             </button>
@@ -497,7 +497,7 @@ export default function MintPage() {
         <div className="mx-auto mt-16 max-w-2xl">
           <h3 className="mb-6 text-center text-lg font-semibold text-slate-900">How it works</h3>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-            <div className="rounded-xl border border-pink-200 bg-white p-6 text-center">
+            <div className="rounded-xl border border-gray-200 bg-gray-50 p-6 text-center">
               <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-green-500/10">
                 <ImageIcon className="h-5 w-5 text-green-500" />
               </div>
@@ -506,7 +506,7 @@ export default function MintPage() {
                 Upload any image to use as the base for your honorary PFP.
               </p>
             </div>
-            <div className="rounded-xl border border-pink-200 bg-white p-6 text-center">
+            <div className="rounded-xl border border-gray-200 bg-gray-50 p-6 text-center">
               <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-green-500/10">
                 <Sparkles className="h-5 w-5 text-green-500" />
               </div>
@@ -515,7 +515,7 @@ export default function MintPage() {
                 Pay ${config.mint.priceUsd} worth of {config.token.symbol} tokens to the GiggyBank treasury.
               </p>
             </div>
-            <div className="rounded-xl border border-pink-200 bg-white p-6 text-center">
+            <div className="rounded-xl border border-gray-200 bg-gray-50 p-6 text-center">
               <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-green-500/10">
                 <CheckCircle2 className="h-5 w-5 text-green-500" />
               </div>
@@ -529,7 +529,7 @@ export default function MintPage() {
 
         {/* Framework & IP Details */}
         <div className="mx-auto mt-12 max-w-2xl">
-          <div className="rounded-2xl border border-pink-200 bg-white p-8">
+          <div className="rounded-2xl border border-gray-200 bg-gray-50 p-8">
             <div className="mb-4 flex items-center gap-3">
               <div className="rounded-lg bg-green-500/10 p-2">
                 <Layers className="h-5 w-5 text-green-500" />
@@ -541,7 +541,7 @@ export default function MintPage() {
               open-source framework that lets any token community turn trading fees into real-world
               impact campaigns. Honorary PFP minting is a core feature of the framework.
             </p>
-            <div className="mb-4 rounded-xl border border-pink-200 bg-white p-5">
+            <div className="mb-4 rounded-xl border border-gray-200 bg-white p-5">
               <h4 className="mb-2 text-sm font-semibold text-slate-900">How Honorary Minting Works with Token IP</h4>
               <p className="text-sm leading-relaxed text-gray-600">
                 When you mint an Honorary PFP, your uploaded image (your IP) is composited with the{' '}
@@ -560,7 +560,7 @@ export default function MintPage() {
               href="https://github.com/jsigwart/impacttreasury-giggybank"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-pink-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-900 transition-colors hover:border-gray-400 hover:bg-white"
+              className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-900 transition-colors hover:border-gray-400 hover:bg-gray-50"
             >
               <Github className="h-4 w-4" />
               View on GitHub
