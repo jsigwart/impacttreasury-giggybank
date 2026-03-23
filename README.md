@@ -1,5 +1,6 @@
 # ImpactTreasury – GiggyBank
 
+![Bags Hackathon](https://img.shields.io/badge/Bags-%244M%20Hackathon-blue)
 ![Next.js](https://img.shields.io/badge/Next.js-16-black)
 ![Solana](https://img.shields.io/badge/Solana-Web3-purple)
 ![Bags](https://img.shields.io/badge/Bags-FeeSharing-blue)
