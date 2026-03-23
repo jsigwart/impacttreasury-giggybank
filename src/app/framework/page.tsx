@@ -107,7 +107,7 @@ export default function FrameworkPage() {
                   body: 'Every published campaign is fully public — with a receipt, an on-chain tx you can verify on Solscan, and an optional social post. Nothing gets posted until it can be proven.',
                 },
               ].map(({ icon: Icon, title, body }) => (
-                <div key={title} className="flex gap-3 rounded-xl border border-zinc-800 bg-zinc-900 p-5">
+                <div key={title} className="flex items-start gap-3 rounded-xl border border-zinc-800 bg-zinc-900 p-5">
                   <div className="mt-0.5 shrink-0 rounded-lg bg-zinc-800 p-1.5">
                     <Icon size={16} className="text-zinc-400" />
                   </div>
