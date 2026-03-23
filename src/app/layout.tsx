@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { config } from '@/giggybank.config'
 import Providers from '@/components/Providers'
-import { Analytics } from '@vercel/analytics/react'
+import { Analytics } from '@vercel/analytics/next'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
