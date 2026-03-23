@@ -33,18 +33,6 @@ export default function SiteHeader() {
           >
             Mint
           </Link>
-          <Link
-            href="/about"
-            className="text-sm text-zinc-400 transition-colors hover:text-white"
-          >
-            About
-          </Link>
-          <Link
-            href="/framework"
-            className="text-sm text-zinc-400 transition-colors hover:text-white"
-          >
-            Framework
-          </Link>
           <a
             href={config.token.bagsUrl}
             target="_blank"
@@ -75,20 +63,6 @@ export default function SiteHeader() {
               className="text-sm text-zinc-400 transition-colors hover:text-white"
             >
               Mint
-            </Link>
-            <Link
-              href="/about"
-              onClick={() => setMenuOpen(false)}
-              className="text-sm text-zinc-400 transition-colors hover:text-white"
-            >
-              About
-            </Link>
-            <Link
-              href="/framework"
-              onClick={() => setMenuOpen(false)}
-              className="text-sm text-zinc-400 transition-colors hover:text-white"
-            >
-              Framework
             </Link>
             <a
               href={config.token.bagsUrl}
