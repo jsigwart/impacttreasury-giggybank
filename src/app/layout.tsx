@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { config } from '@/giggybank.config'
 import Providers from '@/components/Providers'
+import { Analytics } from '@vercel/analytics/react'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -28,6 +29,7 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <body className="overflow-x-hidden bg-white text-slate-900 antialiased">
         <Providers>{children}</Providers>
+        <Analytics />
       </body>
     </html>
   )
