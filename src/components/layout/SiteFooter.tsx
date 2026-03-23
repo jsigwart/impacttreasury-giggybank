@@ -153,6 +153,17 @@ export default function SiteFooter() {
                   <span className="text-zinc-600">↗</span>
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://discord.gg/giggybank"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
+                >
+                  Discord
+                  <span className="text-zinc-600">↗</span>
+                </a>
+              </li>
             </ul>
           </div>
         </div>
