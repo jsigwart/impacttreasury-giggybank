@@ -9,7 +9,7 @@ export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 border-b border-pink-200 bg-pink-50/90 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
         <div className="flex items-center gap-2">
           <Link href="/" className="text-lg font-bold tracking-tight text-slate-900">
@@ -47,7 +47,7 @@ export default function SiteHeader() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="border-t border-gray-200 bg-white px-4 py-4 sm:hidden">
+        <div className="border-t border-pink-200 bg-pink-50 px-4 py-4 sm:hidden">
           <nav className="flex flex-col gap-4">
             <Link
               href="/mint"

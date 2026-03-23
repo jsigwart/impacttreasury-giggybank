@@ -12,14 +12,14 @@ export default function LandingPage() {
       <SiteHeader />
 
       {/* Hero */}
-      <section className="border-b border-gray-200 px-4 py-24 text-center">
+      <section className="border-b border-pink-200 px-4 py-24 text-center">
         <div className="mx-auto max-w-3xl">
           <div className="mb-6 flex flex-wrap items-center justify-center gap-2">
-            <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-gray-100 px-3 py-1.5 text-xs text-gray-600">
+            <div className="inline-flex items-center gap-2 rounded-full border border-pink-200 bg-pink-100 px-3 py-1.5 text-xs text-gray-600">
               <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
               Powered by Bags.fm fee-sharing
             </div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-gray-100 px-3 py-1.5 text-xs text-gray-600">
+            <div className="inline-flex items-center gap-2 rounded-full border border-pink-200 bg-pink-100 px-3 py-1.5 text-xs text-gray-600">
               <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
               Bags App Genesis Cohort
             </div>
@@ -88,23 +88,23 @@ export default function LandingPage() {
       </section>
 
       {/* TikTok Video */}
-      <section className="border-b border-gray-200 px-4 py-16">
+      <section className="border-b border-pink-200 px-4 py-16">
         <div className="mx-auto max-w-xl">
           <TikTokEmbed videoId="7619036406349876494" username="giggybankapp" />
         </div>
       </section>
 
       {/* Hackathon Tweet */}
-      <section className="border-b border-gray-200 px-4 py-16">
+      <section className="border-b border-pink-200 px-4 py-16">
         <div className="mx-auto max-w-xl">
-          <div className="flex justify-center rounded-xl bg-gray-50 p-4" data-theme="light">
+          <div className="flex justify-center rounded-xl bg-white p-4" data-theme="light">
             <Tweet id="2033733353019765129" />
           </div>
         </div>
       </section>
 
       {/* How it works */}
-      <section className="border-b border-gray-200 px-4 py-20">
+      <section className="border-b border-pink-200 px-4 py-20">
         <div className="mx-auto max-w-4xl">
           <h2 className="mb-3 text-center text-2xl font-bold text-slate-900">
             How High-Tip Drops work
@@ -135,7 +135,7 @@ export default function LandingPage() {
             ].map(({ icon: Icon, step, title, body }) => (
               <div
                 key={step}
-                className="rounded-xl border border-gray-200 bg-gray-50 p-6"
+                className="rounded-xl border border-pink-200 bg-white p-6"
               >
                 <div className="mb-4 flex items-start justify-between">
                   <div className="rounded-lg bg-green-500/10 p-2.5">
@@ -154,7 +154,7 @@ export default function LandingPage() {
       </section>
 
       {/* Treasury CTA */}
-      <section className="border-b border-gray-200 bg-gray-50 px-4 py-16 text-center">
+      <section className="border-b border-pink-200 bg-pink-100 px-4 py-16 text-center">
         <p className="mb-2 text-xs font-medium uppercase tracking-wider text-gray-500">
           Public Treasury Wallet
         </p>
