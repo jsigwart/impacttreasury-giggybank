@@ -3,19 +3,19 @@ import { config } from '@/giggybank.config'
 
 export default function SiteFooter() {
   return (
-    <footer className="border-t border-zinc-800 bg-black">
+    <footer className="border-t border-gray-200 bg-white">
       <div className="mx-auto max-w-6xl px-4">
         {/* Main footer content */}
         <div className="grid grid-cols-1 gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
           {/* Branding */}
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="mb-3 flex items-center gap-2">
-              <span className="text-lg font-bold tracking-tight text-white">{config.name}</span>
-              <span className="rounded bg-green-400/10 px-1.5 py-0.5 text-xs font-semibold text-green-400">
+              <span className="text-lg font-bold tracking-tight text-slate-900">{config.name}</span>
+              <span className="rounded bg-green-500/10 px-1.5 py-0.5 text-xs font-semibold text-green-600">
                 {config.token.symbol}
               </span>
             </div>
-            <p className="max-w-xs text-sm leading-relaxed text-zinc-500">
+            <p className="max-w-xs text-sm leading-relaxed text-gray-500">
               {config.tagline}
             </p>
           </div>
@@ -27,22 +27,22 @@ export default function SiteFooter() {
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="/mint" className="text-zinc-400 transition-colors hover:text-white">
+                <Link href="/mint" className="text-gray-600 transition-colors hover:text-slate-900">
                   Mint
                 </Link>
               </li>
               <li>
-                <Link href="/dashboard" className="text-zinc-400 transition-colors hover:text-white">
+                <Link href="/dashboard" className="text-gray-600 transition-colors hover:text-slate-900">
                   Dashboard
                 </Link>
               </li>
               <li>
-                <Link href="/framework" className="text-zinc-400 transition-colors hover:text-white">
+                <Link href="/framework" className="text-gray-600 transition-colors hover:text-slate-900">
                   Framework
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-zinc-400 transition-colors hover:text-white">
+                <Link href="/about" className="text-gray-600 transition-colors hover:text-slate-900">
                   About
                 </Link>
               </li>
@@ -117,10 +117,10 @@ export default function SiteFooter() {
                   href={config.treasury.solscanUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
+                  className="inline-flex items-center gap-1 text-gray-600 transition-colors hover:text-slate-900"
                 >
                   Treasury
-                  <span className="text-zinc-600">↗</span>
+                  <span className="text-gray-400">↗</span>
                 </a>
               </li>
               <li>
@@ -128,10 +128,10 @@ export default function SiteFooter() {
                   href={config.token.dexScreenerUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
+                  className="inline-flex items-center gap-1 text-gray-600 transition-colors hover:text-slate-900"
                 >
                   DexScreener
-                  <span className="text-zinc-600">↗</span>
+                  <span className="text-gray-400">↗</span>
                 </a>
               </li>
               <li>
@@ -139,10 +139,10 @@ export default function SiteFooter() {
                   href={config.token.coingeckoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
+                  className="inline-flex items-center gap-1 text-gray-600 transition-colors hover:text-slate-900"
                 >
                   CoinGecko
-                  <span className="text-zinc-600">↗</span>
+                  <span className="text-gray-400">↗</span>
                 </a>
               </li>
               <li>
@@ -150,10 +150,10 @@ export default function SiteFooter() {
                   href={config.token.bagsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
+                  className="inline-flex items-center gap-1 text-gray-600 transition-colors hover:text-slate-900"
                 >
                   Bags.fm
-                  <span className="text-zinc-600">↗</span>
+                  <span className="text-gray-400">↗</span>
                 </a>
               </li>
             </ul>
@@ -161,10 +161,10 @@ export default function SiteFooter() {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-zinc-900 py-6 sm:flex-row">
-          <p className="text-xs text-zinc-600">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-gray-200 py-6 sm:flex-row">
+          <p className="text-xs text-gray-500">
             The first live deployment of{' '}
-            <Link href="/framework" className="text-zinc-500 transition-colors hover:text-zinc-400">
+            <Link href="/framework" className="text-gray-600 transition-colors hover:text-slate-900">
               ImpactTreasury
             </Link>
             {' '}&mdash; turning token fees into real-world impact.
@@ -173,7 +173,7 @@ export default function SiteFooter() {
             href={config.token.bagsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="whitespace-nowrap text-xs text-zinc-600 transition-colors hover:text-zinc-400"
+            className="whitespace-nowrap text-xs text-gray-500 transition-colors hover:text-slate-900"
           >
             Powered by Bags.fm
           </a>
