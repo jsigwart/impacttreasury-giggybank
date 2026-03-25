@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight, Coins, Gift, Eye } from 'lucide-react'
+import { ArrowRight, Coins, Gift, Eye, Users, Heart, ExternalLink } from 'lucide-react'
 import { Tweet } from 'react-tweet'
 import TikTokEmbed from '@/components/TikTokEmbed'
 import SiteHeader from '@/components/layout/SiteHeader'
@@ -80,6 +80,76 @@ export default function LandingPage() {
         <div className="mx-auto max-w-xl">
           <div className="flex justify-center rounded-xl bg-gray-50 p-4" data-theme="light">
             <Tweet id="2033733353019765129" />
+          </div>
+        </div>
+      </section>
+
+      {/* Framework */}
+      <section className="border-b border-gray-200 px-4 py-20">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="mb-3 text-center text-2xl font-bold text-slate-900">
+            Clone the Framework
+          </h2>
+          <p className="mb-12 text-center text-sm text-gray-500">
+            Mint your honorary token, own the culture, and help shape what comes next.
+          </p>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {[
+              {
+                icon: Users,
+                step: '01',
+                title: 'Mint your honorary token',
+                body: `Mint an honorary ${config.token.symbol} token that represents the culture and IP behind GiggyBank. It's your membership into the community — a stake in the movement.`,
+              },
+              {
+                icon: Heart,
+                step: '02',
+                title: 'Feel part of the community',
+                body: `Holding the honorary token connects you to the mission. You're not just watching — you're part of the culture driving real impact for gig workers everywhere.`,
+              },
+              {
+                icon: ExternalLink,
+                step: '03',
+                title: 'Vote for the framework on Bags',
+                body: `Use your voice to support the GiggyBank framework on Bags.fm. Vote, engage, and help the community grow.`,
+              },
+            ].map(({ icon: Icon, step, title, body }) => (
+              <div
+                key={step}
+                className="rounded-xl border border-gray-200 bg-gray-50 p-6"
+              >
+                <div className="mb-4 flex items-start justify-between">
+                  <div className="rounded-lg bg-green-500/10 p-2.5">
+                    <Icon size={20} className="text-green-500" />
+                  </div>
+                  <span className="text-4xl font-bold tabular-nums text-gray-200">
+                    {step}
+                  </span>
+                </div>
+                <h3 className="mb-2 font-semibold text-slate-900">{title}</h3>
+                <p className="text-sm leading-relaxed text-gray-500">{body}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="https://bags.fm/apps/bc71a48f-0654-4dcc-ba31-8e7f526a5af7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-green-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-green-600"
+            >
+              Vote on Bags.fm
+              <ArrowRight size={16} />
+            </a>
+            <a
+              href="https://github.com/jsigwart/impacttreasury-giggybank"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-gray-50"
+            >
+              View on GitHub
+              <ExternalLink size={16} />
+            </a>
           </div>
         </div>
       </section>
