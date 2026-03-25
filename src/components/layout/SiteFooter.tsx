@@ -136,17 +136,6 @@ export default function SiteFooter() {
               </li>
               <li>
                 <a
-                  href={config.token.coingeckoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-gray-600 transition-colors hover:text-slate-900"
-                >
-                  CoinGecko
-                  <span className="text-gray-400">↗</span>
-                </a>
-              </li>
-              <li>
-                <a
                   href={config.token.bagsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
