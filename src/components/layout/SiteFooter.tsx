@@ -37,11 +37,6 @@ export default function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/dashboard" className="text-gray-600 transition-colors hover:text-slate-900">
-                  Dashboard
-                </Link>
-              </li>
-              <li>
                 <Link href="/framework" className="text-gray-600 transition-colors hover:text-slate-900">
                   Framework
                 </Link>
