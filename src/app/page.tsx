@@ -100,7 +100,7 @@ export default function LandingPage() {
       <section className="border-b border-gray-200 px-4 py-20">
         <div className="mx-auto max-w-4xl">
           <h2 className="mb-3 text-center text-2xl font-bold text-slate-900">
-            Join the Framework
+            Clone the Framework
           </h2>
           <p className="mb-12 text-center text-sm text-gray-500">
             Mint your honorary token, own the culture, and help shape what comes next.
@@ -143,7 +143,7 @@ export default function LandingPage() {
               </div>
             ))}
           </div>
-          <div className="mt-8 text-center">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a
               href="https://bags.fm/apps/bc71a48f-0654-4dcc-ba31-8e7f526a5af7"
               target="_blank"
@@ -152,6 +152,15 @@ export default function LandingPage() {
             >
               Vote on Bags.fm
               <ArrowRight size={16} />
+            </a>
+            <a
+              href="https://github.com/jsigwart/impacttreasury-giggybank"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-gray-50"
+            >
+              View on GitHub
+              <ExternalLink size={16} />
             </a>
           </div>
         </div>
