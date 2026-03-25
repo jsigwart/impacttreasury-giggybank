@@ -66,10 +66,10 @@ export default function SiteFooter() {
                     href={config.social.twitter}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
+                    className="inline-flex items-center gap-1 text-gray-600 transition-colors hover:text-slate-900"
                   >
                     Twitter
-                    <span className="text-zinc-600">↗</span>
+                    <span className="text-gray-400">↗</span>
                   </a>
                 </li>
               )}
@@ -79,10 +79,10 @@ export default function SiteFooter() {
                     href={config.social.tiktok}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
+                    className="inline-flex items-center gap-1 text-gray-600 transition-colors hover:text-slate-900"
                   >
                     TikTok
-                    <span className="text-zinc-600">↗</span>
+                    <span className="text-gray-400">↗</span>
                   </a>
                 </li>
               )}
@@ -91,10 +91,10 @@ export default function SiteFooter() {
                   href="https://discord.gg/giggybank"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
+                  className="inline-flex items-center gap-1 text-gray-600 transition-colors hover:text-slate-900"
                 >
                   Discord
-                  <span className="text-zinc-600">↗</span>
+                  <span className="text-gray-400">↗</span>
                 </a>
               </li>
               <li>
@@ -102,10 +102,10 @@ export default function SiteFooter() {
                   href="https://github.com/jsigwart/impacttreasury-giggybank"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-zinc-400 transition-colors hover:text-white"
+                  className="inline-flex items-center gap-1 text-gray-600 transition-colors hover:text-slate-900"
                 >
                   GitHub
-                  <span className="text-zinc-600">↗</span>
+                  <span className="text-gray-400">↗</span>
                 </a>
               </li>
             </ul>
