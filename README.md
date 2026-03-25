@@ -116,7 +116,6 @@ Setup guides:
 | Styling | TailwindCSS |
 | Blockchain | Solana (treasury + NFT minting) |
 | Fee Infrastructure | Bags fee-sharing |
-| Database | Supabase |
 | AI Image Generation | Gemini (`gemini-2.0-flash-exp`) via Nano Banana |
 | Image Hosting | AWS S3 |
 | Deployment | Vercel |
