@@ -32,6 +32,7 @@ export default function MintPage() {
   const [compositeImage, setCompositeImage] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [txSignature, setTxSignature] = useState<string | null>(null)
+  const [generatedImage, setGeneratedImage] = useState<string | null>(null)
   const [tokenPrice, setTokenPrice] = useState<number | null>(null)
   const [requiredTokens, setRequiredTokens] = useState<string | null>(null)
   const [ownershipAgreed, setOwnershipAgreed] = useState(false)
@@ -255,6 +256,12 @@ export default function MintPage() {
         throw new Error(errData.error || 'Image generation failed')
       }
 
+      const generateData = await generateRes.json()
+      if (generateData.image?.data) {
+        const mime = generateData.image.mimeType ?? 'image/png'
+        setGeneratedImage(`data:${mime};base64,${generateData.image.data}`)
+      }
+
       setStep('done')
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : 'Transaction failed'
@@ -272,6 +279,7 @@ export default function MintPage() {
     setStep('upload')
     setUploadedImage(null)
     setCompositeImage(null)
+    setGeneratedImage(null)
     setError(null)
     setTxSignature(null)
     setOwnershipAgreed(false)
@@ -425,10 +433,11 @@ export default function MintPage() {
             <div className="mb-6 flex justify-center">
               <Loader2 className="h-12 w-12 animate-spin text-green-500" />
             </div>
-            <h2 className="mb-2 text-xl font-semibold">Minting Your Honorary PFP</h2>
+            <h2 className="mb-2 text-xl font-semibold">Generating Your Honorary PFP</h2>
             <p className="text-sm text-gray-600">
-              Payment confirmed! Now minting your unique PFP to your wallet...
+              Payment confirmed! AI is now styling your image with the GiggyBank mascot...
             </p>
+            <p className="mt-2 text-xs text-gray-400">This may take a few seconds.</p>
           </div>
         )}
 
@@ -443,15 +452,24 @@ export default function MintPage() {
               Your unique GiggyBank honorary has been minted to your wallet.
             </p>
 
-            {compositeImage && (
+            {(generatedImage || compositeImage) && (
               <div className="mb-6 overflow-hidden rounded-2xl border border-green-500/30">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={compositeImage}
-                  alt="Your minted GiggyBank Honorary PFP"
+                  src={generatedImage ?? compositeImage!}
+                  alt="Your GiggyBank Honorary PFP"
                   className="h-auto w-full"
                 />
               </div>
+            )}
+            {generatedImage && (
+              <a
+                href={generatedImage}
+                download="giggybank-honorary.png"
+                className="mb-4 inline-flex items-center gap-1 text-sm text-gray-500 transition-colors hover:text-slate-900"
+              >
+                Download image ↓
+              </a>
             )}
 
             {txSignature && (
