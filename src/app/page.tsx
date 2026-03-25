@@ -44,16 +44,14 @@ export default function LandingPage() {
               Trade {config.token.symbol}
               <ArrowRight size={16} />
             </a>
-            {config.appStoreUrl && (
-              <a
-                href={config.appStoreUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-lg border border-gray-300 px-6 py-3 font-semibold text-slate-900 transition-colors hover:border-gray-400"
-              >
-                Get the App
-              </a>
-            )}
+            <a
+              href="https://bags.fm/apps/bc71a48f-0654-4dcc-ba31-8e7f526a5af7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-lg border border-gray-300 bg-white px-6 py-3 font-semibold text-slate-900 transition-colors hover:border-gray-400 hover:bg-gray-50"
+            >
+              Vote For Us
+            </a>
           </div>
           <div className="mt-6">
             <a
@@ -64,16 +62,6 @@ export default function LandingPage() {
             >
               {config.token.address}
             </a>
-            <div className="mt-2 flex items-center justify-center gap-4 text-sm">
-              <a
-                href={config.token.dexScreenerUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-500 transition-colors hover:text-green-500"
-              >
-                DexScreener
-              </a>
-            </div>
           </div>
         </div>
       </section>
