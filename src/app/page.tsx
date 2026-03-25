@@ -48,7 +48,7 @@ export default function LandingPage() {
               href="https://bags.fm/apps/bc71a48f-0654-4dcc-ba31-8e7f526a5af7"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:border-gray-400 hover:bg-gray-50"
+              className="rounded-lg border border-gray-300 bg-white px-6 py-3 font-semibold text-slate-900 transition-colors hover:border-gray-400 hover:bg-gray-50"
             >
               View on Bags.fm
             </a>
