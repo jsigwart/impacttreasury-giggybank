@@ -100,7 +100,7 @@ export default function LandingPage() {
       <section className="border-b border-gray-200 px-4 py-20">
         <div className="mx-auto max-w-4xl">
           <h2 className="mb-3 text-center text-2xl font-bold text-slate-900">
-            How High-Tip Drops work
+            How High-Tip Drops are funded
           </h2>
           <p className="mb-12 text-center text-sm text-gray-500">
             A transparent pipeline from token trade to worker tip.
