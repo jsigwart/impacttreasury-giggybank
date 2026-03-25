@@ -1,5 +1,8 @@
+'use client'
+
 import Link from 'next/link'
 import { config } from '@/giggybank.config'
+import ComingSoonLink from '@/components/ui/ComingSoonLink'
 
 export default function SiteFooter() {
   return (
@@ -32,9 +35,9 @@ export default function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/mint" className="text-gray-600 transition-colors hover:text-slate-900">
+                <ComingSoonLink className="text-sm">
                   Mint
-                </Link>
+                </ComingSoonLink>
               </li>
               <li>
                 <Link href="/framework" className="text-gray-600 transition-colors hover:text-slate-900">
