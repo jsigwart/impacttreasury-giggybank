@@ -14,9 +14,7 @@ ImpactTreasury is a ready-to-deploy framework that gives any token community a f
 ## What You Get
 
 - **Fee-Funded Treasury** — Every trade of your token on Bags generates fees that flow into your treasury wallet automatically via Bags fee-sharing
-- **Branded Community Platform** — A polished Next.js app with your project name, colors, logo, and links — ready to deploy
 - **Honorary PFP Minting** — Community members pay in your token to mint personalized NFTs that combine their image with your brand, sending tokens directly to your treasury
-- **Treasury Transparency Dashboard** — Public visibility into treasury balances, spending, and campaign activity
 - **Campaign System** — Document and showcase how your community's treasury funds are used in the real world
 
 ---
@@ -31,9 +29,7 @@ Launch Token on Bags
    Clone This Repo → Update Config → Deploy
         │
    Your Community Gets:
-   ├── Branded website
    ├── Honorary PFP minting (pay in your token)
-   ├── Treasury dashboard
    └── Campaign showcase
 ```
 
