@@ -1,0 +1,160 @@
+import { NextRequest, NextResponse } from "next/server";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { readFile } from "fs/promises";
+import path from "path";
+import { saveGeneration, getDefaultPrompts } from "@/lib/supabase";
+import { s3, BUCKET, getS3Object } from "@/lib/s3";
+
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY!;
+const GEMINI_API_URL =
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp-image-generation:generateContent";
+
+export async function POST(request: NextRequest) {
+  try {
+    const { prompt, referenceImage } = await request.json();
+
+    if (!referenceImage) {
+      return NextResponse.json(
+        { error: "A reference image is required" },
+        { status: 400 }
+      );
+    }
+
+    // Get default prompt from database
+    const defaultPrompts = await getDefaultPrompts();
+
+    // Load logo.png as the base image
+    const logoPath = path.join(process.cwd(), "public", "logo.png");
+    const logoBuffer = await readFile(logoPath);
+    const logoBase64 = logoBuffer.toString("base64");
+
+    // Decode the user's reference image
+    let refBase64: string;
+    let refMimeType: string;
+
+    if (referenceImage.startsWith("data:")) {
+      const matches = referenceImage.match(/^data:([^;]+);base64,(.+)$/);
+      if (!matches) {
+        return NextResponse.json(
+          { error: "Invalid reference image format" },
+          { status: 400 }
+        );
+      }
+      refMimeType = matches[1];
+      refBase64 = matches[2];
+    } else if (referenceImage.startsWith("s3:")) {
+      const s3Key = referenceImage.slice(3);
+      const s3Obj = await getS3Object(s3Key);
+      refBase64 = s3Obj.body.toString("base64");
+      refMimeType = s3Obj.contentType;
+    } else {
+      const imagePath = path.join(process.cwd(), "public", referenceImage);
+      const imageBuffer = await readFile(imagePath);
+      refBase64 = imageBuffer.toString("base64");
+      refMimeType = referenceImage.endsWith(".png")
+        ? "image/png"
+        : "image/jpeg";
+    }
+
+    const parts = [
+      // 1. The logo — this is what gets transformed
+      {
+        inlineData: {
+          mimeType: "image/png",
+          data: logoBase64,
+        },
+      },
+      // 2. The user's reference — drives the style/traits
+      {
+        inlineData: {
+          mimeType: refMimeType,
+          data: refBase64,
+        },
+      },
+      // 3. Instruction
+      {
+        text: `${defaultPrompts.image} The first image is the base logo. The second image is a reference.
+Analyze the visual traits, style, texture, color palette, and aesthetic of the reference image,
+then re-render the logo from the first image applying those traits to it.
+Keep the logo's core shape and structure intact — only transform its appearance to match the reference's style.
+${prompt ? `Additional instructions: ${prompt}` : ""}`.trim(),
+      },
+    ];
+
+    const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ parts }],
+        generationConfig: {
+          responseModalities: ["IMAGE", "TEXT"],
+        },
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Gemini error:", JSON.stringify(errorData, null, 2));
+      return NextResponse.json(
+        {
+          error: errorData?.error?.message || "AI generation failed",
+          details: errorData,
+        },
+        { status: 500 }
+      );
+    }
+
+    const data = await response.json();
+    const responseParts = data.candidates?.[0]?.content?.parts || [];
+
+    let imageData = null;
+    for (const part of responseParts) {
+      if (part.inlineData) {
+        imageData = {
+          mimeType: part.inlineData.mimeType,
+          data: part.inlineData.data,
+        };
+        break;
+      }
+    }
+
+    if (!imageData) {
+      return NextResponse.json(
+        { error: "No image generated" },
+        { status: 500 }
+      );
+    }
+
+    // Upload to S3
+    const timestamp = Date.now();
+    const key = `generations/${timestamp}.png`;
+    const buffer = Buffer.from(imageData.data, "base64");
+
+    await s3.send(
+      new PutObjectCommand({
+        Bucket: BUCKET,
+        Key: key,
+        Body: buffer,
+        ContentType: imageData.mimeType,
+      })
+    );
+
+    await saveGeneration({
+      userId: "",
+      prompt: prompt ?? "",
+      basePrompt: defaultPrompts.image,
+      sourceUrl: referenceImage,
+      referenceImages: [referenceImage],
+      resultUrl: key,
+      type: "image",
+    });
+
+    return NextResponse.json({ success: true, image: imageData });
+  } catch (error) {
+    console.error("Generation error:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
+  }
+}
