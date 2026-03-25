@@ -20,8 +20,8 @@ export default function WhitepaperPage() {
         <div className="mx-auto max-w-3xl space-y-16">
 
           {/* Hero */}
-          <div className="border-b border-gray-200 pb-16 text-center">
-            <span className="mb-4 inline-block rounded-full border border-gray-300 bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-500">
+          <div className="border-b border-zinc-800 pb-16 text-center">
+            <span className="mb-4 inline-block rounded-full border border-zinc-700 bg-zinc-900 px-3 py-1 text-xs font-semibold text-zinc-400">
               Whitepaper
             </span>
             <h1 className="mb-6 text-4xl font-bold leading-tight tracking-tight text-slate-900">
@@ -29,9 +29,9 @@ export default function WhitepaperPage() {
               <br />
               Mint the culture.
               <br />
-              <span className="text-green-600">Tip generously.</span>
+              <span className="text-green-400">Tip generously.</span>
             </h1>
-            <p className="mx-auto max-w-xl text-lg text-gray-500">
+            <p className="mx-auto max-w-xl text-lg text-zinc-400">
               The {config.name} thesis — how a token, community-minted honoraries,
               and transparent fee routing create a self-sustaining cycle of impact
               and culture.
@@ -41,7 +41,7 @@ export default function WhitepaperPage() {
           {/* The Thesis */}
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-slate-900">The thesis</h2>
-            <p className="leading-relaxed text-gray-600">
+            <p className="leading-relaxed text-zinc-400">
               Most token projects promise impact but deliver nothing verifiable.{' '}
               <span className="font-semibold text-slate-900">{config.name}</span> is
               built on a different premise: launch a coin on Bags.fm, let the
@@ -49,7 +49,7 @@ export default function WhitepaperPage() {
               project&apos;s mascot, and route every fee the token generates into
               generous, documented tips for gig workers.
             </p>
-            <p className="leading-relaxed text-gray-600">
+            <p className="leading-relaxed text-zinc-400">
               The result is a loop — trading activity funds the treasury, the
               treasury funds real-world impact, the impact grows the community,
               and the community fuels more trading activity. Every step is public,
@@ -61,12 +61,12 @@ export default function WhitepaperPage() {
           {/* Step 1 — Launch a coin */}
           <section className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="rounded-lg bg-green-50 p-2.5">
-                <Rocket size={20} className="text-green-600" />
+              <div className="rounded-lg bg-green-400/10 p-2.5">
+                <Rocket size={20} className="text-green-400" />
               </div>
               <h2 className="text-xl font-bold text-slate-900">1. Launch a coin</h2>
             </div>
-            <p className="leading-relaxed text-gray-600">
+            <p className="leading-relaxed text-zinc-400">
               {config.name} launches on{' '}
               <a
                 href={config.token.bagsUrl}
@@ -91,7 +91,7 @@ export default function WhitepaperPage() {
               </a>
               .
             </p>
-            <p className="leading-relaxed text-gray-600">
+            <p className="leading-relaxed text-zinc-400">
               There&apos;s no fundraising round, no VC allocation, no backroom
               deals. The treasury fills organically from real trading volume. The
               more the community trades, the more impact gets funded.
@@ -101,12 +101,12 @@ export default function WhitepaperPage() {
           {/* Step 2 — Mint an Honorary */}
           <section className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="rounded-lg bg-green-50 p-2.5">
-                <Image size={20} className="text-green-600" />
+              <div className="rounded-lg bg-green-400/10 p-2.5">
+                <Image size={20} className="text-green-400" />
               </div>
               <h2 className="text-xl font-bold text-slate-900">2. Mint an honorary</h2>
             </div>
-            <p className="leading-relaxed text-gray-600">
+            <p className="leading-relaxed text-zinc-400">
               Any holder can{' '}
               <Link
                 href="/mint"
@@ -119,7 +119,7 @@ export default function WhitepaperPage() {
               honorary carries the project&apos;s visual identity into a new
               context, attached to a new person, in a new style.
             </p>
-            <p className="leading-relaxed text-gray-600">
+            <p className="leading-relaxed text-zinc-400">
               This is the key insight:{' '}
               <span className="font-semibold text-slate-900">
                 the community gets a recognizable asset that is genuinely theirs
@@ -129,34 +129,34 @@ export default function WhitepaperPage() {
               there — but it&apos;s still their own style, their own image, their
               own honorary. Nobody else has the same one.
             </p>
-            <div className="rounded-xl border border-green-200 bg-green-50 p-5">
-              <span className="mb-3 inline-block rounded bg-green-100 px-2 py-0.5 text-xs font-semibold text-green-700">
+            <div className="rounded-xl border border-green-400/20 bg-green-400/5 p-5">
+              <span className="mb-3 inline-block rounded bg-green-400/10 px-2 py-0.5 text-xs font-semibold text-green-400">
                 Why this matters
               </span>
-              <ul className="mt-2 space-y-2 text-sm leading-relaxed text-gray-600">
+              <ul className="mt-2 space-y-2 text-sm leading-relaxed text-zinc-400">
                 <li className="flex items-start gap-3">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-green-500" />
+                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-green-400" />
                   <span>
                     Every honorary is a piece of content that spreads the brand
                     organically — no marketing budget needed
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-green-500" />
+                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-green-400" />
                   <span>
                     Memes made from honoraries are unique but still recognizably {config.name} —
                     the IP compounds with every remix
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-green-500" />
+                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-green-400" />
                   <span>
                     Holders have genuine ownership — it&apos;s their image, their
                     style, their honorary, minted to their wallet
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-green-500" />
+                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-green-400" />
                   <span>
                     Mint fees go directly to the treasury, funding more tips
                   </span>
@@ -168,19 +168,19 @@ export default function WhitepaperPage() {
           {/* Step 3 — Community grows itself */}
           <section className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="rounded-lg bg-green-50 p-2.5">
-                <Users size={20} className="text-green-600" />
+              <div className="rounded-lg bg-green-400/10 p-2.5">
+                <Users size={20} className="text-green-400" />
               </div>
               <h2 className="text-xl font-bold text-slate-900">3. The community grows itself</h2>
             </div>
-            <p className="leading-relaxed text-gray-600">
+            <p className="leading-relaxed text-zinc-400">
               Traditional token projects spend treasury funds on paid promotions
               and influencer deals. {config.name} inverts this. The honorary
               system turns every holder into a voluntary brand ambassador — not
               because they&apos;re paid to be, but because their PFP naturally
               carries the {config.name} identity.
             </p>
-            <p className="leading-relaxed text-gray-600">
+            <p className="leading-relaxed text-zinc-400">
               When a holder posts a meme using their honorary, it&apos;s content
               that shows the mascot in their own creative style. When someone
               asks &quot;what&apos;s that PFP?&quot; the answer leads back to the
@@ -191,12 +191,12 @@ export default function WhitepaperPage() {
           {/* Step 4 — Fees fund generous tips */}
           <section className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="rounded-lg bg-green-50 p-2.5">
-                <Heart size={20} className="text-green-600" />
+              <div className="rounded-lg bg-green-400/10 p-2.5">
+                <Heart size={20} className="text-green-400" />
               </div>
               <h2 className="text-xl font-bold text-slate-900">4. The team tips generously</h2>
             </div>
-            <p className="leading-relaxed text-gray-600">
+            <p className="leading-relaxed text-zinc-400">
               Here&apos;s where the loop closes. The fees generated from trading
               and minting don&apos;t sit idle and they don&apos;t line anyone&apos;s
               pockets. The {config.name} team uses them to place{' '}
@@ -205,27 +205,27 @@ export default function WhitepaperPage() {
               with outsized, generous tips that make a real difference in a
               worker&apos;s day.
             </p>
-            <p className="leading-relaxed text-gray-600">
+            <p className="leading-relaxed text-zinc-400">
               Every drop is documented: the platform, the order, the tip amount,
               the receipt, and the on-chain treasury transaction hash. Nothing is
               hidden. If it can&apos;t be proven, it doesn&apos;t get posted.
             </p>
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-xl border border-green-200 bg-green-50 p-5">
-                <span className="mb-3 inline-block rounded bg-green-100 px-2 py-0.5 text-xs font-semibold text-green-700">
+              <div className="rounded-xl border border-green-400/20 bg-green-400/5 p-5">
+                <span className="mb-3 inline-block rounded bg-green-400/10 px-2 py-0.5 text-xs font-semibold text-green-400">
                   High-Tip Drops
                 </span>
-                <p className="text-sm leading-relaxed text-gray-600">
+                <p className="text-sm leading-relaxed text-zinc-400">
                   Real orders on real gig platforms with generous tips funded
                   entirely by the treasury. The platform assigns the worker —
                   they get a surprise bonus they never expected.
                 </p>
               </div>
-              <div className="rounded-xl border border-purple-200 bg-purple-50 p-5">
-                <span className="mb-3 inline-block rounded bg-purple-100 px-2 py-0.5 text-xs font-semibold text-purple-700">
+              <div className="rounded-xl border border-purple-400/20 bg-purple-400/5 p-5">
+                <span className="mb-3 inline-block rounded bg-purple-400/10 px-2 py-0.5 text-xs font-semibold text-purple-400">
                   Cause Drops
                 </span>
-                <p className="text-sm leading-relaxed text-gray-600">
+                <p className="text-sm leading-relaxed text-zinc-400">
                   Donations to shelters, rescues, and community organizations —
                   same transparency standard, same public proof layer.
                 </p>
@@ -234,14 +234,14 @@ export default function WhitepaperPage() {
           </section>
 
           {/* The flywheel */}
-          <section className="rounded-xl border border-gray-200 bg-gray-50 p-8">
+          <section className="rounded-xl border border-zinc-800 bg-zinc-900 p-8">
             <div className="mb-4 flex items-center gap-3">
-              <div className="rounded-lg bg-green-100 p-2.5">
-                <Sparkles size={20} className="text-green-600" />
+              <div className="rounded-lg bg-green-400/10 p-2.5">
+                <Sparkles size={20} className="text-green-400" />
               </div>
               <h2 className="text-xl font-bold text-slate-900">The flywheel</h2>
             </div>
-            <p className="mb-6 leading-relaxed text-gray-600">
+            <p className="mb-6 leading-relaxed text-zinc-400">
               Each piece reinforces the others. This isn&apos;t a roadmap with
               vague milestones — it&apos;s a system that compounds:
             </p>
@@ -273,13 +273,13 @@ export default function WhitepaperPage() {
                 },
               ].map(({ step, detail }, i) => (
                 <div key={step} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-100 text-xs font-bold text-green-700">
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-400/10 text-xs font-bold text-green-400">
                     {i + 1}
                   </span>
                   <div>
                     <span className="font-semibold text-slate-900">{step}</span>
-                    <span className="text-gray-400"> — </span>
-                    <span className="text-gray-600">{detail}</span>
+                    <span className="text-zinc-500"> — </span>
+                    <span className="text-zinc-400">{detail}</span>
                   </div>
                 </div>
               ))}
@@ -289,7 +289,7 @@ export default function WhitepaperPage() {
           {/* Team commitment */}
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-slate-900">Team commitment</h2>
-            <p className="leading-relaxed text-gray-600">
+            <p className="leading-relaxed text-zinc-400">
               The team allocation is locked for{' '}
               <span className="font-semibold text-slate-900">
                 {config.team.lockupMonths} months
@@ -310,14 +310,14 @@ export default function WhitepaperPage() {
           </section>
 
           {/* CTA */}
-          <section className="rounded-xl border border-gray-200 bg-gray-50 p-8 text-center">
-            <p className="mb-2 text-xs font-medium uppercase tracking-wider text-gray-500">
+          <section className="rounded-xl border border-zinc-800 bg-zinc-900 p-8 text-center">
+            <p className="mb-2 text-xs font-medium uppercase tracking-wider text-zinc-500">
               Ready to join?
             </p>
             <p className="mb-4 text-lg font-bold text-slate-900">
               Trade the token. Mint your honorary. Be part of the impact.
             </p>
-            <p className="mx-auto mb-6 max-w-md text-sm leading-relaxed text-gray-500">
+            <p className="mx-auto mb-6 max-w-md text-sm leading-relaxed text-zinc-400">
               Every trade funds the treasury. Every honorary grows the culture.
               Every tip changes someone&apos;s day.
             </p>
@@ -326,14 +326,14 @@ export default function WhitepaperPage() {
                 href={config.token.bagsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg bg-green-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-green-600"
+                className="inline-flex items-center gap-2 rounded-lg bg-green-400 px-5 py-2.5 text-sm font-semibold text-black transition-colors hover:bg-green-300"
               >
                 Trade {config.token.symbol}
                 <ArrowRight size={14} />
               </a>
               <Link
                 href="/mint"
-                className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 transition-colors hover:border-gray-400 hover:bg-gray-50"
+                className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-800 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:border-zinc-600 hover:bg-zinc-700"
               >
                 Mint an Honorary
                 <ArrowRight size={14} />
