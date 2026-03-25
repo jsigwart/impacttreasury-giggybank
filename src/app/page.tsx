@@ -50,7 +50,7 @@ export default function LandingPage() {
               rel="noopener noreferrer"
               className="rounded-lg border border-gray-300 bg-white px-6 py-3 font-semibold text-slate-900 transition-colors hover:border-gray-400 hover:bg-gray-50"
             >
-              View on Bags.fm
+              Vote For Us
             </a>
           </div>
           <div className="mt-6">
