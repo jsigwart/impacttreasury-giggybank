@@ -108,20 +108,6 @@ Setup guides:
 
 ---
 
-## Tech Stack
-
-| Layer | Technology |
-|-------|-----------|
-| Framework | Next.js 16 (App Router) |
-| Styling | TailwindCSS |
-| Blockchain | Solana (treasury + NFT minting) |
-| Fee Infrastructure | Bags fee-sharing |
-| AI Image Generation | Gemini (`gemini-2.0-flash-exp`) via Nano Banana |
-| Image Hosting | AWS S3 |
-| Deployment | Vercel |
-
----
-
 ## Reference Deployment: GiggyBank
 
 GiggyBank is the first live deployment of ImpactTreasury, focused on funding high-tip drops for gig workers.
