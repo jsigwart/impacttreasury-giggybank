@@ -239,13 +239,21 @@ export default function MintPage() {
 
       setStep('minting')
 
-      // In production, this would call a backend to mint the NFT using Metaplex.
-      // For now we simulate the minting step to demonstrate the flow.
-      // The composite image is ready; a backend service would:
-      // 1. Upload the composite to Arweave/IPFS
-      // 2. Create metadata JSON
-      // 3. Mint a compressed NFT to the user's wallet
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      // Call the generate API with the verified transaction signature
+      // The backend verifies the payment on-chain before generating
+      const generateRes = await fetch('/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          referenceImage: uploadedImage,
+          txSignature: signature,
+        }),
+      })
+
+      if (!generateRes.ok) {
+        const errData = await generateRes.json()
+        throw new Error(errData.error || 'Image generation failed')
+      }
 
       setStep('done')
     } catch (err: unknown) {

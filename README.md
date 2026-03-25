@@ -64,9 +64,25 @@ The built-in minting system at `/mint` lets community members create personalize
 2. **Upload Image** — PNG, JPG, or WebP up to 10 MB
 3. **Preview** — See the composited image with your project's branded frame
 4. **Pay in Your Token** — Price is set in USD, converted to your token amount in real-time via Jupiter
-5. **Receive NFT** — Minted directly to the wallet
+5. **AI Generation** — After payment is confirmed on-chain, the backend generates your honorary PFP
+6. **Receive NFT** — Minted directly to the wallet
 
 Tokens paid for mints go straight to your treasury wallet — creating another revenue stream on top of trading fees.
+
+### Payment-Gated API
+
+The `/api/generate` endpoint is gated behind on-chain payment verification. Users must pay with the project token on the mint page before the AI image generation runs. The flow:
+
+1. User pays tokens → receives a Solana transaction signature
+2. Frontend sends the signature to `/api/generate`
+3. Backend verifies the transaction on-chain:
+   - Confirms the transaction exists and succeeded
+   - Checks it contains a token transfer to the treasury wallet
+   - Ensures the correct token mint was used
+   - Prevents replay by tracking redeemed signatures in Supabase (`redeemed_transactions` table)
+4. Only after verification does AI generation proceed
+
+This means the generate endpoint cannot be called without a valid, unredeemed payment transaction.
 
 ---
 
@@ -90,6 +106,14 @@ AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
 AWS_REGION=us-east-1
 AWS_S3_BUCKET=
+
+# Supabase (Database for generations, users, redeemed transactions)
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+
+# Solana RPC (optional — defaults to public mainnet-beta)
+SOLANA_RPC_URL=
 ```
 
 ```bash

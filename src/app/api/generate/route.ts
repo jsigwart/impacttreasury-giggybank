@@ -4,6 +4,7 @@ import { readFile } from "fs/promises";
 import path from "path";
 import { saveGeneration, getDefaultPrompts } from "@/lib/supabase";
 import { s3, BUCKET, getS3Object } from "@/lib/s3";
+import { verifyPaymentTransaction } from "@/lib/solana";
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY!;
 const GEMINI_API_URL =
@@ -11,7 +12,24 @@ const GEMINI_API_URL =
 
 export async function POST(request: NextRequest) {
   try {
-    const { prompt, referenceImage } = await request.json();
+    const { prompt, referenceImage, txSignature } = await request.json();
+
+    if (!txSignature) {
+      return NextResponse.json(
+        { error: "Payment transaction signature is required" },
+        { status: 403 }
+      );
+    }
+
+    // Verify the Solana payment transaction on-chain
+    let payerWallet: string;
+    try {
+      payerWallet = await verifyPaymentTransaction(txSignature);
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Transaction verification failed";
+      return NextResponse.json({ error: message }, { status: 403 });
+    }
 
     if (!referenceImage) {
       return NextResponse.json(
@@ -140,7 +158,7 @@ ${prompt ? `Additional instructions: ${prompt}` : ""}`.trim(),
     );
 
     await saveGeneration({
-      userId: "",
+      userId: payerWallet,
       prompt: prompt ?? "",
       basePrompt: defaultPrompts.image,
       sourceUrl: referenceImage,
