@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight, Coins, Gift, Eye, Users, Heart, ExternalLink } from 'lucide-react'
+import { ArrowRight, Coins, Gift, Eye, Users, Heart, ExternalLink, Sparkles } from 'lucide-react'
 import { Tweet } from 'react-tweet'
 import TikTokEmbed from '@/components/TikTokEmbed'
 import SiteHeader from '@/components/layout/SiteHeader'
@@ -89,72 +89,47 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Framework */}
+      {/* Honorary PFP */}
       <section className="border-b border-gray-200 px-4 py-20">
         <div className="mx-auto max-w-4xl">
-          <h2 className="mb-3 text-center text-2xl font-bold text-slate-900">
-            Clone the Framework
-          </h2>
-          <p className="mb-12 text-center text-sm text-gray-500">
-            Mint your honorary token, own the culture, and help shape what comes next.
-          </p>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {[
-              {
-                icon: Users,
-                step: '01',
-                title: 'Mint your honorary token',
-                body: `Mint an honorary ${config.token.symbol} token that represents the culture and IP behind GiggyBank. It's your membership into the community — a stake in the movement.`,
-              },
-              {
-                icon: Heart,
-                step: '02',
-                title: 'Feel part of the community',
-                body: `Holding the honorary token connects you to the mission. You're not just watching — you're part of the culture driving real impact for gig workers everywhere.`,
-              },
-              {
-                icon: ExternalLink,
-                step: '03',
-                title: 'Vote for the framework on Bags',
-                body: `Use your voice to support the GiggyBank framework on Bags.fm. Vote, engage, and help the community grow.`,
-              },
-            ].map(({ icon: Icon, step, title, body }) => (
-              <div
-                key={step}
-                className="rounded-xl border border-gray-200 bg-gray-50 p-6"
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-center">
+            <div>
+              <span className="mb-4 inline-block rounded-full border border-green-200 bg-green-50 px-3 py-1 text-xs font-semibold text-green-600">
+                Honorary PFP Mint
+              </span>
+              <h2 className="mb-4 text-2xl font-bold text-slate-900">
+                Mint the culture.
+              </h2>
+              <p className="mb-4 leading-relaxed text-gray-600">
+                Any holder can mint an Honorary PFP — an on-chain NFT that composites
+                their own image with the {config.name} mascot. Your image. Your style.
+                Recognizably {config.name}.
+              </p>
+              <p className="mb-6 leading-relaxed text-gray-600">
+                Every mint fee goes directly to the treasury, funding more tips for
+                gig workers. The community grows through culture, not ad spend.
+              </p>
+              <Link
+                href="/mint"
+                className="inline-flex items-center gap-2 rounded-lg bg-green-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-green-600"
               >
-                <div className="mb-4 flex items-start justify-between">
-                  <div className="rounded-lg bg-green-500/10 p-2.5">
-                    <Icon size={20} className="text-green-500" />
-                  </div>
-                  <span className="text-4xl font-bold tabular-nums text-gray-200">
-                    {step}
-                  </span>
+                <Sparkles size={14} />
+                Mint an Honorary
+              </Link>
+            </div>
+            <div className="space-y-3">
+              {[
+                'Your image composited with the GiggyBank mascot',
+                'Minted as an NFT directly to your Solana wallet',
+                'Mint fees fund the High-Tip Drop treasury',
+                'Every honorary is unique — nobody else has yours',
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-3 rounded-xl border border-gray-200 bg-gray-50 px-4 py-3">
+                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-green-500" />
+                  <span className="text-sm text-gray-600">{item}</span>
                 </div>
-                <h3 className="mb-2 font-semibold text-slate-900">{title}</h3>
-                <p className="text-sm leading-relaxed text-gray-500">{body}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="https://bags.fm/apps/bc71a48f-0654-4dcc-ba31-8e7f526a5af7"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-green-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-green-600"
-            >
-              Vote on Bags.fm
-              <ArrowRight size={16} />
-            </a>
-            <a
-              href="https://github.com/jsigwart/impacttreasury-giggybank"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-gray-50"
-            >
-              View on GitHub
-              <ExternalLink size={16} />
-            </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -205,6 +180,45 @@ export default function LandingPage() {
                 <p className="text-sm leading-relaxed text-gray-500">{body}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* The flywheel */}
+      <section className="border-b border-gray-200 px-4 py-20">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="mb-3 text-2xl font-bold text-slate-900">The loop</h2>
+          <p className="mb-10 text-sm text-gray-500">
+            Each piece reinforces the others. Trading funds tips. Tips build trust.
+            Trust grows the community. The community trades more.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-2 text-sm">
+            {[
+              { step: 'Trade', detail: `Buy or sell $${config.token.symbol}` },
+              { step: 'Fees', detail: 'Flow to the treasury' },
+              { step: 'Mint', detail: 'Honorary PFPs grow the culture' },
+              { step: 'Tip', detail: 'Real drops for gig workers' },
+              { step: 'Prove', detail: 'Every drop publicly verified' },
+              { step: 'Grow', detail: 'Trust attracts more supporters' },
+            ].map(({ step, detail }, i, arr) => (
+              <div key={step} className="flex items-center gap-2">
+                <div className="rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-center">
+                  <p className="font-semibold text-slate-900">{step}</p>
+                  <p className="mt-0.5 text-xs text-gray-500">{detail}</p>
+                </div>
+                {i < arr.length - 1 && (
+                  <ArrowRight size={14} className="shrink-0 text-gray-300" />
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="mt-6">
+            <Link
+              href="/whitepaper"
+              className="text-sm text-green-600 transition-colors hover:text-green-700"
+            >
+              Read the full whitepaper →
+            </Link>
           </div>
         </div>
       </section>
