@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function WhitepaperPage() {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-zinc-950 text-white">
       <SiteHeader />
 
       <main className="flex-1 px-4 py-16">
