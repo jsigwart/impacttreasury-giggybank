@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight, Coins, Gift, Eye } from 'lucide-react'
+import { ArrowRight, Coins, Gift, Eye, Sparkles } from 'lucide-react'
 import { Tweet } from 'react-tweet'
 import TikTokEmbed from '@/components/TikTokEmbed'
 import SiteHeader from '@/components/layout/SiteHeader'
@@ -96,6 +96,51 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Honorary PFP */}
+      <section className="border-b border-gray-200 px-4 py-20">
+        <div className="mx-auto max-w-4xl">
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-center">
+            <div>
+              <span className="mb-4 inline-block rounded-full border border-green-200 bg-green-50 px-3 py-1 text-xs font-semibold text-green-600">
+                Honorary PFP Mint
+              </span>
+              <h2 className="mb-4 text-2xl font-bold text-slate-900">
+                Mint the culture.
+              </h2>
+              <p className="mb-4 leading-relaxed text-gray-600">
+                Any holder can mint an Honorary PFP — an on-chain NFT that composites
+                their own image with the {config.name} mascot. Your image. Your style.
+                Recognizably {config.name}.
+              </p>
+              <p className="mb-6 leading-relaxed text-gray-600">
+                Every mint fee goes directly to the treasury, funding more tips for
+                gig workers. The community grows through culture, not ad spend.
+              </p>
+              <Link
+                href="/mint"
+                className="inline-flex items-center gap-2 rounded-lg bg-green-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-green-600"
+              >
+                <Sparkles size={14} />
+                Mint an Honorary
+              </Link>
+            </div>
+            <div className="space-y-3">
+              {[
+                'Your image composited with the GiggyBank mascot',
+                'Minted as an NFT directly to your Solana wallet',
+                'Mint fees fund the High-Tip Drop treasury',
+                'Every honorary is unique — nobody else has yours',
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-3 rounded-xl border border-gray-200 bg-gray-50 px-4 py-3">
+                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-green-500" />
+                  <span className="text-sm text-gray-600">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* How it works */}
       <section className="border-b border-gray-200 px-4 py-20">
         <div className="mx-auto max-w-4xl">
@@ -142,6 +187,45 @@ export default function LandingPage() {
                 <p className="text-sm leading-relaxed text-gray-500">{body}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* The flywheel */}
+      <section className="border-b border-gray-200 px-4 py-20">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="mb-3 text-2xl font-bold text-slate-900">The loop</h2>
+          <p className="mb-10 text-sm text-gray-500">
+            Each piece reinforces the others. Trading funds tips. Tips build trust.
+            Trust grows the community. The community trades more.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-2 text-sm">
+            {[
+              { step: 'Trade', detail: `Buy or sell $${config.token.symbol}` },
+              { step: 'Fees', detail: 'Flow to the treasury' },
+              { step: 'Mint', detail: 'Honorary PFPs grow the culture' },
+              { step: 'Tip', detail: 'Real drops for gig workers' },
+              { step: 'Prove', detail: 'Every drop publicly verified' },
+              { step: 'Grow', detail: 'Trust attracts more supporters' },
+            ].map(({ step, detail }, i, arr) => (
+              <div key={step} className="flex items-center gap-2">
+                <div className="rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-center">
+                  <p className="font-semibold text-slate-900">{step}</p>
+                  <p className="mt-0.5 text-xs text-gray-500">{detail}</p>
+                </div>
+                {i < arr.length - 1 && (
+                  <ArrowRight size={14} className="shrink-0 text-gray-300" />
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="mt-6">
+            <Link
+              href="/whitepaper"
+              className="text-sm text-green-600 transition-colors hover:text-green-700"
+            >
+              Read the full whitepaper →
+            </Link>
           </div>
         </div>
       </section>
