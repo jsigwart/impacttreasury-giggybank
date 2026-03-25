@@ -26,7 +26,7 @@ export default function SiteHeader() {
           >
             Whitepaper
           </Link>
-          <ComingSoonLink className="text-sm">
+          <ComingSoonLink className="text-sm" position="below">
             Mint
           </ComingSoonLink>
           <a
@@ -60,7 +60,7 @@ export default function SiteHeader() {
             >
               Whitepaper
             </Link>
-            <ComingSoonLink className="text-sm">
+            <ComingSoonLink className="text-sm" position="below">
               Mint
             </ComingSoonLink>
             <a
