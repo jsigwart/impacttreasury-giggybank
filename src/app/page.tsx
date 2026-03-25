@@ -73,15 +73,6 @@ export default function LandingPage() {
               >
                 DexScreener
               </a>
-              <span className="text-gray-300">·</span>
-              <a
-                href={config.token.coingeckoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-500 transition-colors hover:text-green-500"
-              >
-                CoinGecko
-              </a>
             </div>
           </div>
         </div>
