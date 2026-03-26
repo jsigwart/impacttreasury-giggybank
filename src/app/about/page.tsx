@@ -177,12 +177,6 @@ export default function AboutPage() {
               your image with the GiggyBank mascot. It&apos;s your membership in the community and
               a stake in the movement.
             </p>
-            <p className="mb-4 leading-relaxed text-zinc-600">
-              Minting is done with the project&apos;s own token. For GiggyBank, mint payments in{' '}
-              <span className="font-semibold text-slate-900">{config.token.symbol}</span> go
-              directly to the treasury, funding future High-Tip Drops. Every mint means more
-              tips for gig workers.
-            </p>
             <p className="mb-6 leading-relaxed text-zinc-600">
               The framework gives creators a choice: minting can be configured to either{' '}
               <span className="font-semibold text-slate-900">pay with the token</span> (sending
