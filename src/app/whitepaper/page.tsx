@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, Rocket, Image, Users, Coins, Heart, Sparkles } from 'lucide-react'
+import { ArrowRight, Rocket, Image, Users, Coins, Heart, Sparkles, Film } from 'lucide-react'
 import SiteHeader from '@/components/layout/SiteHeader'
 import SiteFooter from '@/components/layout/SiteFooter'
 import { config } from '@/giggybank.config'
@@ -186,6 +186,56 @@ export default function WhitepaperPage() {
               asks &quot;what&apos;s that PFP?&quot; the answer leads back to the
               project. The community grows through culture, not ad spend.
             </p>
+
+            {/* Sloperator Engine */}
+            <div className="mt-6 rounded-xl border border-green-400/20 bg-green-400/5 p-6 space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="rounded-lg bg-green-100 p-2">
+                  <Film size={18} className="text-green-600" />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900">The Sloperator Engine</h3>
+              </div>
+              <p className="leading-relaxed text-zinc-600">
+                The Sloperator Engine takes community-driven content to the next
+                level. Anyone can submit a script — a skit, a meme concept, a
+                short storyline — and pay with{' '}
+                <span className="font-semibold text-slate-900">${config.token.symbol}</span>{' '}
+                tokens to have it produced as a video featuring the project&apos;s
+                IP and characters. Video generation has real compute costs —
+                the token payment covers those fees while also creating
+                natural demand for {config.token.symbol}.
+              </p>
+              <p className="leading-relaxed text-zinc-600">
+                Holders who minted honorary NFTs can even cast their own
+                characters in the videos, turning their unique composited PFPs
+                into animated stars. The result is a constant stream of
+                community-authored content that spreads {config.name} memes,
+                lore, and identity across social feeds organically.
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-2">
+                  <ArrowRight size={16} className="mt-1 shrink-0 text-green-500" />
+                  <span className="text-sm text-zinc-600">
+                    Submit a script and pay in{' '}
+                    <span className="font-semibold text-slate-900">${config.token.symbol}</span>{' '}
+                    — the engine handles production
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <ArrowRight size={16} className="mt-1 shrink-0 text-green-500" />
+                  <span className="text-sm text-zinc-600">
+                    Feature official IP characters or your own honorary NFT persona
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <ArrowRight size={16} className="mt-1 shrink-0 text-green-500" />
+                  <span className="text-sm text-zinc-600">
+                    Every video spreads the brand — memes, skits, and lore that
+                    grow mindshare
+                  </span>
+                </li>
+              </ul>
+            </div>
           </section>
 
           {/* Step 4 — Fees fund generous tips */}
