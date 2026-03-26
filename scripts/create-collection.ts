@@ -1,8 +1,8 @@
 import { Metaplex, keypairIdentity } from "@metaplex-foundation/js";
 import { Connection, Keypair } from "@solana/web3.js";
 import bs58 from "bs58";
-import * as dotenv from "dotenv";
-dotenv.config({ path: ".env.local" });
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+require("dotenv").config({ path: ".env.local" });
 
 async function main() {
   const connection = new Connection(
