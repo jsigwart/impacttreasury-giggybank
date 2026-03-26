@@ -86,7 +86,7 @@ export default function SiteFooter() {
               )}
               <li>
                 <a
-                  href="https://discord.gg/giggybank"
+                  href="https://discord.gg/mqDHNccZxr"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-gray-600 transition-colors hover:text-slate-900"
