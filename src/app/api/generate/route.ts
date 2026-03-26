@@ -2,9 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { readFile } from "fs/promises";
 import path from "path";
-import { saveGeneration, getDefaultPrompts } from "@/lib/supabase";
-import { s3, BUCKET, getS3Object } from "@/lib/s3";
+import {
+  saveGeneration,
+  getDefaultPrompts,
+  getNextMintNumber,
+  saveMintRecord,
+} from "@/lib/supabase";
+import { s3, BUCKET, getS3Object, getPublicUrl } from "@/lib/s3";
 import { verifyPaymentTransaction } from "@/lib/solana";
+import { mintNft } from "@/lib/metaplex";
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY!;
 const GEMINI_API_URL =
@@ -143,31 +149,99 @@ ${prompt ? `Additional instructions: ${prompt}` : ""}`.trim(),
       );
     }
 
-    // Upload to S3
+    // Upload image to S3
     const timestamp = Date.now();
-    const key = `generations/${timestamp}.png`;
+    const imageKey = `generations/${timestamp}.png`;
     const buffer = Buffer.from(imageData.data, "base64");
 
     await s3.send(
       new PutObjectCommand({
         Bucket: BUCKET,
-        Key: key,
+        Key: imageKey,
         Body: buffer,
         ContentType: imageData.mimeType,
       })
     );
 
-    await saveGeneration({
+    const generationId = await saveGeneration({
       userId: payerWallet,
       prompt: prompt ?? "",
       basePrompt: defaultPrompts.image,
       sourceUrl: referenceImage,
       referenceImages: [referenceImage],
-      resultUrl: key,
+      resultUrl: imageKey,
       type: "image",
     });
 
-    return NextResponse.json({ success: true, image: imageData });
+    // Mint NFT on-chain
+    let mintAddress: string | undefined;
+    let mintError: string | undefined;
+
+    const collectionMintAddress = process.env.COLLECTION_MINT_ADDRESS;
+    if (collectionMintAddress) {
+      try {
+        const imageUrl = getPublicUrl(imageKey);
+        const mintNumber = await getNextMintNumber();
+        const nftName = `GiggyBank Honorary #${mintNumber}`;
+
+        // Upload NFT metadata JSON to S3
+        const metadataKey = `generations/${timestamp}-metadata.json`;
+        const metadata = {
+          name: nftName,
+          symbol: "GIGGY",
+          description: "An honorary PFP minted with $GIGGYBANK",
+          image: imageUrl,
+          attributes: [
+            { trait_type: "Mint Number", value: String(mintNumber) },
+          ],
+          properties: {
+            files: [{ uri: imageUrl, type: "image/png" }],
+            category: "image",
+          },
+        };
+
+        await s3.send(
+          new PutObjectCommand({
+            Bucket: BUCKET,
+            Key: metadataKey,
+            Body: JSON.stringify(metadata),
+            ContentType: "application/json",
+          })
+        );
+
+        const metadataUri = getPublicUrl(metadataKey);
+
+        const result = await mintNft({
+          name: nftName,
+          metadataUri,
+          ownerAddress: payerWallet,
+          collectionMintAddress,
+        });
+
+        mintAddress = result.mintAddress;
+
+        await saveMintRecord({
+          generationId,
+          mintAddress: result.mintAddress,
+          ownerWallet: payerWallet,
+          metadataUri,
+          imageUrl,
+          txSignature: result.txSignature,
+          mintNumber,
+        });
+      } catch (err) {
+        console.error("NFT minting failed:", err);
+        mintError =
+          err instanceof Error ? err.message : "NFT minting failed";
+      }
+    }
+
+    return NextResponse.json({
+      success: true,
+      image: imageData,
+      mintAddress,
+      mintError,
+    });
   } catch (error) {
     console.error("Generation error:", error);
     return NextResponse.json(
