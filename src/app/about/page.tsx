@@ -296,9 +296,6 @@ export default function AboutPage() {
               or burn it on mint — a single toggle in the config that lets each project choose
               the tokenomics model that works for their community.
             </p>
-            <p className="text-sm text-zinc-500">
-              Built on Next.js, Supabase, and Vercel. Powered by Bags.fm fee-sharing.
-            </p>
             <div className="mt-4">
               <Link
                 href="/framework"
