@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, Shield, Repeat, Sparkles, Heart, Coins, Film } from 'lucide-react'
+import { ArrowRight, Shield, Repeat, Sparkles, Heart, Coins } from 'lucide-react'
 import SiteHeader from '@/components/layout/SiteHeader'
 import SiteFooter from '@/components/layout/SiteFooter'
 import { config } from '@/giggybank.config'
@@ -125,30 +125,6 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* The Sloperator Engine */}
-          <section className="rounded-xl border border-green-400/20 bg-green-400/5 p-8 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="rounded-lg bg-green-100 p-2.5">
-                <Film size={20} className="text-green-600" />
-              </div>
-              <h2 className="text-xl font-bold text-slate-900">The Sloperator Engine</h2>
-            </div>
-            <p className="leading-relaxed text-zinc-600">
-              Anyone can submit a script — a skit, a meme concept, a short storyline — and pay
-              with{' '}
-              <span className="font-semibold text-slate-900">${config.token.symbol}</span>{' '}
-              tokens to have it produced as a video featuring the project&apos;s IP and
-              characters. Video generation has real compute costs — the token payment covers
-              those fees while creating natural demand for {config.token.symbol}.
-            </p>
-            <p className="leading-relaxed text-zinc-600">
-              Holders who minted honorary NFTs can even cast their own characters in the
-              videos, turning their unique composited PFPs into animated stars. The result
-              is a constant stream of community-authored content that spreads {config.name} memes,
-              lore, and identity across social feeds organically.
-            </p>
-          </section>
-
           {/* The flywheel */}
           <section className="space-y-4">
             <div className="flex items-center gap-3">
@@ -165,7 +141,7 @@ export default function AboutPage() {
               {[
                 { step: 'Trade', detail: `Buy or sell $${config.token.symbol} on Bags.fm — fees flow to the treasury` },
                 { step: 'Mint', detail: 'Mint an honorary — your image + the mascot, owned by you, recognized by everyone' },
-                { step: 'Create', detail: `Make content with your honorary or submit scripts to the Sloperator Engine — the ${config.name} IP spreads in your style` },
+                { step: 'Create', detail: `Make content with your honorary — the ${config.name} IP spreads in your style` },
                 { step: 'Grow', detail: 'New people discover the project through community content and join' },
                 { step: 'Tip', detail: 'The team uses accumulated fees to drop generous tips on real gig workers' },
                 { step: 'Prove', detail: 'Every tip is documented with receipts and on-chain proof — building trust and attracting more supporters' },
