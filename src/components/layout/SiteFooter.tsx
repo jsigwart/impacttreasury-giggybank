@@ -86,17 +86,6 @@ export default function SiteFooter() {
               )}
               <li>
                 <a
-                  href="https://discord.gg/giggybank"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-gray-600 transition-colors hover:text-slate-900"
-                >
-                  Discord
-                  <span className="text-gray-400">↗</span>
-                </a>
-              </li>
-              <li>
-                <a
                   href="https://github.com/jsigwart/impacttreasury-giggybank"
                   target="_blank"
                   rel="noopener noreferrer"
