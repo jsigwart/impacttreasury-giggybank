@@ -19,10 +19,15 @@ export default function LandingPage() {
               <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
               Powered by Bags.fm fee-sharing
             </div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-gray-100 px-3 py-1.5 text-xs text-gray-600">
+            <a
+              href="https://bags.fm/apps/bc71a48f-0654-4dcc-ba31-8e7f526a5af7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-gray-100 px-3 py-1.5 text-xs text-gray-600 hover:bg-gray-200 transition-colors"
+            >
               <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
               Bags App Genesis Cohort
-            </div>
+            </a>
           </div>
           <h1 className="mb-6 text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
             High-Tip Drops
