@@ -32,7 +32,7 @@ export default function SiteHeader() {
             Mint
           </ComingSoonLink>
           <a
-            href={config.token.bagsUrl}
+            href={config.token.jupiterSwapUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-lg bg-green-500 px-4 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-green-600"
@@ -66,7 +66,7 @@ export default function SiteHeader() {
               Mint
             </ComingSoonLink>
             <a
-              href={config.token.bagsUrl}
+              href={config.token.jupiterSwapUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex w-fit rounded-lg bg-green-500 px-4 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-green-600"

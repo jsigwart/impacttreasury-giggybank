@@ -7,6 +7,7 @@ export interface ProjectConfig {
     symbol: string
     address: string
     bagsUrl: string
+    jupiterSwapUrl: string
     dexScreenerUrl: string
   }
   treasury: {
