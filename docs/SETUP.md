@@ -127,6 +127,20 @@ create table default_prompts (
 insert into default_prompts (image) values (
   'Generate a high-quality stylized image based on the provided inputs.'
 );
+
+-- NFT mint records
+create table nft_mints (
+  id uuid default gen_random_uuid() primary key,
+  generation_id uuid references generations(id),
+  mint_address text not null unique,
+  owner_wallet text not null,
+  metadata_uri text not null,
+  image_url text not null,
+  tx_signature text not null,
+  mint_number integer not null,
+  created_at timestamptz default now()
+);
+create index idx_nft_mints_owner on nft_mints(owner_wallet);
 ```
 
 ### Get your API keys
