@@ -2,12 +2,14 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { config } from '@/giggybank.config'
 import ComingSoonLink from '@/components/ui/ComingSoonLink'
 
 export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const pathname = usePathname()
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur-sm">
@@ -22,7 +24,7 @@ export default function SiteHeader() {
         <nav className="hidden items-center gap-6 sm:flex">
           <Link
             href="/whitepaper"
-            className="text-sm text-gray-600 transition-colors hover:text-slate-900"
+            className={`text-sm transition-colors ${pathname === '/whitepaper' ? 'font-semibold text-green-600' : 'text-gray-600 hover:text-slate-900'}`}
           >
             Whitepaper
           </Link>
@@ -56,7 +58,7 @@ export default function SiteHeader() {
             <Link
               href="/whitepaper"
               onClick={() => setMenuOpen(false)}
-              className="text-sm text-gray-600 transition-colors hover:text-slate-900"
+              className={`text-sm transition-colors ${pathname === '/whitepaper' ? 'font-semibold text-green-600' : 'text-gray-600 hover:text-slate-900'}`}
             >
               Whitepaper
             </Link>
