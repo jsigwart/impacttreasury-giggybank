@@ -49,11 +49,10 @@ export default function MintPage() {
         )
         const data = await res.json()
         const price = data?.data?.[config.token.address]?.price
-        if (price && Number(price) > 0) {
-          setTokenPrice(Number(price))
-          const tokens = config.mint.priceUsd / Number(price)
-          setRequiredTokens(tokens.toLocaleString(undefined, { maximumFractionDigits: 0 }))
-        }
+        const resolvedPrice = (price && Number(price) > 0) ? Number(price) : 0.000001
+        setTokenPrice(resolvedPrice)
+        const tokens = config.mint.priceUsd / resolvedPrice
+        setRequiredTokens(tokens.toLocaleString(undefined, { maximumFractionDigits: 0 }))
       } catch {
         // Price fetch failed — user will see "price unavailable"
       }
