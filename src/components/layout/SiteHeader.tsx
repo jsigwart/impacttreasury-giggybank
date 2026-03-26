@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { config } from '@/giggybank.config'
+import ComingSoonLink from '@/components/ui/ComingSoonLink'
 
 export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -25,12 +26,9 @@ export default function SiteHeader() {
           >
             Whitepaper
           </Link>
-          <Link
-            href="/mint"
-            className="text-sm text-gray-600 transition-colors hover:text-slate-900"
-          >
+          <ComingSoonLink className="text-sm" position="below">
             Mint
-          </Link>
+          </ComingSoonLink>
           <a
             href={config.token.bagsUrl}
             target="_blank"
@@ -62,13 +60,9 @@ export default function SiteHeader() {
             >
               Whitepaper
             </Link>
-            <Link
-              href="/mint"
-              onClick={() => setMenuOpen(false)}
-              className="text-sm text-gray-600 transition-colors hover:text-slate-900"
-            >
+            <ComingSoonLink className="text-sm" position="below">
               Mint
-            </Link>
+            </ComingSoonLink>
             <a
               href={config.token.bagsUrl}
               target="_blank"
