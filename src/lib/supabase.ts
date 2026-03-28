@@ -32,18 +32,23 @@ export async function saveGeneration(params: {
   referenceImages: string[];
   resultUrl: string;
   type: string;
-}) {
-  const { error } = await supabase.from("generations").insert({
-    user_id: params.userId,
-    prompt: params.prompt,
-    base_prompt: params.basePrompt,
-    source_url: params.sourceUrl,
-    reference_images: params.referenceImages,
-    result_url: params.resultUrl,
-    type: params.type,
-  });
+}): Promise<string> {
+  const { data, error } = await supabase
+    .from("generations")
+    .insert({
+      user_id: params.userId,
+      prompt: params.prompt,
+      base_prompt: params.basePrompt,
+      source_url: params.sourceUrl,
+      reference_images: params.referenceImages,
+      result_url: params.resultUrl,
+      type: params.type,
+    })
+    .select("id")
+    .single();
 
   if (error) throw new Error(`Failed to save generation: ${error.message}`);
+  return data.id;
 }
 
 export async function getDefaultPrompts() {
@@ -60,4 +65,32 @@ export async function getDefaultPrompts() {
   }
 
   return data as { image: string };
+}
+
+export async function getNextMintNumber(): Promise<number> {
+  const { count } = await supabase
+    .from("nft_mints")
+    .select("*", { count: "exact", head: true });
+  return (count ?? 0) + 1;
+}
+
+export async function saveMintRecord(params: {
+  generationId: string;
+  mintAddress: string;
+  ownerWallet: string;
+  metadataUri: string;
+  imageUrl: string;
+  txSignature: string;
+  mintNumber: number;
+}) {
+  const { error } = await supabase.from("nft_mints").insert({
+    generation_id: params.generationId,
+    mint_address: params.mintAddress,
+    owner_wallet: params.ownerWallet,
+    metadata_uri: params.metadataUri,
+    image_url: params.imageUrl,
+    tx_signature: params.txSignature,
+    mint_number: params.mintNumber,
+  });
+  if (error) throw new Error(`Failed to save mint record: ${error.message}`);
 }

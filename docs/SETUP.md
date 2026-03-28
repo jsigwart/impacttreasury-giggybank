@@ -127,6 +127,20 @@ create table default_prompts (
 insert into default_prompts (image) values (
   'Generate a high-quality stylized image based on the provided inputs.'
 );
+
+-- NFT mint records
+create table nft_mints (
+  id uuid default gen_random_uuid() primary key,
+  generation_id uuid references generations(id),
+  mint_address text not null unique,
+  owner_wallet text not null,
+  metadata_uri text not null,
+  image_url text not null,
+  tx_signature text not null,
+  mint_number integer not null,
+  created_at timestamptz default now()
+);
+create index idx_nft_mints_owner on nft_mints(owner_wallet);
 ```
 
 ### Get your API keys
@@ -273,7 +287,67 @@ You can verify the ATA exists on [solscan.io](https://solscan.io) by searching y
 
 ---
 
-## 8. Run Locally
+## 8. NFT Minting Setup (Metaplex)
+
+Each honorary PFP is minted as a real Solana NFT in the **GiggyBank Honoraries** collection using the Metaplex Token Metadata Program.
+
+### Create a creator wallet
+
+Generate a new Solana keypair to use as the NFT creator and collection authority:
+
+```bash
+solana-keygen new --outfile creator-keypair.json
+solana address -k creator-keypair.json
+```
+
+Fund it with ~0.05 SOL for minting transactions. Each NFT mint costs ~0.01 SOL.
+
+Export the private key as Base58 and add it to `.env.local`:
+
+```env
+CREATOR_PRIVATE_KEY=your-base58-encoded-private-key
+```
+
+### Create the collection NFT
+
+Run the one-time setup script to create the collection NFT on-chain:
+
+```bash
+npx ts-node scripts/create-collection.ts
+```
+
+> **Tip:** Test on devnet first by setting `SOLANA_RPC_URL=https://api.devnet.solana.com` and funding the creator wallet via `solana airdrop 1 <address> --url devnet`.
+
+Copy the output and add to `.env.local`:
+
+```env
+COLLECTION_MINT_ADDRESS=<output-from-script>
+```
+
+### Create the nft_mints table
+
+Run this SQL in your Supabase SQL Editor:
+
+```sql
+create table nft_mints (
+  id uuid default gen_random_uuid() primary key,
+  generation_id uuid references generations(id),
+  mint_address text not null unique,
+  owner_wallet text not null,
+  metadata_uri text not null,
+  image_url text not null,
+  tx_signature text not null,
+  mint_number integer not null,
+  created_at timestamptz default now()
+);
+create index idx_nft_mints_owner on nft_mints(owner_wallet);
+```
+
+Once configured, every honorary PFP generation will automatically mint an NFT to the user's wallet.
+
+---
+
+## 9. Run Locally
 
 ```bash
 npm run dev
@@ -293,7 +367,7 @@ npx next dev --experimental-https
 
 ---
 
-## 9. Deploy to Vercel
+## 10. Deploy to Vercel
 
 1. Push your repo to GitHub
 2. Go to [vercel.com](https://vercel.com) and import the project
@@ -328,6 +402,10 @@ AWS_S3_BUCKET=your-bucket-name
 # Solana RPC (get from helius.dev)
 SOLANA_RPC_URL=https://mainnet.helius-rpc.com/?api-key=your-key
 NEXT_PUBLIC_SOLANA_RPC_URL=https://mainnet.helius-rpc.com/?api-key=your-key
+
+# NFT Minting (Metaplex) — see section 8
+CREATOR_PRIVATE_KEY=your-base58-private-key
+COLLECTION_MINT_ADDRESS=your-collection-mint-address
 ```
 
 ---
