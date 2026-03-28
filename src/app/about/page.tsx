@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, Smartphone, Shield, Repeat } from 'lucide-react'
+import { ArrowRight, Shield, Repeat, Sparkles, Heart, Coins } from 'lucide-react'
 import SiteHeader from '@/components/layout/SiteHeader'
 import SiteFooter from '@/components/layout/SiteFooter'
 import { config } from '@/giggybank.config'
@@ -88,35 +88,76 @@ export default function AboutPage() {
             </ul>
           </section>
 
-          {/* iOS App */}
-          <section className="rounded-xl border border-zinc-200 bg-zinc-50 p-8">
-            <div className="mb-4 flex items-center gap-3">
+          {/* Honorary PFP */}
+          <section className="space-y-4">
+            <div className="flex items-center gap-3">
               <div className="rounded-lg bg-green-100 p-2.5">
-                <Smartphone size={20} className="text-green-600" />
+                <Sparkles size={20} className="text-green-600" />
               </div>
-              <h2 className="text-xl font-bold text-slate-900">The GiggyBank iOS App</h2>
+              <h2 className="text-xl font-bold text-slate-900">Honorary PFP Mint</h2>
             </div>
-            <p className="mb-4 leading-relaxed text-zinc-600">
-              The GiggyBank iOS app lets the community track High-Tip Drops in real time,
-              browse the public proof record for every drop, and follow treasury activity.
-              GiggyBank places the orders — the gig platform routes the job to a worker, who
-              receives the surprise tip on completion.
+            <p className="leading-relaxed text-zinc-600">
+              Any holder can{' '}
+              <Link href="/mint" className="font-medium text-green-600 underline underline-offset-2 hover:text-green-700">
+                mint an Honorary PFP
+              </Link>
+              {' '}— an on-chain NFT that composites their own image with the {config.name} mascot
+              using AI-powered style transfer. Your image. Your style. Recognizably {config.name}.
             </p>
-            <p className="mb-6 leading-relaxed text-zinc-600">
-              What you see on this dashboard is the public ledger of every drop the app has
-              facilitated — a permanent record that can&apos;t be edited or hidden.
+            <p className="leading-relaxed text-zinc-600">
+              Every mint fee goes directly to the treasury, funding more tips for gig workers.
+              The community grows through culture, not ad spend — every honorary is a piece
+              of content that spreads the brand organically. When someone asks &quot;what&apos;s
+              that PFP?&quot; the answer leads back to the project.
             </p>
-            {config.appStoreUrl && (
-              <a
-                href={config.appStoreUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg bg-green-400 px-5 py-2.5 text-sm font-semibold text-black transition-colors hover:bg-green-300"
-              >
-                Download on the App Store
-                <ArrowRight size={14} />
-              </a>
-            )}
+            <div className="grid gap-3 sm:grid-cols-2">
+              {[
+                'Your image composited with the GiggyBank mascot',
+                'AI-powered style transfer via Gemini',
+                'Minted as an NFT to your Solana wallet',
+                'Mint fees fund the High-Tip Drop treasury',
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-3 rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3">
+                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-green-400" />
+                  <span className="text-sm text-zinc-600">{item}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* The flywheel */}
+          <section className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="rounded-lg bg-green-100 p-2.5">
+                <Repeat size={20} className="text-green-600" />
+              </div>
+              <h2 className="text-xl font-bold text-slate-900">The loop</h2>
+            </div>
+            <p className="leading-relaxed text-zinc-600">
+              Each piece reinforces the others. This isn&apos;t a roadmap with vague
+              milestones — it&apos;s a system that compounds:
+            </p>
+            <div className="space-y-3">
+              {[
+                { step: 'Trade', detail: `Buy or sell $${config.token.symbol} on Bags.fm — fees flow to the treasury` },
+                { step: 'Mint', detail: 'Mint an honorary — your image + the mascot, owned by you, recognized by everyone' },
+                { step: 'Create', detail: `Make content with your honorary — the ${config.name} IP spreads in your style` },
+                { step: 'Grow', detail: 'New people discover the project through community content and join' },
+                { step: 'Tip', detail: 'The team uses accumulated fees to drop generous tips on real gig workers' },
+                { step: 'Prove', detail: 'Every tip is documented with receipts and on-chain proof — building trust and attracting more supporters' },
+              ].map(({ step, detail }, i) => (
+                <div key={step} className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-100 text-xs font-bold text-green-600">
+                    {i + 1}
+                  </span>
+                  <div>
+                    <span className="font-semibold text-slate-900">{step}</span>
+                    <span className="text-zinc-500"> — </span>
+                    <span className="text-zinc-600">{detail}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </section>
 
           {/* Transparency */}
@@ -160,7 +201,7 @@ export default function AboutPage() {
           <section className="rounded-xl border border-dashed border-zinc-300 p-8">
             <div className="mb-4 flex items-center gap-3">
               <div className="rounded-lg bg-zinc-100 p-2.5">
-                <Repeat size={20} className="text-zinc-500" />
+                <Coins size={20} className="text-zinc-500" />
               </div>
               <h2 className="text-xl font-bold text-slate-900">Built on ImpactTreasury</h2>
             </div>
@@ -176,6 +217,39 @@ export default function AboutPage() {
             <p className="text-sm text-zinc-500">
               Built on Next.js, Supabase, and Vercel. Powered by Bags.fm fee-sharing.
             </p>
+          </section>
+
+          {/* CTA */}
+          <section className="rounded-xl border border-zinc-200 bg-zinc-50 p-8 text-center">
+            <p className="mb-2 text-xs font-medium uppercase tracking-wider text-zinc-500">
+              Join the movement
+            </p>
+            <p className="mb-4 text-lg font-bold text-slate-900">
+              Trade the token. Mint your honorary. Be part of the impact.
+            </p>
+            <p className="mx-auto mb-6 max-w-md text-sm leading-relaxed text-zinc-600">
+              Every trade funds the treasury. Every honorary grows the culture.
+              Every tip changes someone&apos;s day.
+            </p>
+            <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+              <a
+                href={config.token.jupiterSwapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg bg-green-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-green-600"
+              >
+                <Heart size={14} />
+                Trade {config.token.symbol}
+                <ArrowRight size={14} />
+              </a>
+              <Link
+                href="/mint"
+                className="inline-flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 transition-colors hover:border-zinc-400 hover:bg-zinc-50"
+              >
+                <Sparkles size={14} />
+                Mint an Honorary
+              </Link>
+            </div>
           </section>
 
         </div>
