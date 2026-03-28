@@ -151,6 +151,9 @@ export default function MintPage() {
     [compositeImages]
   )
 
+  // DEVNET TESTING: detect devnet from RPC URL
+  const isDevnet = process.env.NEXT_PUBLIC_SOLANA_RPC_URL?.includes('devnet')
+
   const handlePayAndMint = useCallback(async () => {
     if (!publicKey || !connected) {
       setError('Please connect your wallet first')
@@ -159,11 +162,6 @@ export default function MintPage() {
 
     if (!ownershipAgreed) {
       setError('You must agree that you own the rights to the uploaded image.')
-      return
-    }
-
-    if (!tokenPrice) {
-      setError('Unable to fetch token price. Please try again later.')
       return
     }
 
@@ -193,6 +191,49 @@ export default function MintPage() {
     }
 
     try {
+      if (isDevnet) {
+        // DEVNET: skip token payment, go straight to generate
+        // TODO: Remove this block before production
+        setStep('minting')
+
+        const generateRes = await fetch('/api/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            referenceImage: uploadedImage,
+            txSignature: 'devnet-test',
+            walletAddress: publicKey!.toBase58(),
+          }),
+        })
+
+        if (!generateRes.ok) {
+          const errData = await generateRes.json()
+          throw new Error(errData.error || 'Image generation failed')
+        }
+
+        const generateData = await generateRes.json()
+        if (generateData.image?.data) {
+          const mime = generateData.image.mimeType ?? 'image/png'
+          setGeneratedImage(`data:${mime};base64,${generateData.image.data}`)
+        }
+
+        if (generateData.mintAddress) {
+          setMintAddress(generateData.mintAddress)
+        }
+        if (generateData.mintError) {
+          setMintError(generateData.mintError)
+        }
+
+        setStep('done')
+        return
+      }
+
+      // PRODUCTION: full payment flow
+      if (!tokenPrice) {
+        setError('Unable to fetch token price. Please try again later.')
+        return
+      }
+
       // Calculate token amount needed
       const mintInfo = await getMint(connection, TOKEN_MINT)
       const decimals = mintInfo.decimals
@@ -225,7 +266,7 @@ export default function MintPage() {
 
       // Build transfer transaction
       const transaction = new Transaction().add(
-        createTransferInstruction(senderAta, treasuryAta, publicKey, rawAmount)
+        createTransferInstruction(senderAta, treasuryAta, publicKey!, rawAmount)
       )
 
       const { blockhash } = await connection.getLatestBlockhash()
@@ -281,7 +322,7 @@ export default function MintPage() {
         setStep('error')
       }
     }
-  }, [publicKey, connected, connection, sendTransaction, signMessage, tokenPrice, ownershipAgreed])
+  }, [publicKey, connected, connection, sendTransaction, signMessage, tokenPrice, ownershipAgreed, isDevnet, uploadedImage])
 
   const resetFlow = useCallback(() => {
     setStep('upload')
@@ -415,7 +456,7 @@ export default function MintPage() {
                 className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-green-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-green-600 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <Sparkles className="h-4 w-4" />
-                {!connected ? 'Connect Wallet First' : !ownershipAgreed ? 'Agree to Mint' : 'Pay & Mint'}
+                {!connected ? 'Connect Wallet First' : !ownershipAgreed ? 'Agree to Mint' : isDevnet ? 'Test Mint (Devnet)' : 'Pay & Mint'}
               </button>
             </div>
           </div>
@@ -495,7 +536,7 @@ export default function MintPage() {
             <div className="flex flex-col items-center gap-2">
               {mintAddress && (
                 <a
-                  href={`https://solscan.io/token/${mintAddress}`}
+                  href={`https://solscan.io/token/${mintAddress}${isDevnet ? '?cluster=devnet' : ''}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-sm text-green-500 transition-colors hover:text-green-600"
@@ -506,7 +547,7 @@ export default function MintPage() {
               )}
               {txSignature && (
                 <a
-                  href={`https://solscan.io/tx/${txSignature}`}
+                  href={`https://solscan.io/tx/${txSignature}${isDevnet ? '?cluster=devnet' : ''}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-sm text-green-500 transition-colors hover:text-green-600"

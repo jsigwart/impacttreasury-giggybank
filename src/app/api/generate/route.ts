@@ -18,23 +18,33 @@ const GEMINI_API_URL =
 
 export async function POST(request: NextRequest) {
   try {
-    const { prompt, referenceImage, txSignature } = await request.json();
+    const { prompt, referenceImage, txSignature, walletAddress } =
+      await request.json();
 
-    if (!txSignature) {
-      return NextResponse.json(
-        { error: "Payment transaction signature is required" },
-        { status: 403 }
-      );
-    }
-
-    // Verify the Solana payment transaction on-chain
+    // DEVNET TESTING: skip payment verification
+    // TODO: Remove this block and restore payment verification before going to production
+    const DEVNET_TESTING = process.env.SOLANA_RPC_URL?.includes("devnet");
     let payerWallet: string;
-    try {
-      payerWallet = await verifyPaymentTransaction(txSignature);
-    } catch (err) {
-      const message =
-        err instanceof Error ? err.message : "Transaction verification failed";
-      return NextResponse.json({ error: message }, { status: 403 });
+
+    if (DEVNET_TESTING) {
+      // Use the wallet address passed from the client
+      payerWallet = walletAddress || "6mtski33htLBvSpsiMDsQYkEXeTvN1NcvCoKqs1iPQXJ";
+    } else {
+      if (!txSignature) {
+        return NextResponse.json(
+          { error: "Payment transaction signature is required" },
+          { status: 403 }
+        );
+      }
+
+      // Verify the Solana payment transaction on-chain
+      try {
+        payerWallet = await verifyPaymentTransaction(txSignature);
+      } catch (err) {
+        const message =
+          err instanceof Error ? err.message : "Transaction verification failed";
+        return NextResponse.json({ error: message }, { status: 403 });
+      }
     }
 
     if (!referenceImage) {
@@ -150,8 +160,8 @@ ${prompt ? `Additional instructions: ${prompt}` : ""}`.trim(),
     }
 
     // Upload image to S3
-    const timestamp = Date.now();
-    const imageKey = `generations/${timestamp}.png`;
+    const mintNumber = await getNextMintNumber();
+    const imageKey = `generations/honorary-${mintNumber}.png`;
     const buffer = Buffer.from(imageData.data, "base64");
 
     await s3.send(
@@ -181,11 +191,10 @@ ${prompt ? `Additional instructions: ${prompt}` : ""}`.trim(),
     if (collectionMintAddress) {
       try {
         const imageUrl = getPublicUrl(imageKey);
-        const mintNumber = await getNextMintNumber();
         const nftName = `GiggyBank Honorary #${mintNumber}`;
 
         // Upload NFT metadata JSON to S3
-        const metadataKey = `generations/${timestamp}-metadata.json`;
+        const metadataKey = `generations/honorary-${mintNumber}-metadata.json`;
         const metadata = {
           name: nftName,
           symbol: "GIGGY",
