@@ -2,19 +2,22 @@ import { Metaplex, keypairIdentity } from "@metaplex-foundation/js";
 import { Connection, Keypair, PublicKey } from "@solana/web3.js";
 import bs58 from "bs58";
 
-const connection = new Connection(
-  process.env.SOLANA_RPC_URL || "https://api.mainnet-beta.solana.com",
-  "confirmed"
-);
+let metaplexInstance: Metaplex | null = null;
 
-function getCreatorKeypair(): Keypair {
+function getMetaplex(): Metaplex {
+  if (metaplexInstance) return metaplexInstance;
+
   const secret = process.env.CREATOR_PRIVATE_KEY;
   if (!secret) throw new Error("CREATOR_PRIVATE_KEY env var is required");
-  return Keypair.fromSecretKey(bs58.decode(secret));
-}
 
-const creator = getCreatorKeypair();
-const metaplex = Metaplex.make(connection).use(keypairIdentity(creator));
+  const connection = new Connection(
+    process.env.SOLANA_RPC_URL || "https://api.mainnet-beta.solana.com",
+    "confirmed"
+  );
+  const creator = Keypair.fromSecretKey(bs58.decode(secret));
+  metaplexInstance = Metaplex.make(connection).use(keypairIdentity(creator));
+  return metaplexInstance;
+}
 
 export async function mintNft(params: {
   name: string;
@@ -22,6 +25,7 @@ export async function mintNft(params: {
   ownerAddress: string;
   collectionMintAddress: string;
 }): Promise<{ mintAddress: string; txSignature: string }> {
+  const metaplex = getMetaplex();
   const owner = new PublicKey(params.ownerAddress);
   const collectionMint = new PublicKey(params.collectionMintAddress);
 
