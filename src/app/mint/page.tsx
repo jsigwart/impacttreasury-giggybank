@@ -46,14 +46,16 @@ export default function MintPage() {
   useEffect(() => {
     async function fetchPrice() {
       try {
+        // Use DexScreener for price (Jupiter v2 requires auth)
         const res = await fetch(
-          `https://api.jup.ag/price/v2?ids=${config.token.address}`
+          `https://api.dexscreener.com/latest/dex/tokens/${config.token.address}`
         )
         const data = await res.json()
-        const price = data?.data?.[config.token.address]?.price
-        const resolvedPrice = (price && Number(price) > 0) ? Number(price) : 0.000001
-        setTokenPrice(resolvedPrice)
-        const tokens = config.mint.priceUsd / resolvedPrice
+        const pairs = data?.pairs
+        const price = pairs?.[0]?.priceUsd
+        if (!price || Number(price) <= 0) return
+        setTokenPrice(Number(price))
+        const tokens = config.mint.priceUsd / Number(price)
         setRequiredTokens(tokens.toLocaleString(undefined, { maximumFractionDigits: 0 }))
       } catch {
         // Price fetch failed — user will see "price unavailable"
