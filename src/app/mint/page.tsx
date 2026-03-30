@@ -277,8 +277,37 @@ export default function MintPage() {
       const signature = await sendTransaction(transaction, connection)
       setTxSignature(signature)
 
-      // Wait for confirmation
-      await connection.confirmTransaction(signature, 'confirmed')
+      // Wait for confirmation with retry — if the first attempt times out,
+      // check the signature status directly before giving up
+      try {
+        await connection.confirmTransaction(signature, 'confirmed')
+      } catch (confirmErr: unknown) {
+        const msg = confirmErr instanceof Error ? confirmErr.message : ''
+        if (msg.includes('not confirmed') || msg.includes('timeout') || msg.includes('Timed out')) {
+          // Transaction may still have succeeded — check status directly
+          const status = await connection.getSignatureStatus(signature)
+          const confirmed = status?.value?.confirmationStatus === 'confirmed' ||
+            status?.value?.confirmationStatus === 'finalized'
+          if (!confirmed) {
+            // One more attempt with longer timeout
+            try {
+              await connection.confirmTransaction(signature, 'confirmed')
+            } catch {
+              const recheck = await connection.getSignatureStatus(signature)
+              const recheckConfirmed = recheck?.value?.confirmationStatus === 'confirmed' ||
+                recheck?.value?.confirmationStatus === 'finalized'
+              if (!recheckConfirmed) {
+                throw new Error(
+                  `Transaction sent but not yet confirmed. Your signature: ${signature}. ` +
+                  'Please check Solscan and contact support if your tokens were deducted.'
+                )
+              }
+            }
+          }
+        } else {
+          throw confirmErr
+        }
+      }
 
       setStep('minting')
 
