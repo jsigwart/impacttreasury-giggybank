@@ -2,21 +2,18 @@ import { Metaplex, keypairIdentity } from "@metaplex-foundation/js";
 import { Connection, Keypair, PublicKey } from "@solana/web3.js";
 import bs58 from "bs58";
 
-let metaplexInstance: Metaplex | null = null;
-
 function getMetaplex(): Metaplex {
-  if (metaplexInstance) return metaplexInstance;
-
   const secret = process.env.CREATOR_PRIVATE_KEY;
   if (!secret) throw new Error("CREATOR_PRIVATE_KEY env var is required");
 
+  // Create a fresh instance each time to avoid stale blockhashes
+  // after long-running operations (e.g. AI image generation)
   const connection = new Connection(
     process.env.SOLANA_RPC_URL || "https://api.mainnet-beta.solana.com",
     "confirmed"
   );
   const creator = Keypair.fromSecretKey(bs58.decode(secret));
-  metaplexInstance = Metaplex.make(connection).use(keypairIdentity(creator));
-  return metaplexInstance;
+  return Metaplex.make(connection).use(keypairIdentity(creator));
 }
 
 export async function mintNft(params: {
