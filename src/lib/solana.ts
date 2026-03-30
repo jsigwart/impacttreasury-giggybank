@@ -1,6 +1,6 @@
 import { Connection, PublicKey } from "@solana/web3.js";
 import { config } from "@/giggybank.config";
-import { supabase } from "@/lib/supabase";
+import { sql } from "@/lib/db";
 
 const TREASURY_WALLET = new PublicKey(config.treasury.wallet);
 const TOKEN_MINT = new PublicKey(config.token.address);
@@ -25,11 +25,9 @@ export async function verifyPaymentTransaction(
   txSignature: string
 ): Promise<string> {
   // 1. Check if this signature was already redeemed
-  const { data: existing } = await supabase
-    .from("redeemed_transactions")
-    .select("tx_signature")
-    .eq("tx_signature", txSignature)
-    .single();
+  const [existing] = await sql`
+    SELECT tx_signature FROM redeemed_transactions WHERE tx_signature = ${txSignature}
+  `;
 
   if (existing) {
     throw new Error("This transaction has already been used.");
@@ -136,9 +134,9 @@ export async function verifyPaymentTransaction(
   }
 
   // 4. Mark this transaction as redeemed
-  await supabase
-    .from("redeemed_transactions")
-    .insert({ tx_signature: txSignature, wallet: payerWallet });
+  await sql`
+    INSERT INTO redeemed_transactions (tx_signature, wallet) VALUES (${txSignature}, ${payerWallet})
+  `;
 
   return payerWallet;
 }

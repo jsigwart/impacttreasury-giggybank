@@ -42,7 +42,7 @@ export default function FrameworkPage() {
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-slate-900">What is ImpactTreasury?</h2>
             <p className="leading-relaxed text-zinc-600">
-              ImpactTreasury is a Next.js + Supabase application template designed for one
+              ImpactTreasury is a Next.js + Postgres application template designed for one
               specific purpose: making token-funded impact campaigns fully transparent and
               publicly verifiable. Every disbursement has a proof layer — receipts, social
               posts, and on-chain transaction hashes — published as a permanent public record.
@@ -156,7 +156,7 @@ export const config = {
               </pre>
             </div>
             <p className="text-sm text-zinc-500">
-              Run the Supabase migration, deploy to Vercel, and your project has a fully
+              Run the database migration, deploy to Vercel, and your project has a fully
               public proof layer from day one.
             </p>
           </section>

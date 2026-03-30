@@ -79,7 +79,7 @@ The `/api/generate` endpoint is gated behind on-chain payment verification. User
    - Confirms the transaction exists and succeeded
    - Checks it contains a token transfer to the treasury wallet
    - Ensures the correct token mint was used
-   - Prevents replay by tracking redeemed signatures in Supabase (`redeemed_transactions` table)
+   - Prevents replay by tracking redeemed signatures in Postgres (`redeemed_transactions` table)
 4. Only after verification does AI generation proceed
 
 This means the generate endpoint cannot be called without a valid, unredeemed payment transaction.
@@ -107,10 +107,8 @@ AWS_SECRET_ACCESS_KEY=
 AWS_REGION=us-east-1
 AWS_S3_BUCKET=
 
-# Supabase (Database for generations, users, redeemed transactions)
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-SUPABASE_SERVICE_ROLE_KEY=
+# Database (any Postgres: Supabase, Neon, self-hosted, etc.)
+DATABASE_URL=postgresql://user:password@host:5432/dbname
 
 # Solana RPC (optional — defaults to public mainnet-beta)
 SOLANA_RPC_URL=
