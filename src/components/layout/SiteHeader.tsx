@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { config } from '@/giggybank.config'
-import ComingSoonLink from '@/components/ui/ComingSoonLink'
 
 export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -28,9 +27,12 @@ export default function SiteHeader() {
           >
             Whitepaper
           </Link>
-          <ComingSoonLink className="text-sm" position="below">
+          <Link
+            href="/mint"
+            className={`text-sm transition-colors ${pathname === '/mint' ? 'font-semibold text-green-600' : 'text-gray-600 hover:text-slate-900'}`}
+          >
             Mint
-          </ComingSoonLink>
+          </Link>
           <a
             href={config.token.jupiterSwapUrl}
             target="_blank"
@@ -62,9 +64,13 @@ export default function SiteHeader() {
             >
               Whitepaper
             </Link>
-            <ComingSoonLink className="text-sm" position="below">
+            <Link
+              href="/mint"
+              onClick={() => setMenuOpen(false)}
+              className={`text-sm transition-colors ${pathname === '/mint' ? 'font-semibold text-green-600' : 'text-gray-600 hover:text-slate-900'}`}
+            >
               Mint
-            </ComingSoonLink>
+            </Link>
             <a
               href={config.token.jupiterSwapUrl}
               target="_blank"

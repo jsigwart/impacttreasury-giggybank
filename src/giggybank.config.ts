@@ -35,7 +35,7 @@ export const config: ProjectConfig = {
   },
   appStoreUrl: 'https://apps.apple.com/app/giggybank/PLACEHOLDER',
   mint: {
-    priceUsd: 5,
+    priceUsd: 6.7,
     collectionName: 'GiggyBank Honoraries',
     description: 'An honorary PFP minted with $GIGGYBANK — combining the GiggyBank mascot with your uploaded image.',
   },
