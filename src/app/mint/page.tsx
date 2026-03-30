@@ -46,14 +46,16 @@ export default function MintPage() {
   useEffect(() => {
     async function fetchPrice() {
       try {
+        // Use DexScreener for price (Jupiter v2 requires auth)
         const res = await fetch(
-          `https://api.jup.ag/price/v2?ids=${config.token.address}`
+          `https://api.dexscreener.com/latest/dex/tokens/${config.token.address}`
         )
         const data = await res.json()
-        const price = data?.data?.[config.token.address]?.price
-        const resolvedPrice = (price && Number(price) > 0) ? Number(price) : 0.000001
-        setTokenPrice(resolvedPrice)
-        const tokens = config.mint.priceUsd / resolvedPrice
+        const pairs = data?.pairs
+        const price = pairs?.[0]?.priceUsd
+        if (!price || Number(price) <= 0) return
+        setTokenPrice(Number(price))
+        const tokens = config.mint.priceUsd / Number(price)
         setRequiredTokens(tokens.toLocaleString(undefined, { maximumFractionDigits: 0 }))
       } catch {
         // Price fetch failed — user will see "price unavailable"
@@ -277,8 +279,37 @@ export default function MintPage() {
       const signature = await sendTransaction(transaction, connection)
       setTxSignature(signature)
 
-      // Wait for confirmation
-      await connection.confirmTransaction(signature, 'confirmed')
+      // Wait for confirmation with retry — if the first attempt times out,
+      // check the signature status directly before giving up
+      try {
+        await connection.confirmTransaction(signature, 'confirmed')
+      } catch (confirmErr: unknown) {
+        const msg = confirmErr instanceof Error ? confirmErr.message : ''
+        if (msg.includes('not confirmed') || msg.includes('timeout') || msg.includes('Timed out')) {
+          // Transaction may still have succeeded — check status directly
+          const status = await connection.getSignatureStatus(signature)
+          const confirmed = status?.value?.confirmationStatus === 'confirmed' ||
+            status?.value?.confirmationStatus === 'finalized'
+          if (!confirmed) {
+            // One more attempt with longer timeout
+            try {
+              await connection.confirmTransaction(signature, 'confirmed')
+            } catch {
+              const recheck = await connection.getSignatureStatus(signature)
+              const recheckConfirmed = recheck?.value?.confirmationStatus === 'confirmed' ||
+                recheck?.value?.confirmationStatus === 'finalized'
+              if (!recheckConfirmed) {
+                throw new Error(
+                  `Transaction sent but not yet confirmed. Your signature: ${signature}. ` +
+                  'Please check Solscan and contact support if your tokens were deducted.'
+                )
+              }
+            }
+          }
+        } else {
+          throw confirmErr
+        }
+      }
 
       setStep('minting')
 
