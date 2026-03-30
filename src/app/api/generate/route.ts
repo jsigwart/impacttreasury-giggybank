@@ -7,7 +7,7 @@ import {
   getDefaultPrompts,
   getNextMintNumber,
   saveMintRecord,
-} from "@/lib/supabase";
+} from "@/lib/db";
 import { s3, BUCKET, getS3Object, getPublicUrl } from "@/lib/s3";
 import { verifyPaymentTransaction } from "@/lib/solana";
 import { mintNft } from "@/lib/metaplex";

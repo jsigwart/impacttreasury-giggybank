@@ -63,7 +63,7 @@ Treasury funds are used to create Impact Campaigns.
 
 Each campaign represents a real-world action funded by the community.
 
-Campaigns are stored in Supabase.
+Campaigns are stored in Postgres.
 
 Two campaign types currently exist.
 
@@ -143,7 +143,7 @@ Frontend:
 
 Backend:
 
-- Supabase (database + authentication)
+- Postgres (any provider: Supabase, Neon, self-hosted)
 
 Blockchain:
 

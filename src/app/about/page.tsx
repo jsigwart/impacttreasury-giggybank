@@ -215,7 +215,7 @@ export default function AboutPage() {
               program with a single config file change.
             </p>
             <p className="text-sm text-zinc-500">
-              Built on Next.js, Supabase, and Vercel. Powered by Bags.fm fee-sharing.
+              Built on Next.js, Postgres, and Vercel. Powered by Bags.fm fee-sharing.
             </p>
           </section>
 

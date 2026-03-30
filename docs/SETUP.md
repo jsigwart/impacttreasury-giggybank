@@ -9,7 +9,7 @@ This guide walks you through deploying your own instance of GiggyBank (or any Im
 - **Node.js 18+** — [nodejs.org](https://nodejs.org)
 - **Git** — [git-scm.com](https://git-scm.com)
 - **A Solana wallet** (e.g. [Phantom](https://phantom.app)) with your project's SPL token
-- **A Supabase account** — [supabase.com](https://supabase.com) (free tier works)
+- **A Postgres database** — [Supabase](https://supabase.com), [Neon](https://neon.tech), or self-hosted via Docker
 - **A Google AI Studio account** — [aistudio.google.com](https://aistudio.google.com) (billing required for image generation)
 - **Image hosting** — either AWS S3 or a self-hosted MinIO instance
 
@@ -77,86 +77,117 @@ Replace `public/logo.png` with your project's logo image.
 
 ---
 
-## 3. Set Up Supabase
+## 3. Set Up Database
 
-### Create a project
+The app works with any Postgres database. Pick whichever option suits you:
+
+### Option A: Supabase (hosted, free tier)
 
 1. Go to [supabase.com](https://supabase.com) and create a new project
-2. Choose a region close to your users
+2. Go to **Settings → Database** and copy the **Connection string (URI)**
+3. Add to `.env.local`:
+
+```env
+DATABASE_URL=postgresql://postgres.[ref]:[password]@aws-0-[region].pooler.supabase.com:6543/postgres
+```
+
+4. Run the schema SQL below in **SQL Editor**
+
+### Option B: Neon (hosted, free tier)
+
+1. Go to [neon.tech](https://neon.tech) and create a project
+2. Copy the connection string from the dashboard
+3. Add to `.env.local`:
+
+```env
+DATABASE_URL=postgresql://user:password@ep-xxx.us-east-2.aws.neon.tech/neondb?sslmode=require
+```
+
+4. Run the schema SQL below in the **SQL Editor**
+
+### Option C: Self-hosted via Docker
+
+Run on any Linux VPS:
+
+```bash
+docker run -d \
+  --name yourproject-postgres \
+  --restart always \
+  -e POSTGRES_DB=yourproject \
+  -e POSTGRES_USER=yourproject \
+  -e POSTGRES_PASSWORD=your-strong-password \
+  -p 5432:5432 \
+  -v pgdata:/var/lib/postgresql/data \
+  postgres:16
+```
+
+Open firewall if needed: `sudo ufw allow 5432`
+
+Add to `.env.local`:
+
+```env
+DATABASE_URL=postgresql://yourproject:your-strong-password@your-vps-ip:5432/yourproject
+```
 
 ### Create the database tables
 
-Go to **SQL Editor** in your Supabase dashboard and run:
+Run this SQL in your database (via SQL editor, `psql`, or `docker exec`):
 
 ```sql
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
+
 -- Users (tracked by wallet address)
-create table users (
-  id uuid primary key default gen_random_uuid(),
-  external_id text unique not null,
-  created_at timestamptz default now()
+CREATE TABLE users (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  external_id TEXT UNIQUE NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT now()
 );
 
 -- AI-generated images
-create table generations (
-  id uuid primary key default gen_random_uuid(),
-  user_id text not null,
-  prompt text,
-  base_prompt text,
-  source_url text,
-  reference_images text[],
-  result_url text,
-  type text,
-  created_at timestamptz default now()
+CREATE TABLE generations (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id TEXT NOT NULL,
+  prompt TEXT,
+  base_prompt TEXT,
+  source_url TEXT,
+  reference_images TEXT[],
+  result_url TEXT,
+  type TEXT,
+  created_at TIMESTAMPTZ DEFAULT now()
 );
 
 -- Prevents the same Solana transaction from being used twice
-create table redeemed_transactions (
-  id uuid primary key default gen_random_uuid(),
-  tx_signature text unique not null,
-  wallet text,
-  created_at timestamptz default now()
+CREATE TABLE redeemed_transactions (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  tx_signature TEXT UNIQUE NOT NULL,
+  wallet TEXT,
+  created_at TIMESTAMPTZ DEFAULT now()
 );
 
 -- Default AI prompt (editable without redeploying)
-create table default_prompts (
-  id uuid primary key default gen_random_uuid(),
-  image text not null
+CREATE TABLE default_prompts (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  image TEXT NOT NULL
 );
 
 -- Seed a default prompt
-insert into default_prompts (image) values (
+INSERT INTO default_prompts (image) VALUES (
   'Generate a high-quality stylized image based on the provided inputs.'
 );
 
 -- NFT mint records
-create table nft_mints (
-  id uuid default gen_random_uuid() primary key,
-  generation_id uuid references generations(id),
-  mint_address text not null unique,
-  owner_wallet text not null,
-  metadata_uri text not null,
-  image_url text not null,
-  tx_signature text not null,
-  mint_number integer not null,
-  created_at timestamptz default now()
+CREATE TABLE nft_mints (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  generation_id UUID REFERENCES generations(id),
+  mint_address TEXT NOT NULL UNIQUE,
+  owner_wallet TEXT NOT NULL,
+  metadata_uri TEXT NOT NULL,
+  image_url TEXT NOT NULL,
+  tx_signature TEXT NOT NULL,
+  mint_number INTEGER NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT now()
 );
-create index idx_nft_mints_owner on nft_mints(owner_wallet);
-```
-
-### Get your API keys
-
-Go to **Settings → API** and copy:
-
-- **Project URL** → `NEXT_PUBLIC_SUPABASE_URL`
-- **anon (public) key** → `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- **service_role (secret) key** → `SUPABASE_SERVICE_ROLE_KEY`
-
-Add them to `.env.local`:
-
-```env
-NEXT_PUBLIC_SUPABASE_URL=https://yourproject.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+CREATE INDEX idx_nft_mints_owner ON nft_mints(owner_wallet);
 ```
 
 ---
@@ -324,26 +355,9 @@ Copy the output and add to `.env.local`:
 COLLECTION_MINT_ADDRESS=<output-from-script>
 ```
 
-### Create the nft_mints table
-
-Run this SQL in your Supabase SQL Editor:
-
-```sql
-create table nft_mints (
-  id uuid default gen_random_uuid() primary key,
-  generation_id uuid references generations(id),
-  mint_address text not null unique,
-  owner_wallet text not null,
-  metadata_uri text not null,
-  image_url text not null,
-  tx_signature text not null,
-  mint_number integer not null,
-  created_at timestamptz default now()
-);
-create index idx_nft_mints_owner on nft_mints(owner_wallet);
-```
-
 Once configured, every honorary PFP generation will automatically mint an NFT to the user's wallet.
+
+> **Note:** The `nft_mints` table is already included in the schema SQL from section 3.
 
 ---
 
@@ -381,10 +395,8 @@ The app auto-deploys on every push to `main`.
 ## Complete `.env.local` Reference
 
 ```env
-# Supabase
-NEXT_PUBLIC_SUPABASE_URL=https://yourproject.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+# Database (any Postgres)
+DATABASE_URL=postgresql://user:password@host:5432/dbname
 
 # Gemini AI (image generation)
 GEMINI_API_KEY=your-gemini-api-key
