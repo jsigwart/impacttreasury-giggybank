@@ -38,5 +38,7 @@ export const config: ProjectConfig = {
     priceUsd: 6.7,
     collectionName: 'GiggyBank Honoraries',
     description: 'An honorary PFP minted with $GIGGYBANK — combining the GiggyBank mascot with your uploaded image.',
+    creatorWallet: '75pLB2gn9QeGHYiyYHmCbdjH2rVRZzijD4qZsz5BDBLq',
+    mintFeeSol: 0.02,
   },
 }
