@@ -12,6 +12,9 @@ import { s3, BUCKET, getS3Object, getPublicUrl } from "@/lib/s3";
 import { verifyPaymentTransaction } from "@/lib/solana";
 import { mintNft } from "@/lib/metaplex";
 
+// Allow up to 300s for AI generation + NFT minting
+export const maxDuration = 300;
+
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY!;
 const GEMINI_API_URL =
   "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image-preview:generateContent";
