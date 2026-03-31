@@ -8,7 +8,10 @@ function getMetaplex(): Metaplex {
 
   const connection = new Connection(
     process.env.SOLANA_RPC_URL || "https://api.mainnet-beta.solana.com",
-    "confirmed"
+    {
+      commitment: "confirmed",
+      confirmTransactionInitialTimeout: 120_000,
+    }
   );
   const creator = Keypair.fromSecretKey(bs58.decode(secret));
   return Metaplex.make(connection).use(keypairIdentity(creator));
@@ -53,13 +56,14 @@ export async function mintNft(params: {
     } catch (err: unknown) {
       lastError = err;
       const msg = err instanceof Error ? err.message : String(err);
-      const isBlockhashError =
+      const isRetryable =
         msg.includes("block height exceeded") ||
         msg.includes("Blockhash not found") ||
-        msg.includes("BlockhashNotFound");
+        msg.includes("BlockhashNotFound") ||
+        msg.includes("Transaction was not confirmed");
 
-      if (isBlockhashError && attempt < MAX_MINT_RETRIES) {
-        console.log(`NFT mint attempt ${attempt} failed (blockhash expired), retrying...`);
+      if (isRetryable && attempt < MAX_MINT_RETRIES) {
+        console.log(`NFT mint attempt ${attempt}/${MAX_MINT_RETRIES} failed, retrying...`);
         continue;
       }
 
