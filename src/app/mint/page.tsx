@@ -6,6 +6,8 @@ import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
 import {
   PublicKey,
   Transaction,
+  SystemProgram,
+  LAMPORTS_PER_SOL,
 } from '@solana/web3.js'
 import {
   getAssociatedTokenAddress,
@@ -267,9 +269,23 @@ export default function MintPage() {
       const treasuryAta = await getAssociatedTokenAddress(TOKEN_MINT, TREASURY_WALLET)
 
       // Build transfer transaction
-      const transaction = new Transaction().add(
+      const transaction = new Transaction()
+
+      // 1. Token transfer to treasury
+      transaction.add(
         createTransferInstruction(senderAta, treasuryAta, publicKey!, rawAmount)
       )
+
+      // 2. SOL transfer to creator wallet to cover NFT minting fees
+      if (config.mint.creatorWallet && config.mint.mintFeeSol) {
+        transaction.add(
+          SystemProgram.transfer({
+            fromPubkey: publicKey!,
+            toPubkey: new PublicKey(config.mint.creatorWallet),
+            lamports: Math.ceil(config.mint.mintFeeSol * LAMPORTS_PER_SOL),
+          })
+        )
+      }
 
       const { blockhash } = await connection.getLatestBlockhash()
       transaction.recentBlockhash = blockhash
@@ -454,6 +470,14 @@ export default function MintPage() {
                     : `$${config.mint.priceUsd}`}
                 </span>
               </div>
+              {config.mint.mintFeeSol && (
+                <div className="mt-2 flex items-center justify-between text-sm">
+                  <span className="text-gray-500">Mint fee</span>
+                  <span className="font-medium text-gray-400">
+                    {config.mint.mintFeeSol} SOL
+                  </span>
+                </div>
+              )}
               <div className="mt-2 flex items-center justify-between text-sm">
                 <span className="text-gray-500">Destination</span>
                 <span className="font-mono text-xs text-gray-400">

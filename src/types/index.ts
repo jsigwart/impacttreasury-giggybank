@@ -30,5 +30,7 @@ export interface ProjectConfig {
     priceUsd: number
     collectionName: string
     description: string
+    creatorWallet?: string
+    mintFeeSol?: number
   }
 }
