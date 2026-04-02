@@ -107,10 +107,11 @@ export async function POST(request: NextRequest) {
       },
       // 3. Instruction
       {
-        text: `${defaultPrompts.image} The first image is the base logo. The second image is a reference.
-Analyze the visual traits, style, texture, color palette, and aesthetic of the reference image,
-then re-render the logo from the first image applying those traits to it.
-Keep the logo's core shape and structure intact — only transform its appearance to match the reference's style.
+        text: `${defaultPrompts.image} The first image is the base logo. The second image is a reference photo.
+Use the base logo (first image) as the definitive source for composition, layout, and positioning — the character/logo must remain in the exact same position, size, and placement as it appears in the base logo.
+Analyze only the visual traits, characteristics, style, texture, color palette, and aesthetic of the reference photo (second image), then apply those traits to the character in the base logo.
+Do NOT adopt the reference photo's composition, framing, or positioning — only inherit its visual characteristics and style.
+Keep the logo's core shape, structure, and position intact — only transform its appearance to match the reference's traits.
 ${prompt ? `Additional instructions: ${prompt}` : ""}`.trim(),
       },
     ];
