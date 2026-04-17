@@ -136,6 +136,12 @@ Token: **$GIGGYBANK** — `GefTGjFnJGW9PM93Ycb5RrHKiH1gPbz2Szag1mLBBAGS`
 
 ---
 
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on how to get started.
+
+---
+
 ## License
 
 MIT License
