@@ -107,12 +107,19 @@ export async function POST(request: NextRequest) {
       },
       // 3. Instruction
       {
-        text: `${defaultPrompts.image} The first image is the base logo. The second image is a reference photo.
-Use the base logo (first image) as the definitive source for composition, layout, and positioning — the character/logo must remain in the exact same position, size, and placement as it appears in the base logo.
-Analyze only the visual traits, characteristics, style, texture, color palette, and aesthetic of the reference photo (second image), then apply those traits to the character in the base logo.
-Do NOT adopt the reference photo's composition, framing, or positioning — only inherit its visual characteristics and style.
-Keep the logo's core shape, structure, and position intact — only transform its appearance to match the reference's traits.
-${prompt ? `Additional instructions: ${prompt}` : ""}`.trim(),
+        text: `${defaultPrompts.image}
+
+You are given two images:
+- IMAGE 1 (BASE): The base logo. This defines the canvas size, the character's base shape/silhouette, its exact position on the canvas, its scale, and its framing.
+- IMAGE 2 (REFERENCE): A reference photo. This is used ONLY as a source of visual traits.
+
+STRICT RULES:
+1. From IMAGE 1, preserve EXACTLY: canvas dimensions, character position, character size/scale, character placement, pose, silhouette, and overall composition. The output must be pixel-aligned with IMAGE 1 in terms of where the character sits on the canvas.
+2. From IMAGE 2, extract ONLY traits: colors, patterns, textures, materials, clothing/accessories, facial features, fur/skin style, and artistic aesthetic. Apply these traits to the character from IMAGE 1.
+3. Do NOT copy IMAGE 2's composition, background, framing, cropping, pose, size, or positioning. IMAGE 2 is a trait reference, not a layout reference.
+4. Do NOT resize, reposition, recrop, or reframe the character from IMAGE 1. Its bounding box and placement must remain identical.
+5. The result should look like the IMAGE 1 character wearing/embodying the traits of IMAGE 2 — same layout as IMAGE 1, same traits as IMAGE 2.
+${prompt ? `\nAdditional instructions: ${prompt}` : ""}`.trim(),
       },
     ];
 
