@@ -14,7 +14,7 @@ function getMetaplex(): Metaplex {
   const connection = new Connection(
     process.env.SOLANA_RPC_URL || "https://api.mainnet-beta.solana.com",
     {
-      commitment: "processed",
+      commitment: "confirmed",
       confirmTransactionInitialTimeout: 120_000,
     }
   );
