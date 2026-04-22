@@ -17,6 +17,16 @@ function getMetaplex(): Metaplex {
 }
 
 const MAX_MINT_RETRIES = 3;
+const MAX_VERIFY_RETRIES = 6;
+const VERIFY_INITIAL_DELAY_MS = 500;
+
+function isAccountNotFoundError(err: unknown): boolean {
+  const msg = err instanceof Error ? err.message : String(err);
+  return (
+    msg.includes("was not found at the provided address") ||
+    msg.includes("AccountNotFoundError")
+  );
+}
 
 export async function mintNft(params: {
   name: string;
@@ -30,28 +40,18 @@ export async function mintNft(params: {
   let lastError: unknown;
 
   for (let attempt = 1; attempt <= MAX_MINT_RETRIES; attempt++) {
-    try {
-      // Fresh Metaplex instance each attempt for a fresh blockhash
-      const metaplex = getMetaplex();
+    // Fresh Metaplex instance each attempt for a fresh blockhash
+    const metaplex = getMetaplex();
 
-      const { nft, response } = await metaplex.nfts().create({
+    let created;
+    try {
+      created = await metaplex.nfts().create({
         uri: params.metadataUri,
         name: params.name,
         sellerFeeBasisPoints: 0,
         tokenOwner: owner,
         collection: collectionMint,
       });
-
-      // Verify collection membership (creator is collection authority)
-      await metaplex.nfts().verifyCollection({
-        mintAddress: nft.address,
-        collectionMintAddress: collectionMint,
-      });
-
-      return {
-        mintAddress: nft.address.toBase58(),
-        txSignature: response.signature,
-      };
     } catch (err: unknown) {
       lastError = err;
       const msg = err instanceof Error ? err.message : String(err);
@@ -67,6 +67,36 @@ export async function mintNft(params: {
 
       throw err;
     }
+
+    const { nft, response } = created;
+
+    // Create succeeded — the NFT exists on-chain. Verify collection membership,
+    // retrying on AccountNotFoundError while the new mint account propagates
+    // to the RPC used for the read.
+    for (let vAttempt = 1; vAttempt <= MAX_VERIFY_RETRIES; vAttempt++) {
+      try {
+        await metaplex.nfts().verifyCollection({
+          mintAddress: nft.address,
+          collectionMintAddress: collectionMint,
+        });
+        break;
+      } catch (err: unknown) {
+        if (isAccountNotFoundError(err) && vAttempt < MAX_VERIFY_RETRIES) {
+          const delay = VERIFY_INITIAL_DELAY_MS * 2 ** (vAttempt - 1);
+          console.log(
+            `verifyCollection attempt ${vAttempt} failed (mint account not visible yet), retrying in ${delay}ms...`
+          );
+          await new Promise((r) => setTimeout(r, delay));
+          continue;
+        }
+        throw err;
+      }
+    }
+
+    return {
+      mintAddress: nft.address.toBase58(),
+      txSignature: response.signature,
+    };
   }
 
   throw lastError;
