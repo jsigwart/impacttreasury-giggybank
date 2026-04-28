@@ -130,7 +130,7 @@ Setup guides:
 
 GiggyBank is the first live deployment of ImpactTreasury, focused on funding high-tip drops for gig workers.
 
-Live site: https://demo.giggybank.app
+Live site: https://community.giggybank.app
 
 Token: **$GIGGYBANK** — `GefTGjFnJGW9PM93Ycb5RrHKiH1gPbz2Szag1mLBBAGS`
 
